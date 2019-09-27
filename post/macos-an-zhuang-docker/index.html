@@ -34,7 +34,17 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82">系统要求</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E8%BF%90%E8%A1%8C">运行</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3">参考文档</a></li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -79,40 +89,88 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">笔记迁移......</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">MacOS 安装 Docker</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-09-26 15:46 / 1 min read
+          2019-02-01 21:53 / 2 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.github.io/post-images/bi-ji-qian-yi.jpg" alt="">
-        
         <div class="post-content yue">
-          <strong style="line-height: 20px; color: #555; font-size: 18px;">
-&emsp;&emsp;从大学毕业到现在，零零散散的保留着工作笔记的习惯。虽多数是借鉴别人，目前累计下来也有两百余篇，从一开始的文档记录到单机笔记软件，又从软件到云笔记，来来回回折腾几次后，终于找到这种既能满足自己平时工作记录，又能起到分享予人，关键还免费的服务来统一管理这些琐碎记录。<br/>
-&emsp;&emsp;由于一些原因吧，这些笔记中有的有转发声明，有的没有，有的已经过时，有的可能不对。总之，看到的同学，如有伤及请及时联系，本人将配合予以更正。<br/>
-&emsp;&emsp;这样，对外的同学既是声明，也算对自己多年来有个总结。
-</strong>
+          <h2 id="系统要求">系统要求</h2>
+<p><a href="https://docs.docker.com/docker-for-mac/">Docker for Mac</a> 要求系统最低为 macOS 10.10.3 Yosemite，或者 2010 年以后的 Mac 机型，准确说是带<a href="https://en.wikipedia.org/wiki/X86_virtualization#Intel-VT-d">Intel MMU 虚拟化</a>的，最低 4GB 内存。</p>
+<p>如果系统不满足需求，可以安装 <a href="https://docs.docker.com/toolbox/overview/">Docker Toolbox</a>。</p>
+<h2 id="安装">安装</h2>
+<p>使用 Homebrew 安装<br>
+<a href="http://brew.sh/">Homebrew</a> 的 <a href="https://caskroom.github.io/">Cask</a> 已经支持 Docker for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：</p>
+<pre><code class="language-bash">brew cask install docker
+</code></pre>
+<p>手动下载安装<br>
+如果需要手动下载，可以通过这个链接下载：<a href="https://download.docker.com/mac/stable/Docker.dmg">https://download.docker.com/mac/stable/Docker.dmg</a></p>
+<p>如同 macOS 其它软件一样，安装也非常简单，双击下载的 .dmg 文件，然后将那只叫 Moby 的鲸鱼图标拖拽到 Application 文件夹即可（其间可能会询问系统密码）。<br>
+<img src="https://shingmoyeung.github.io/post-images/1569592741144.png" alt=""></p>
+<h2 id="运行">运行</h2>
+<p>从应用中找到 Docker 图标并点击运行。<br>
+<img src="https://shingmoyeung.github.io/post-images/1569592755501.png" alt=""></p>
+<p>运行之后，会在右上角菜单栏看到多了一个鲸鱼图标，这个图标表明了 Docker 的运行状态。<br>
+<img src="https://shingmoyeung.github.io/post-images/1569592771337.png" alt=""></p>
+<p>第一次点击图标，可能会看到这个安装成功的界面，点击 &quot;Got it!&quot; 可以关闭这个窗口。<br>
+<img src="https://shingmoyeung.github.io/post-images/1569592787938.png" alt=""></p>
+<p>以后每次点击鲸鱼图标会弹出操作菜单。<br>
+<img src="https://shingmoyeung.github.io/post-images/1569592804459.png" alt=""></p>
+<p>在国内使用 Docker 的话，需要配置加速器，在菜单中点击 Preferences...，然后查看 Advanced 标签，在其中的 Registry mirrors 部分里可以点击加号来添加加速器地址。</p>
+<p>启动终端后，通过命令可以检查安装后的 Docker 版本</p>
+<pre><code class="language-bash">$ docker --version
+Docker version 1.12.3, build 6b644ec
+$ docker-compose --version
+docker-compose version 1.8.1, build 878cff1
+$ docker-machine --version
+docker-machine version 0.8.2, build e18a919
+</code></pre>
+<p>如果 docker version、docker info 都正常的话，可以运行一个 Nginx 服务器：</p>
+<pre><code class="language-bash">$ docker run -d -p 80:80 --name webserver nginx
+</code></pre>
+<p>服务运行后，可以访问 <a href="http://localhost/">http://localhost</a>，如果看到了 &quot;Welcome to nginx!&quot;，就说明 Docker for Mac 安装成功了。<br>
+<img src="https://shingmoyeung.github.io/post-images/1569592901087.png" alt=""></p>
+<p>要停止 Nginx 服务器并删除执行下面的命令：</p>
+<pre><code class="language-bash">$ docker stop webserver
+$ docker rm webserver
+</code></pre>
+<h2 id="参考文档">参考文档</h2>
+<p><a href="https://docs.docker.com/docker-for-mac/install/">Docker官方MacOS 安装文档</a></p>
+
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/V4bUS6WRg">
-            <span class="flex-auto">杂记</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/docker">
+            <span class="flex-auto">Docker</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/BJd4x8aTJ">
-            <span class="flex-auto">2019-09</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-02">
+            <span class="flex-auto">2019-02</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/macos">
+            <span class="flex-auto">MacOS</span>
           </a>
         
 
 
         <div class="flex justify-between py-8">
           
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  Mac上使用Jenv管理多个JDK版本
+                </h3>
+              </a>
+            </div>
+          
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/jmeter-can-shu-hua-shi-xian">
+              <a href="https://shingmoyeung.github.io/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
                 <h3 class="post-title">
-                  JMeter 参数化实现
+                  CentOS 7中Docker开启远程访问
                   <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>
