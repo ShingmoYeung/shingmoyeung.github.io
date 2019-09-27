@@ -1,0 +1,634 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569588894625">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569588894625" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E8%AF%B4%E6%98%8E">1.实现方式说明</a>
+<ul>
+<li><a href="#11%E9%97%AE%E9%A2%98%E8%AF%B4%E6%98%8E">1.1问题说明：</a></li>
+<li><a href="#12%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">1.2实现步骤：</a>
+<ul>
+<li><a href="#1%E5%9C%A8%E5%8E%9F%E6%B3%A8%E8%A7%A3%E4%B8%AD%E5%8A%A0%E5%85%A5%E6%96%B0%E7%9A%84%E5%8F%82%E6%95%B0">1.在原注解中加入新的参数，</a></li>
+<li><a href="#2%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E7%9A%84%E5%AF%B9%E8%B1%A1%E4%BB%A5%E5%8F%8A%E8%AF%A5%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC">2.如何获取参数的对象以及该字段的值</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2%E6%BA%90%E4%BB%A3%E7%A0%81">2.源代码</a></li>
+<li><a href="#3%E6%B5%8B%E8%AF%95">3.测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="http://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">手写Redis @Cacheable注解 参数Java对象作为key值</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-09-07 20:21 / 6 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h3 id="1实现方式说明">1.实现方式说明</h3>
+<p>本文在---- 手写redis @ Cacheable注解支持过期时间设置   的基础之上进行扩展。</p>
+<h4 id="11问题说明">1.1问题说明：</h4>
+<p>@Cacheable（key = “'leader'+＃p0 +＃p1 +＃p2”）一般用法，＃p0表示方法的第一个参数，＃p1表示第二个参数，以此类推。</p>
+<p>目前方法的第一个参数为Java的对象，但是原注解只支持Java的的基本数据类型。</p>
+<h4 id="12实现步骤">1.2实现步骤：</h4>
+<h5 id="1在原注解中加入新的参数">1.在原注解中加入新的参数，</h5>
+<p>objectIndexArray表示哪几个角标参数(从0开始)为java对象，objectFieldArray表示对应位置该对象的字段值作为key</p>
+<h5 id="2如何获取参数的对象以及该字段的值">2.如何获取参数的对象以及该字段的值</h5>
+<p>使用的java的反射，拼接get方法获取该字段值。</p>
+<h3 id="2源代码">2.源代码</h3>
+<p>修改java注解@ExtCacheable，本文中使用@NewCacheable</p>
+<pre><code class="language-java">    package com.huajie.annotation;
+
+    import java.lang.annotation.ElementType;
+
+    import java.lang.annotation.Retention;
+
+    import java.lang.annotation.RetentionPolicy;
+
+    import java.lang.annotation.Target;
+
+    @Target({ ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface NewCacheable {
+
+        String key() default &quot;&quot;;
+
+        int[] objectIndexArray();
+
+        String[] objectFieldArray();
+
+        int expireTime() default 1800;//30分钟
+}
+</code></pre>
+<p>SpringAop切面NewCacheableAspect<br>
+获取AOP整体流程没有任何变化<br>
+主要是关键值获取的方式，发生了变化<br>
+使用Java的反射技术<br>
+完整代码如下：</p>
+<pre><code class="language-java">    package com.huajie.aspect;
+
+    import com.huajie.annotation.NewCacheable;
+
+    import com.huajie.utils.RedisUtil;
+
+    import com.huajie.utils.StringUtil;
+
+    import lombok.extern.slf4j.Slf4j;
+
+    import org.aspectj.lang.ProceedingJoinPoint;
+
+    import org.aspectj.lang.annotation.Around;
+
+    import org.aspectj.lang.annotation.Aspect;
+
+    import org.aspectj.lang.annotation.Pointcut;
+
+    import org.aspectj.lang.reflect.MethodSignature;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+
+    import org.springframework.stereotype.Component;
+
+    import java.lang.reflect.Method;
+
+    import java.util.ArrayList;
+
+    import java.util.List;
+
+    /**
+
+     * redis缓存处理 不适用与内部方法调用(this.)或者private
+
+    */
+
+    @Component
+
+    @Aspect
+
+    @Slf4j
+
+    public class NewCacheableAspect {
+
+ 
+
+    @Autowired
+
+    private RedisUtil redisUtil;
+
+ 
+
+    @Pointcut(&quot;@annotation(com.huajie.annotation.NewCacheable)&quot;)
+
+    public void annotationPointcut() {
+
+    }
+
+ 
+
+    @Around(&quot;annotationPointcut()&quot;)
+
+    public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+
+    // 获得当前访问的class
+
+    Class&lt;?&gt; className = joinPoint.getTarget().getClass();
+
+    // 获得访问的方法名
+
+    String methodName = joinPoint.getSignature().getName();
+
+    // 得到方法的参数的类型
+
+    Class&lt;?&gt;[] argClass = ((MethodSignature) joinPoint.getSignature()).getParameterTypes();
+
+    Object[] args = joinPoint.getArgs();
+
+    String key = &quot;&quot;;
+
+    int expireTime = 3600;
+
+    try {
+
+    // 得到访问的方法对象
+
+    Method method = className.getMethod(methodName, argClass);
+
+    method.setAccessible(true);
+
+    // 判断是否存在@ExtCacheable注解
+
+    if (method.isAnnotationPresent(NewCacheable.class)) {
+
+    NewCacheable annotation = method.getAnnotation(NewCacheable.class);
+
+    key = getRedisKey(args, annotation);
+
+    expireTime = getExpireTime(annotation);
+
+    }
+
+    } catch (Exception e) {
+
+    throw new RuntimeException(&quot;redis缓存注解参数异常&quot;, e);
+
+    }
+
+    log.info(key);
+
+    boolean hasKey = redisUtil.hasKey(key);
+
+    if (hasKey) {
+
+    return redisUtil.get(key);
+
+    } else {
+
+    Object res = joinPoint.proceed();
+
+    redisUtil.set(key, res);
+
+    redisUtil.expire(key, expireTime);
+
+    return res;
+
+    }
+
+    }
+
+ 
+
+    private int getExpireTime(NewCacheable annotation) {
+
+    return annotation.expireTime();
+
+    }
+
+ 
+
+    private String getRedisKey(Object[] args, NewCacheable annotation) throws Exception{
+
+    String primalKey = annotation.key();
+
+    // 获取#p0...集合
+
+    List&lt;String&gt; keyList = getKeyParsList(primalKey);
+
+    for (String keyName : keyList) {
+
+    int keyIndex = Integer.parseInt(keyName.toLowerCase().replace(&quot;#p&quot;, &quot;&quot;));
+
+    Object parValue = getParValue(annotation, keyIndex, args);
+
+    primalKey = primalKey.replace(keyName, String.valueOf(parValue));
+
+    }
+
+    return primalKey.replace(&quot;+&quot;, &quot;&quot;).replace(&quot;'&quot;, &quot;&quot;);
+
+    }
+
+ 
+
+    private Object getParValue(NewCacheable annotation, int keyIndex, Object[] args) throws Exception{
+
+    int[] objectIndexArray = annotation.objectIndexArray();
+
+    String[] objectFieldArray = annotation.objectFieldArray();
+
+    if (existsObject(keyIndex, objectIndexArray)) {
+
+    return getParValueByObject(args, keyIndex, objectFieldArray);
+
+    } else {
+
+    return args[keyIndex];
+
+    }
+
+    }
+
+ 
+
+    private Object getParValueByObject(Object[] args, int keyIndex, String[] objectFieldArray) throws Exception {
+
+    Class cls = args[keyIndex].getClass();
+
+    Method method;
+
+    if(objectFieldArray!=null&amp;&amp;objectFieldArray.length&gt;=keyIndex){
+
+    method = cls.getMethod(&quot;get&quot; + StringUtil.firstCharToUpperCase(objectFieldArray[keyIndex]));
+
+    }else{
+
+    method = cls.getMethod(&quot;get&quot; + StringUtil.firstCharToUpperCase(cls.getFields()[0].getName()));
+
+    }
+
+    method.setAccessible(true);
+
+    log.info(method.getName());
+
+    return method.invoke(args[keyIndex]);
+
+    }
+
+ 
+
+    private boolean existsObject(int keyIndex, int[] objectIndexArray) {
+
+    if (objectIndexArray == null || objectIndexArray.length &lt;= 0) {
+
+    return false;
+
+    }
+
+    for (int i = 0; i &lt; objectIndexArray.length; i++) {
+
+    if (keyIndex == objectIndexArray[i]) {
+
+    return true;
+
+    }
+
+    }
+
+    return false;
+
+    }
+
+ 
+
+    // 获取key中#p0中的参数名称
+
+    private static List&lt;String&gt; getKeyParsList(String key) {
+
+    List&lt;String&gt; ListPar = new ArrayList&lt;String&gt;();
+
+    if (key.indexOf(&quot;#&quot;) &gt;= 0) {
+
+    int plusIndex = key.substring(key.indexOf(&quot;#&quot;)).indexOf(&quot;+&quot;);
+
+    int indexNext = 0;
+
+    String parName = &quot;&quot;;
+
+    int indexPre = key.indexOf(&quot;#&quot;);
+
+    if (plusIndex &gt; 0) {
+
+    indexNext = key.indexOf(&quot;#&quot;) + key.substring(key.indexOf(&quot;#&quot;)).indexOf(&quot;+&quot;);
+
+    parName = key.substring(indexPre, indexNext);
+
+    } else {
+
+    parName = key.substring(indexPre);
+
+    }
+
+    ListPar.add(parName.trim());
+
+    key = key.substring(indexNext + 1);
+
+    if (key.indexOf(&quot;#&quot;) &gt;= 0) {
+
+    ListPar.addAll(getKeyParsList(key));
+
+    }
+
+    }
+
+    return ListPar;
+    }
+}
+</code></pre>
+<h3 id="3测试">3.测试</h3>
+<p>业务模块使用方法controller</p>
+<pre><code class="language-java">    @RequestMapping(&quot;queryQuotaTreeData&quot;)
+	@ResponseBody
+	public List&lt;TreeNode&gt; getTreeData() {
+
+		QuotaManage quotaManage = new QuotaManage();
+
+		quotaManage.setQuotaName(&quot;测试22222&quot;);
+
+		List&lt;TreeNode&gt; list  = this.quotaManageService.queryQuotaTreeData(quotaManage);
+
+		return list;
+
+}
+</code></pre>
+<p>实现层objectIndexArray中的{0}表示第0个参数，objectFieldArray中的“quotaName”表示对应对象中的字段名称</p>
+<pre><code class="language-java">    @Override
+	@NewCacheable(key=&quot;test+#p0&quot;,objectIndexArray = {0},objectFieldArray = {&quot;quotaName&quot;})
+	public List&lt;TreeNode&gt; queryQuotaTreeData(QuotaManage quotaManage) {
+
+		List&lt;TreeNode&gt; returnNodesList = new ArrayList&lt;TreeNode&gt;();
+
+		List&lt;TreeNode&gt; nodeList = this.mapper.queryQuotaTreeData();
+
+		returnNodesList = treeUtils.getParentList(nodeList);
+
+		log.info(nodeList.size()+&quot;&quot;);
+
+		return returnNodesList;
+}
+</code></pre>
+<p>控制台截图拼接的get方法名称和获取的字段值<br>
+<b>Redis的截图</b><br>
+<img src="https://shingmoyeung.github.io/post-images/1569587361930.png" alt=""></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/redis">
+            <span class="flex-auto">Redis</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/BJd4x8aTJ">
+            <span class="flex-auto">2019-09</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/jmeter-can-shu-hua-shi-xian">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  JMeter 参数化实现
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
+                <h3 class="post-title">
+                  手写Redis @Cacheable注解 支持过期时间设置
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'uGxNOfYBRvndrS9GTg3W01UTwCxft2u552uZTMNeQyBXRnqtgX6w33wLeFsjiBDV',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shingmoyeung.github.io</id>
     <title>代码人生</title>
-    <updated>2019-09-27T12:11:57.117Z</updated>
+    <updated>2019-09-27T12:54:59.440Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shingmoyeung.github.io"/>
     <link rel="self" href="https://shingmoyeung.github.io/atom.xml"/>
@@ -23,5 +23,33 @@
         <link href="https://shingmoyeung.github.io/post/jmeter-can-shu-hua-shi-xian">
         </link>
         <updated>2019-09-19T11:49:25.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[手写Redis @Cacheable注解 参数Java对象作为key值]]></title>
+        <id>https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi</id>
+        <link href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
+        </link>
+        <updated>2019-09-07T12:21:24.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[手写Redis @Cacheable注解 支持过期时间设置]]></title>
+        <id>https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi</id>
+        <link href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
+        </link>
+        <updated>2019-09-07T12:13:40.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Executors Java编程规范插件提示手动创建线程池的解决办法]]></title>
+        <id>https://shingmoyeung.github.io/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa</id>
+        <link href="https://shingmoyeung.github.io/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa">
+        </link>
+        <updated>2019-06-27T12:48:39.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java四种线程池的使用]]></title>
+        <id>https://shingmoyeung.github.io/post/java-si-chong-xian-cheng-chi-de-shi-yong</id>
+        <link href="https://shingmoyeung.github.io/post/java-si-chong-xian-cheng-chi-de-shi-yong">
+        </link>
+        <updated>2019-06-27T12:31:22.000Z</updated>
     </entry>
 </feed>

@@ -1,0 +1,481 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569588894625">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569588894625" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E8%83%8C%E6%99%AF">一、背景</a></li>
+<li><a href="#%E4%BA%8C-%E6%8E%A2%E7%A9%B6">二、探究</a></li>
+</ul>
+</li>
+<li><a href="#httpsblogcsdnnetw605283073articledetails89930497">https://blog.csdn.net/w605283073/article/details/89930497</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="http://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Executors Java编程规范插件提示手动创建线程池的解决办法</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-06-27 20:48 / 8 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h3 id="一-背景">一、背景</h3>
+<p>最近了解一下线程池，下载其中的代码并运行。</p>
+<p>https://howtodoinjava.com/core-java/multi-threading/when-to-use-countdownlatch-java-concurrency-example-tutorial/</p>
+<p>其中ApplicationStartupUtil这个类</p>
+<pre><code class="language-java">package com.chujianyun;
+import com.chujianyun.verifier.BaseHealthChecker;
+import com.chujianyun.verifier.CacheHealthChecker;
+import com.chujianyun.verifier.DatabaseHealthChecker;
+import com.chujianyun.verifier.NetworkHealthChecker;
+import java.util.concurrent.*;
+public class ApplicationStartupUtil 
+{
+   private static BlockingQueue&lt;Runnable&gt; services;
+   private static CountDownLatch latch;
+   
+   private ApplicationStartupUtil()
+   {
+   }
+   
+   private final static ApplicationStartupUtil INSTANCE = new ApplicationStartupUtil();
+   
+   public static ApplicationStartupUtil getInstance()
+   {
+      return INSTANCE;
+   }
+   
+   public static boolean checkExternalServices() throws Exception
+   {
+      latch = new CountDownLatch(3);
+      services = new ArrayBlockingQueue&lt;&gt;(3);
+      services.add(new NetworkHealthChecker(latch));
+      services.add(new CacheHealthChecker(latch));
+      services.add(new DatabaseHealthChecker(latch));
+      
+      ExecutorService executorService = Executors.newFixedThreadPool(services.size());
+      for(final Runnable v : services)
+      {
+            executorService.execute(v);
+      }
+      latch.await();
+ 
+      for(final Runnable v : services)
+      {
+            BaseHealthChecker baseHealthChecker = (BaseHealthChecker) v;
+         if( ! baseHealthChecker.isServiceUp())
+         {
+            return false;
+         }
+      }
+      return true;
+   }  
+}
+</code></pre>
+<p>其中有下面代码：</p>
+<p>ExecutorService executorService = Executors.newFixedThreadPool(services.size());<br>
+由于IDEA安装了阿里的Java编程规范检查插件，提示让手动创建线程池。</p>
+<h3 id="二-探究">二、探究</h3>
+<p>查看newFixedThreadPool函数源码：</p>
+<pre><code class="language-java">/**
+ * Creates a thread pool that reuses a fixed number of threads
+ * operating off a shared unbounded queue. At any point, at most
+ * {@code nThreads} threads will be active processing tasks.
+ * If additional tasks are submitted when all threads are active,
+ * they will wait in the queue until a thread is available.
+ * If any thread terminates due to a failure during execution
+ * prior to shutdown, a new one will take its place if needed to
+ * execute subsequent tasks. The threads in the pool will exist
+ * until it is explicitly {@link ExecutorService#shutdown shutdown}.
+ *
+ * @param nThreads the number of threads in the pool
+ * @return the newly created thread pool
+ * @throws IllegalArgumentException if {@code nThreads &lt;= 0}
+ */
+public static ExecutorService newFixedThreadPool(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue&lt;Runnable&gt;());
+}
+</code></pre>
+<p>得知该函数最终调用的还是ThreadPoolExecutor构造方法。</p>
+<p>因此上面一句可以改成：</p>
+<pre><code class="language-java">int size = services.size();
+ExecutorService executorService = new ThreadPoolExecutor(size,size,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue&lt;Runnable&gt;());
+</code></pre>
+<p>但是又有提示，建议要为线程池中的线程设置名称：<br>
+仅此在构造方法后加入TreadFactory，大功告成</p>
+<pre><code class="language-java">ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat(&quot;thread-call-runner-%d&quot;).build();
+int size = services.size();
+ExecutorService executorService = new ThreadPoolExecutor(size,size,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue&lt;Runnable&gt;(),namedThreadFactory);
+</code></pre>
+<p>三、为什么要这么做呢？<br>
+我们参考阿里巴巴的Java开发手册内容：</p>
+<pre><code>8. 【强制】线程池不允许使用Executors去创建，而是通过ThreadPoolExecutor的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。
+
+说明：Executors各个方法的弊端：
+
+1） newFixedThreadPool和newSingleThreadExecutor: 主要问题是堆积的请求处理队列可能会耗费非常大的内存，甚至OOM。
+
+2） newCachedThreadPool和newScheduledThreadPool: 主要问题是线程数最大数是Integer.MAX_VALUE，可能会创建数量非常多的线程，甚至OOM。
+
+9. 【强制】创建线程或线程池时请指定有意义的线程名称，方便出错时回溯。
+
+我在此简单进一步解读一下：
+
+[1] newFixedThreadPool和newSingleThreadExecutor 由于最后一个参数即工作队列是：
+
+    /**
+     * Creates a thread pool that reuses a fixed number of threads
+     * operating off a shared unbounded queue. At any point, at most
+     * {@code nThreads} threads will be active processing tasks.
+     * If additional tasks are submitted when all threads are active,
+     * they will wait in the queue until a thread is available.
+     * If any thread terminates due to a failure during execution
+     * prior to shutdown, a new one will take its place if needed to
+     * execute subsequent tasks. The threads in the pool will exist
+     * until it is explicitly {@link ExecutorService#shutdown shutdown}.
+     *
+     * @param nThreads the number of threads in the pool
+     * @return the newly created thread pool
+     * @throws IllegalArgumentException if {@code nThreads &lt;= 0}
+     */
+    public static ExecutorService newFixedThreadPool(int nThreads) {
+        return new ThreadPoolExecutor(nThreads, nThreads,
+                                      0L, TimeUnit.MILLISECONDS,
+                                      new LinkedBlockingQueue&lt;Runnable&gt;());
+    }
+链表类型的阻塞队列，而我们看其构造函数发现，默认队列大小是整数的最大值！！
+
+    /**
+     * Creates a {@code LinkedBlockingQueue} with a capacity of
+     * {@link Integer#MAX_VALUE}.
+     */
+    public LinkedBlockingQueue() {
+        this(Integer.MAX_VALUE);
+    }
+ 
+    /**
+     * Creates a {@code LinkedBlockingQueue} with the given (fixed) capacity.
+     *
+     * @param capacity the capacity of this queue
+     * @throws IllegalArgumentException if {@code capacity} is not greater
+     * than zero
+     */
+    public LinkedBlockingQueue(int capacity) {
+        if (capacity &lt;= 0) throw new IllegalArgumentException();
+        this.capacity = capacity;
+        last = head = new Node&lt;E&gt;(null);
+    }
+所以如果请求太多，队列很可能就耗费内存非常大导致OOM.
+
+但是他们的线程数是固定的，而且一般不会太大，所以不会因为创建过多线程而导致OOM。
+
+[2] newCachedThreadPool和newScheduledThreadPool:
+
+    /**
+     * Creates a thread pool that creates new threads as needed, but
+     * will reuse previously constructed threads when they are
+     * available. These pools will typically improve the performance
+     * of programs that execute many short-lived asynchronous tasks.
+     * Calls to {@code execute} will reuse previously constructed
+     * threads if available. If no existing thread is available, a new
+     * thread will be created and added to the pool. Threads that have
+     * not been used for sixty seconds are terminated and removed from
+     * the cache. Thus, a pool that remains idle for long enough will
+     * not consume any resources. Note that pools with similar
+     * properties but different details (for example, timeout parameters)
+     * may be created using {@link ThreadPoolExecutor} constructors.
+     *
+     * @return the newly created thread pool
+     */
+    public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue&lt;Runnable&gt;());
+    }
+其中第最大线程池大小是整数的最大值，因此线程可能不断创建，乃至到整数的最大值个线程，很容易导致OOM.
+
+其中工作队列使用的是 SynchronousQueue&lt;E&gt;
+
+源码头部的注释中有说明
+
+ * A {@linkplain BlockingQueue blocking queue} in which each insert
+ * operation must wait for a corresponding remove operation by another
+ * thread, and vice versa. A synchronous queue does not have any
+ * internal capacity, not even a capacity of one. You cannot
+ * {@code peek} at a synchronous queue because an element is only
+ * present when you try to remove it; you cannot insert an element
+ * (using any method) unless another thread is trying to remove it;
+ * you cannot iterate as there is nothing to iterate. The
+ * &lt;em&gt;head&lt;/em&gt; of the queue is the element that the first queued
+ * inserting thread is trying to add to the queue; if there is no such
+ * queued thread then no element is available for removal and
+ * {@code poll()} will return {@code null}. For purposes of other
+ * {@code Collection} methods (for example {@code contains}), a
+ * {@code SynchronousQueue} acts as an empty collection. This queue
+ * does not permit {@code null} elements.
+可以看出
+
+A {@linkplain BlockingQueue blocking queue} in which each insert operation must wait for a corresponding remove operation by another thread, and vice versa.
+该类型的阻塞队列每一个插入操作必须等待对应的元素被另一个线程所移除，反之亦然。
+
+因此阻塞队列不会无限拓展而导致OOM。
+</code></pre>
+<p>因此我们理解一些原则的时候，学习的时候多注重源码分析非常有必要，其他细节有待以后深入研究。</p>
+<p>另外我写的一篇线程池导致线上故障的一篇文章大家也可以参考一下</p>
+<h2 id="httpsblogcsdnnetw605283073articledetails89930497">https://blog.csdn.net/w605283073/article/details/89930497</h2>
+<p>作者：明明如月小角落<br>
+来源：CSDN<br>
+原文：https://blog.csdn.net/w605283073/article/details/80259493<br>
+版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-06">
+            <span class="flex-auto">2019-06</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/duo-xian-cheng">
+            <span class="flex-auto">多线程</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  手写Redis @Cacheable注解 支持过期时间设置
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/java-si-chong-xian-cheng-chi-de-shi-yong">
+                <h3 class="post-title">
+                  Java四种线程池的使用
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'uGxNOfYBRvndrS9GTg3W01UTwCxft2u552uZTMNeQyBXRnqtgX6w33wLeFsjiBDV',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
