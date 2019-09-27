@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shingmoyeung.github.io</id>
     <title>代码人生</title>
-    <updated>2019-09-27T14:02:34.560Z</updated>
+    <updated>2019-09-27T14:04:25.547Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shingmoyeung.github.io"/>
     <link rel="self" href="https://shingmoyeung.github.io/atom.xml"/>
@@ -102,7 +102,7 @@
         <updated>2019-03-06T13:30:36.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Mac上使用Jenv管理多个JDK版本]]></title>
+        <title type="html"><![CDATA[Mac上使用jEnv管理多个JDK版本]]></title>
         <id>https://shingmoyeung.github.io/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben</id>
         <link href="https://shingmoyeung.github.io/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
         </link>
