@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569592031760">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569592031760" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="http://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Mac上使用Jenv管理多个JDK版本</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-01 21:36 / 4 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>使用Java时会接触到不同的版本。大多数时候我在使用Java 8，但是因为某些框架或是工具的要求，这时不得不让Java 7上前线。一般情况下是配置JAVA_HOME，指定不同的Java版本，但是这需要人为手动的输入。如果又要选择其他版本，就需要对JAVA_HOME重新进行设置。终于，我发现了JEnv。</p>
+<p>正如它的官网所宣称的那样，它是来让你忘记怎么配置JAVA_HOME环境变量的神队友。使用简单的命令就可以在不同的Java版本之间进行切换。如果你使用过rbenv，你会发现JEnv就如同rbenv的Java版一样。</p>
+<p>基本使用: 在Mac OS下使用Homebrew安装JEnv：</p>
+<pre><code class="language-shell">&gt; brew install jenv
+</code></pre>
+<p>安装成功后需要进行一下简单的配置，让它可以起作用：</p>
+<pre><code class="language-shell">&gt; echo 'export PATH=&quot;$HOME/.jenv/bin:$PATH&quot;' &gt;&gt; ~/.bash_profile
+&gt; echo 'eval &quot;$(jenv init -)&quot;' &gt;&gt; ~/.bash_profile
+&gt; source ~/.bash_profile
+</code></pre>
+<p>好了，JEnv已经安装好了，让我们来看一下它找见哪个Java版本了：</p>
+<pre><code class="language-shell">&gt; jenv versions
+* system (set by /Users/bxpeng/.jenv/version)
+</code></pre>
+<p>它只找到了系统默认的Java，*表示当前选择的版本。尽管我已经下载了其他版本的Java，但是它并不会自动发现</p>
+<p>和rbenv不同的是，JEnv不能自己安装任何版本的Java，所以需要我们手动安装好之后再用JEnv指向它们。<br>
+安装Java 7，可以在Oracle进行下载.它将安装到/Library/Java/JavaVirtualMachines/下；<br>
+安装Java 8，可以在Oracle进行下载.它将安装到/Library/Java/JavaVirtualMachines/下。</p>
+<p>使用jenv add将Java 7、Java 8加入jenv中：</p>
+<pre><code class="language-shell">&gt; jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/
+1.7 added
+1.7.0.71 added
+oracle64-1.7.0.71 added
+&gt; jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/
+1.8 added
+1.8.0.25 added
+oracle64-1.8.0.25 added
+</code></pre>
+<p>现在运行jenv versions会显示：</p>
+<pre><code class="language-shell">&gt; jenv versions
+* system (set by /Users/bxpeng/.jenv/version)
+  1.7
+  1.7.0.71
+  oracle64-1.7.0.71
+  1.8
+  1.8.0.25
+  oracle64-1.8.0.25
+</code></pre>
+<p>对于多余的版本使用jenv remove可以从jEnv中去掉不需要的Java版本：</p>
+<pre><code class="language-shell">&gt; jenv remove 1.6
+JDK 1.6 removed
+</code></pre>
+<p>整理后，再运行jenv versions会显示：</p>
+<pre><code class="language-shell">&gt; jenv versions
+* system (set by /Users/bxpeng/.jenv/version)
+  1.7.0.71
+  1.8.0.25
+</code></pre>
+<p>选择一个Java版本，运行jenv local，例如：</p>
+<p>切换本地JDK版本</p>
+<pre><code class="language-shell">&gt; jenv local 1.8.0.25
+</code></pre>
+<p>切换全局JDK版本</p>
+<pre><code class="language-shell">&gt; jenv global 1.8.0.25
+</code></pre>
+<p>查看JDK版本信息</p>
+<pre><code class="language-shell">&gt; java -version
+java version &quot;1.8.0_25&quot;
+Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+</code></pre>
+<p>OK，我们已经成功地指定了某文件夹中local的Java版本。我们也可以运行jenv global设置一个默认的Java版本，运行jenv which java显示可执行的Java的完整路径。<br>
+你也可以在特定的文件夹下使用.java-version文件来设定Java的版本。当我需要在Project中使用Java 7时，仅仅需要把1.7.0.71作为内容保存在.java-version文件中，当进入该文件夹时，JEnv会自动地帮助我设定local的Java的版本。</p>
+<p>作者：JouyPub<br>
+链接：https://www.jianshu.com/p/21f9ae99e88b<br>
+来源：简书<br>
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/jdk">
+            <span class="flex-auto">JDK</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/jenv">
+            <span class="flex-auto">jEnv</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/homebrew">
+            <span class="flex-auto">Homebrew</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/macos">
+            <span class="flex-auto">MacOS</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  使用Java登录远程Linux并对服务实现各种操作
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
+                <h3 class="post-title">
+                  CentOS 7中Docker开启远程访问
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'uGxNOfYBRvndrS9GTg3W01UTwCxft2u552uZTMNeQyBXRnqtgX6w33wLeFsjiBDV',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

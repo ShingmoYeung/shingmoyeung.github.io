@@ -1,0 +1,319 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569592031760">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569592031760" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="http://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux下编译安装Apache报APR not found错误的解决办法</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-13 21:26 / 3 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>我在编译安装完Nginx、MySQL和PHP(见之前一篇博客:<a href="https://www.cnblogs.com/52lnamp/p/9330289.html" target="_blank">LNMP环境搭建详细教程</a>)之后,进行apache的编译安装:</p>
+<pre><code class="language-shell">cd /usr/local/src 
+
+wget http://mirror.bit.edu.cn/apache/httpd/httpd-2.4.34.tar.gz　
+
+tar zxvf httpd-2.4.34.tar.gz　　
+
+cd httpd-2.4.34　　
+
+./configure --prefix=/usr/local/httpd　　
+</code></pre>
+<p>就在这个时候提示:configure: error: APR not found. Please read the documentation.<br>
+这说明缺少APR依赖,那么安装即可,可以用yum安装但是不推荐,因为yum安装的APR版本可能不足以支持你所安装的apache版本,所以还是要用编译安装高版本的APR:</p>
+<pre><code class="language-shell">cd /usr/local/src
+
+wget http://archive.apache.org/dist/apr/apr-1.6.3.tar.gz 
+
+wget http://archive.apache.org/dist/apr/apr-util-1.6.1.tar.gz
+</code></pre>
+<p>依次下载上述两个安装包并逐个解压缩:</p>
+<pre><code class="language-shell">tar zxvf apr-1.6.3.tar.gz
+
+tar zxvf apr-util-1.6.1.tar.gz
+cd/usr/local/src/apr-1.6.3 #安装apr
+
+./configure --prefix=/usr/local/apr  
+
+make &amp;&amp; make install
+cd /usr/local/src/apr-util-1.6.1  #安装apr-util
+
+./configure --prefix=/usr/local/apr-util --with-apr=/usr/local/apr   
+
+make &amp;&amp; make install
+</code></pre>
+<p>依赖全部安装完毕后再次切换到httpd的安装目录安装apache:</p>
+<pre><code class="language-shell">cd /usr/local/src/httpd-2.4.34
+
+./configure --prefix=/usr/local/httpd --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util
+
+make &amp;&amp; make install
+</code></pre>
+<p>到此安装成功,想要启动、停止、重启apache需要用到命令:</p>
+<pre><code class="language-shell">/usr/local/httpd/bin/httpd -k start   ##开启
+
+/usr/local/httpd/bin/httpd -k stop    ##停止
+
+/usr/local/httpd/bin/httpd -k restart ##重启
+</code></pre>
+<p>这里我在重启的时候就报了之前一篇博客:LNMP环境搭建详细教程中讲述的一个错误:</p>
+<p>bind() to 0.0.0.0:80 failed (98: Address already in use)  这是因为我之前安装了nginx已经占用了80端口并且正在运行端口发生冲突,<br>
+所以就需要修改httpd的端口号,配置文件位置/usr/local/httpd/conf/httpd.conf:</p>
+<pre><code class="language-shell">vim /usr/local/httpd/conf/httpd.conf
+</code></pre>
+<p>搜索Listen 80将其改为Listen 8080(修改的端口号可以随便定义,范围是0<sub>65535,其中0没有任何意义,也可以理解为1</sub>65535),重启httpd提示新的错误:Could not reliably determine the server's fully qualified domain name,</p>
+<p>这是因为httpd.conf中ServerName未修改,搜索ServerName,将其改为:ServerName localhost:8080之后再次重启错误消失,查看一下正在运行的服务:<br>
+<img src="https://shingmoyeung.github.io/post-images/1569590924225.png" alt=""><br>
+ps:上述安装的依赖版本并不是固定的,在安装的时候最好到官网看一下文档说明,选用高级的版本,比如用apr-1.3.*的版本,用来编译安装httpd-2.4.*的apache的时候就编译不了了</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/apache">
+            <span class="flex-auto">Apache</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-03">
+            <span class="flex-auto">2019-03</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yun-wei-bu-shu">
+            <span class="flex-auto">运维部署</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  MAC下VMware Fusion虚拟机配置网卡
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
+                <h3 class="post-title">
+                  Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'uGxNOfYBRvndrS9GTg3W01UTwCxft2u552uZTMNeQyBXRnqtgX6w33wLeFsjiBDV',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

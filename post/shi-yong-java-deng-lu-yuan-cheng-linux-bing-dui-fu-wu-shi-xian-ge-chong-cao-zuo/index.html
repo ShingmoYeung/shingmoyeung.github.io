@@ -1,0 +1,403 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569592031760">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569592031760" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="http://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">使用Java登录远程Linux并对服务实现各种操作</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-06 21:30 / 4 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>本文采用jar依赖为</p>
+<pre><code class="language-maven">&lt;!-- SSH2连接Linux服务器依赖 https://mvnrepository.com/artifact/ch.ethz.ganymed/ganymed-ssh2 --&gt;
+&lt;dependency&gt;
+   &lt;groupId&gt;ch.ethz.ganymed&lt;/groupId&gt;
+   &lt;artifactId&gt;ganymed-ssh2&lt;/artifactId&gt;
+   &lt;version&gt;build210&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>在访问linux时，首先需要使用工具类jar包：ganymed-ssh2</p>
+<p>登录远程服务器：</p>
+<pre><code class="language-java">public boolean login(){
+	//创建远程连接，默认连接端口为22，如果不使用默认，可以使用方法
+	//new Connection(ip, port)创建对象
+	Connection conn = new Connection(ip);        
+	try {
+		//连接远程服务器
+		conn.connect();
+		//使用用户名和密码登录
+        return conn.authenticateWithPassword(usr, psword);
+	} catch (IOException e) {   
+		System.err.printf(&quot;用户%s密码%s登录服务器%s失败！&quot;, usr, psword, ip);
+		e.printStackTrace();
+  }
+  return false;
+}
+/**
+  * 上传本地文件到服务器目录下
+  * @param conn Connection对象
+  * @param fileName 本地文件
+  * @param remotePath 服务器目录
+  */
+public void putFile(Connection conn, String fileName, String remotePath){
+	SCPClient sc = new SCPClient(conn);
+	try {
+		//将本地文件放到远程服务器指定目录下，默认的文件模式为 0600，即 rw，
+		//如要更改模式，可调用方法 put(fileName, remotePath, mode),模式须是4位数字且以0开头
+		sc.put(fileName, remotePath);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+/**
+  * 下载服务器文件到本地目录
+  * @param fileName 服务器文件
+  * @param localPath 本地目录
+  */
+public void copyFile(Connection conn, String fileName,String localPath){
+	SCPClient sc = new SCPClient(conn);
+	try {
+		sc.get(fileName, localPath);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+/**
+ * 在远程LINUX服务器上，在指定目录下，获取文件各个属性
+ * @param[in] conn Conncetion对象
+ * @param[in] remotePath 远程主机的指定目录
+ */
+public void getFileProperties(Conncetion conn, String remotePath){
+	try {
+		SFTPv3Client sft = new SFTPv3Client(conn);
+		Vector&lt;?&gt; v = sft.ls(remotePath);
+       
+		for(int i=0;i&lt;v.size();i++){
+			SFTPv3DirectoryEntry s = new SFTPv3DirectoryEntry();
+			s = (SFTPv3DirectoryEntry) v.get(i);
+			//文件名
+			String filename = s.filename;
+			//文件的大小
+			Long fileSize = s.attributes.size;
+		}
+			
+		sft.close();
+       
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
+}
+/**
+ * 在远程LINUX服务器上，在指定目录下，删除指定文件
+ * @param[in] fileName 文件名
+ * @param[in] remotePath 远程主机的指定目录
+ * @return
+ */
+public void delFile(String remotePath, String fileName){
+	try {
+		SFTPv3Client sft = new SFTPv3Client(conn);
+		//获取远程目录下文件列表
+		Vector&lt;?&gt; v = sft.ls(remotePath);
+   
+		for(int i=0;i&lt;v.size();i++){
+			SFTPv3DirectoryEntry s = new SFTPv3DirectoryEntry();
+			s = (SFTPv3DirectoryEntry) v.get(i);
+			//判断列表中文件是否与指定文件名相同
+			if(s.filename.equals(fileName)){
+				//rm()方法中，须是文件绝对路径+文件名称
+				sft.rm(remotePath + s.filename);
+			}
+		sft.close();
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
+}
+
+/**
+ * 执行脚本
+ * @param conn Connection对象
+ * @param cmds 要在linux上执行的指令
+ */
+public int exec(Connection conn, String cmds){
+	InputStream stdOut = null;
+	InputStream stdErr = null;
+	int ret = -1;
+	try {
+		//在connection中打开一个新的会话
+		Session session = conn.openSession();
+		//在远程服务器上执行linux指令
+		session.execCommand(cmds);
+		//指令执行结束后的输出
+		stdOut = new StreamGobbler(session.getStdout());
+		//指令执行结束后的错误
+		stdErr = new StreamGobbler(session.getStderr());
+		//等待指令执行结束
+		session.waitForCondition(ChannelCondition.EXIT_STATUS, TIME_OUT);
+	   	//取得指令执行结束后的状态
+		ret = session.getExitStatus(); 
+		
+		conn.close();
+	}catch(Exception e){
+		 e.printStackTrace();
+	}
+ 
+	return ret;
+}
+</code></pre>
+<hr>
+<p>作者：我有健康<br>
+来源：CSDN<br>
+原文：https://blog.csdn.net/QQ156881887/article/details/80209864<br>
+版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/maven">
+            <span class="flex-auto">Maven</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-03">
+            <span class="flex-auto">2019-03</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
+                <h3 class="post-title">
+                  Mac上使用Jenv管理多个JDK版本
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'uGxNOfYBRvndrS9GTg3W01UTwCxft2u552uZTMNeQyBXRnqtgX6w33wLeFsjiBDV',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
