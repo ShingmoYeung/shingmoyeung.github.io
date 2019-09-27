@@ -31,38 +31,34 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#a-%E4%B8%80%E4%B8%AA%E6%98%AF%E8%AF%B4%E5%9C%A8%E4%BB%A3%E7%A0%81%E9%87%8C%E8%AE%BE%E7%BD%AE%E4%B8%8D%E8%B5%B0vip%E9%80%9A%E9%81%93%E4%BD%86%E6%98%AF%E6%88%91%E8%BF%99%E8%BE%B9%E6%B2%A1%E6%9C%89%E7%94%9F%E6%95%88">a. 一个是说,在代码里设置不走vip通道,但是我这边没有生效</a></li>
+<li><a href="#b-%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%96%B9%E6%B3%95%E4%BF%AE%E6%94%B9brokconf">b. 第二个方法,修改brok.conf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -106,68 +102,92 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-2-line"></i> 标签云
-        </h2>
-        <div class="tags-container">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">RocketMq踩坑实录(2)---connect to XXXX:10909 failed</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-03-16 21:04 / 1 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>就是启动好nameServer和Broker之后, 启动生产者会报这样的错误,但是官网上并没有解决这个问题的办法.<br>
+多方查找资料后发现,主要有两个解决办法:</p>
+<h6 id="a-一个是说在代码里设置不走vip通道但是我这边没有生效">a. 一个是说,在代码里设置不走vip通道,但是我这边没有生效</h6>
+<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1569589532551.png" alt=""></figure>
+<h6 id="b-第二个方法修改brokconf">b. 第二个方法,修改brok.conf</h6>
+<p><img src="https://shingmoyeung.github.io/post-images/1569589546128.png" alt=""><br>
+我这边添加了两行配置: <br>
+<img src="https://shingmoyeung.github.io/post-images/1569589559934.png" alt=""> <br>
+据说这个问题的原因是因为虚拟机的多网卡造成的. <br>
+但是启动broker的指令要修改下, 要将这个配置文件指定加载,很多答案都没有写明这个,希望大家重视一下,不然修改也没用:</p>
+<pre><code class="language-shell">nohup sh mqbroker -n localhost:9876 -c ../conf/broker.conf &amp;
+</code></pre>
+<p>--------------------- <br>
+作者：多吃核桃会补脑 <br>
+来源：CSDN <br>
+原文：https://blog.csdn.net/qq_14853889/article/details/81053145 <br>
+版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/xiao-xi-dui-lie">
+            <span class="flex-auto">消息队列</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-03">
+            <span class="flex-auto">2019-03</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yun-wei-bu-shu">
+            <span class="flex-auto">运维部署</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/V4bUS6WRg" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-              <span class="flex-auto">杂记</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案
+                </h3>
+              </a>
+            </div>
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/BJd4x8aTJ" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-              <span class="flex-auto">2019-09</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">4</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/ce-shi-na-xie-shi-er" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-              <span class="flex-auto">测试那些事儿</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-              <span class="flex-auto">代码那些事儿</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">4</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/redis" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-              <span class="flex-auto">Redis</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-06" :style="{ 'animation-delay': `${5 * 0.2}s` }">
-              <span class="flex-auto">2019-06</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/duo-xian-cheng" :style="{ 'animation-delay': `${6 * 0.2}s` }">
-              <span class="flex-auto">多线程</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-03" :style="{ 'animation-delay': `${7 * 0.2}s` }">
-              <span class="flex-auto">2019-03</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux" :style="{ 'animation-delay': `${8 * 0.2}s` }">
-              <span class="flex-auto">Linux</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yun-wei-bu-shu" :style="{ 'animation-delay': `${9 * 0.2}s` }">
-              <span class="flex-auto">运维部署</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/xiao-xi-dui-lie" :style="{ 'animation-delay': `${10 * 0.2}s` }">
-              <span class="flex-auto">消息队列</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
+
           
         </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'uGxNOfYBRvndrS9GTg3W01UTwCxft2u552uZTMNeQyBXRnqtgX6w33wLeFsjiBDV',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
       </div>
     </div>
 

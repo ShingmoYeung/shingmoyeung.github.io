@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shingmoyeung.github.io</id>
     <title>代码人生</title>
-    <updated>2019-09-27T12:54:59.440Z</updated>
+    <updated>2019-09-27T13:19:51.160Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shingmoyeung.github.io"/>
     <link rel="self" href="https://shingmoyeung.github.io/atom.xml"/>
@@ -51,5 +51,26 @@
         <link href="https://shingmoyeung.github.io/post/java-si-chong-xian-cheng-chi-de-shi-yong">
         </link>
         <updated>2019-06-27T12:31:22.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CentOS 7 安装MySQL（yum方式）]]></title>
+        <id>https://shingmoyeung.github.io/post/centos-7-an-zhuang-mysqlyum-fang-shi</id>
+        <link href="https://shingmoyeung.github.io/post/centos-7-an-zhuang-mysqlyum-fang-shi">
+        </link>
+        <updated>2019-03-20T12:58:07.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案]]></title>
+        <id>https://shingmoyeung.github.io/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an</id>
+        <link href="https://shingmoyeung.github.io/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
+        </link>
+        <updated>2019-03-16T13:08:08.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[RocketMq踩坑实录(2)---connect to XXXX:10909 failed]]></title>
+        <id>https://shingmoyeung.github.io/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed</id>
+        <link href="https://shingmoyeung.github.io/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">
+        </link>
+        <updated>2019-03-16T13:04:38.000Z</updated>
     </entry>
 </feed>
