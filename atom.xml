@@ -1,152 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://shingmoyeung.coding.me</id>
+    <id>http://shingmoyeung.coding.me/</id>
     <title>代码人生</title>
-    <updated>2019-09-28T08:34:07.950Z</updated>
+    <updated>2019-09-28T08:35:24.924Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://shingmoyeung.coding.me"/>
-    <link rel="self" href="http://shingmoyeung.coding.me/atom.xml"/>
+    <link rel="alternate" href="http://shingmoyeung.coding.me/"/>
+    <link rel="self" href="http://shingmoyeung.coding.me//atom.xml"/>
     <subtitle>代码 人生 感悟 分享</subtitle>
-    <logo>http://shingmoyeung.coding.me/images/avatar.png</logo>
-    <icon>http://shingmoyeung.coding.me/favicon.ico</icon>
+    <logo>http://shingmoyeung.coding.me//images/avatar.png</logo>
+    <icon>http://shingmoyeung.coding.me//favicon.ico</icon>
     <rights>All rights reserved 2019, 代码人生</rights>
     <entry>
         <title type="html"><![CDATA[MacOS 开启蓝牙音效调整]]></title>
-        <id>http://shingmoyeung.coding.me/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng</id>
-        <link href="http://shingmoyeung.coding.me/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
+        <id>http://shingmoyeung.coding.me//post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng</id>
+        <link href="http://shingmoyeung.coding.me//post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
         </link>
         <updated>2019-09-27T14:21:31.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[JMeter 参数化实现]]></title>
-        <id>http://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian</id>
-        <link href="http://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">
+        <id>http://shingmoyeung.coding.me//post/jmeter-can-shu-hua-shi-xian</id>
+        <link href="http://shingmoyeung.coding.me//post/jmeter-can-shu-hua-shi-xian">
         </link>
         <updated>2019-09-19T11:49:25.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[手写Redis @Cacheable注解 参数Java对象作为key值]]></title>
-        <id>http://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi</id>
-        <link href="http://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
+        <id>http://shingmoyeung.coding.me//post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi</id>
+        <link href="http://shingmoyeung.coding.me//post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
         </link>
         <updated>2019-09-07T12:21:24.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[手写Redis @Cacheable注解 支持过期时间设置]]></title>
-        <id>http://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi</id>
-        <link href="http://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
+        <id>http://shingmoyeung.coding.me//post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi</id>
+        <link href="http://shingmoyeung.coding.me//post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
         </link>
         <updated>2019-09-07T12:13:40.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Executors Java编程规范插件提示手动创建线程池的解决办法]]></title>
-        <id>http://shingmoyeung.coding.me/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa</id>
-        <link href="http://shingmoyeung.coding.me/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa">
+        <id>http://shingmoyeung.coding.me//post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa</id>
+        <link href="http://shingmoyeung.coding.me//post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa">
         </link>
         <updated>2019-06-27T12:48:39.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Java四种线程池的使用]]></title>
-        <id>http://shingmoyeung.coding.me/post/java-si-chong-xian-cheng-chi-de-shi-yong</id>
-        <link href="http://shingmoyeung.coding.me/post/java-si-chong-xian-cheng-chi-de-shi-yong">
+        <id>http://shingmoyeung.coding.me//post/java-si-chong-xian-cheng-chi-de-shi-yong</id>
+        <link href="http://shingmoyeung.coding.me//post/java-si-chong-xian-cheng-chi-de-shi-yong">
         </link>
         <updated>2019-06-27T12:31:22.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7 安装MySQL（yum方式）]]></title>
-        <id>http://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi</id>
-        <link href="http://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">
+        <id>http://shingmoyeung.coding.me//post/centos-7-an-zhuang-mysqlyum-fang-shi</id>
+        <link href="http://shingmoyeung.coding.me//post/centos-7-an-zhuang-mysqlyum-fang-shi">
         </link>
         <updated>2019-03-20T12:58:07.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案]]></title>
-        <id>http://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an</id>
-        <link href="http://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
+        <id>http://shingmoyeung.coding.me//post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an</id>
+        <link href="http://shingmoyeung.coding.me//post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
         </link>
         <updated>2019-03-16T13:08:08.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[RocketMq踩坑实录(2)---connect to XXXX:10909 failed]]></title>
-        <id>http://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed</id>
-        <link href="http://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">
+        <id>http://shingmoyeung.coding.me//post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed</id>
+        <link href="http://shingmoyeung.coding.me//post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">
         </link>
         <updated>2019-03-16T13:04:38.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[MAC下VMware Fusion虚拟机配置网卡]]></title>
-        <id>http://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia</id>
-        <link href="http://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
+        <id>http://shingmoyeung.coding.me//post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia</id>
+        <link href="http://shingmoyeung.coding.me//post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
         </link>
         <updated>2019-03-15T13:21:40.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux下编译安装Apache报APR not found错误的解决办法]]></title>
-        <id>http://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa</id>
-        <link href="http://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa">
+        <id>http://shingmoyeung.coding.me//post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa</id>
+        <link href="http://shingmoyeung.coding.me//post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa">
         </link>
         <updated>2019-03-13T13:26:47.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html]]></title>
-        <id>http://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml</id>
-        <link href="http://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
+        <id>http://shingmoyeung.coding.me//post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml</id>
+        <link href="http://shingmoyeung.coding.me//post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
         </link>
         <updated>2019-03-06T13:32:29.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[使用Java登录远程Linux并对服务实现各种操作]]></title>
-        <id>http://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo</id>
-        <link href="http://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
+        <id>http://shingmoyeung.coding.me//post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo</id>
+        <link href="http://shingmoyeung.coding.me//post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
         </link>
         <updated>2019-03-06T13:30:36.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Mac上使用jEnv管理多个JDK版本]]></title>
-        <id>http://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben</id>
-        <link href="http://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
+        <id>http://shingmoyeung.coding.me//post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben</id>
+        <link href="http://shingmoyeung.coding.me//post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
         </link>
         <updated>2019-03-01T13:36:28.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[笔记迁移......]]></title>
-        <id>http://shingmoyeung.coding.me/post/bi-ji-qian-yi</id>
-        <link href="http://shingmoyeung.coding.me/post/bi-ji-qian-yi">
+        <id>http://shingmoyeung.coding.me//post/bi-ji-qian-yi</id>
+        <link href="http://shingmoyeung.coding.me//post/bi-ji-qian-yi">
         </link>
         <updated>2019-02-20T07:46:28.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[MacOS 安装 Docker]]></title>
-        <id>http://shingmoyeung.coding.me/post/macos-an-zhuang-docker</id>
-        <link href="http://shingmoyeung.coding.me/post/macos-an-zhuang-docker">
+        <id>http://shingmoyeung.coding.me//post/macos-an-zhuang-docker</id>
+        <link href="http://shingmoyeung.coding.me//post/macos-an-zhuang-docker">
         </link>
         <updated>2019-02-01T13:53:46.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7中Docker开启远程访问]]></title>
-        <id>http://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen</id>
-        <link href="http://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
+        <id>http://shingmoyeung.coding.me//post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen</id>
+        <link href="http://shingmoyeung.coding.me//post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
         </link>
         <updated>2019-02-01T13:41:36.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Mac安装多个Python版本]]></title>
-        <id>http://shingmoyeung.coding.me/post/mac-an-zhuang-duo-ge-python-ban-ben</id>
-        <link href="http://shingmoyeung.coding.me/post/mac-an-zhuang-duo-ge-python-ban-ben">
+        <id>http://shingmoyeung.coding.me//post/mac-an-zhuang-duo-ge-python-ban-ben</id>
+        <link href="http://shingmoyeung.coding.me//post/mac-an-zhuang-duo-ge-python-ban-ben">
         </link>
         <updated>2019-01-11T14:09:58.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[单机部署HBase 2.1配置文件]]></title>
-        <id>http://shingmoyeung.coding.me/post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian</id>
-        <link href="http://shingmoyeung.coding.me/post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian">
+        <id>http://shingmoyeung.coding.me//post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian</id>
+        <link href="http://shingmoyeung.coding.me//post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian">
         </link>
         <updated>2018-12-12T14:14:17.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[从Java到Golang快速入门]]></title>
-        <id>http://shingmoyeung.coding.me/post/cong-java-dao-golang-kuai-su-ru-men</id>
-        <link href="http://shingmoyeung.coding.me/post/cong-java-dao-golang-kuai-su-ru-men">
+        <id>http://shingmoyeung.coding.me//post/cong-java-dao-golang-kuai-su-ru-men</id>
+        <link href="http://shingmoyeung.coding.me//post/cong-java-dao-golang-kuai-su-ru-men">
         </link>
         <updated>2018-12-11T14:15:58.000Z</updated>
     </entry>
