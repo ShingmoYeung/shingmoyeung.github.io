@@ -1,115 +1,101 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
-<title>MacOS 开启蓝牙音效调整 | 代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569668176875">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569668301254">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-
-
-  
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://shingmoyeung.coding.me">
-        <img src="https://shingmoyeung.coding.me/images/avatar.png?v=1569668176875" class="site-logo">
-        <h1 class="site-title">代码人生</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.coding.me">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569668301254" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#acc-%E5%92%8C-aptx-%E7%9A%84%E5%90%AF%E7%94%A8%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4">ACC 和 AptX 的启用也可以通过命令行的命令</a></li>
+<li><a href="#airpods-%E8%BF%9E-mac-%E5%8D%A1%E7%9A%84%E6%89%A7%E8%A1%8C%E4%B8%8A%E9%9D%A2%E5%91%BD%E4%BB%A4%E7%84%B6%E5%90%8E%E9%87%8D%E5%90%AF">AirPods 连 Mac 卡的，执行上面命令，然后重启</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/ShingmoYeung" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      代码 人生 感悟 分享
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">MacOS 开启蓝牙音效调整</h2>
-            <div class="post-date">2019-09-27 22:21</div>
-            
-              <div class="feature-container" style="background-image: url('https://shingmoyeung.coding.me/post-images/macos-kai-qi-lan-ya-yin-xiao-diao-zheng.jpg')">
-              </div>
-            
-            <div class="post-content">
-              <h2 id="acc-和-aptx-的启用也可以通过命令行的命令">ACC 和 AptX 的启用也可以通过命令行的命令</h2>
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">MacOS 开启蓝牙音效调整</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-09-27 22:21 / 1 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.coding.me/post-images/macos-kai-qi-lan-ya-yin-xiao-diao-zheng.jpg" alt="">
+        
+        <div class="post-content yue">
+          <h2 id="acc-和-aptx-的启用也可以通过命令行的命令">ACC 和 AptX 的启用也可以通过命令行的命令</h2>
 <pre><code class="language-bash">sudo defaults write bluetoothaudiod &quot;Enable AptX codec&quot; -bool true
 sudo defaults write bluetoothaudiod &quot;Enable AAC codec&quot; -bool true
 </code></pre>
@@ -123,88 +109,164 @@ defaults write com.apple.BluetoothAudioAgent &quot;Negotiated Bitpool Max&quot; 
 defaults write com.apple.BluetoothAudioAgent &quot;Negotiated Bitpool Min&quot; 80
 </code></pre>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://shingmoyeung.coding.me/tag/macos" class="tag">
-                    MacOS
-                  </a>
-                
-                  <a href="https://shingmoyeung.coding.me/tag/apple" class="tag">
-                    Apple
-                  </a>
-                
-                  <a href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ" class="tag">
-                    2019-09
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">
-                  <h3 class="post-title">
-                    JMeter 参数化实现
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
-          </div>
-
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/macos">
+            <span class="flex-auto">MacOS</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/apple">
+            <span class="flex-auto">Apple</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ">
+            <span class="flex-auto">2019-09</span>
+          </a>
+        
 
-<script type="application/javascript">
 
-AOS.init();
+        <div class="flex justify-between py-8">
+          
 
-hljs.initHighlightingOnLoad()
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">
+                <h3 class="post-title">
+                  JMeter 参数化实现
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
 
 </script>
 
+          
+        
 
+      </div>
+    </div>
 
-  
+    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
+<script>
 
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
+Prism.highlightAll()
 
-    var options = {
-      shortname: 'codingforever',
-      apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
     }
-    if ('') {
-      options.api = ''
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
     }
-    var dsqjs = new DisqusJS(options)
+  });
+});
 
-    </script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
   
-
-
-
-
   </body>
 </html>

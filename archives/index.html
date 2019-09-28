@@ -1,354 +1,355 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
-<title>文章归档 | 代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569668176875">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569668301254">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://shingmoyeung.coding.me">
-        <img src="https://shingmoyeung.coding.me/images/avatar.png?v=1569668176875" class="site-logo">
-        <h1 class="site-title">代码人生</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.coding.me">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569668301254" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            代码 人生 感悟 分享
+          </p>
+          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
+            
+              
+                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
+                  <i class="remixicon-github-line"></i>
+                </a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
+                  <i class="remixicon-qq-line"></i>
+                </a>
+              
+            
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/ShingmoYeung" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      代码 人生 感悟 分享
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
+        <h2 class="text-lg text-gray-700 mb-8">
+          <i class="remixicon-archive-line"></i> 文章归档
+        </h2>
+        
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
+        <div class="archives-container">
           
+            <h2 class="text-gray-600 py-4 animated fadeIn">
+              <i class="remixicon-map-pin-time-line"></i>
+              2019
+            </h2>
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    MacOS 开启蓝牙音效调整
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-09-27 22:21</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    JMeter 参数化实现
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-09-19 19:49</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    手写Redis @Cacheable注解 参数Java对象作为key值
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-09-07 20:21</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    手写Redis @Cacheable注解 支持过期时间设置
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-09-07 20:13</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    Executors Java编程规范插件提示手动创建线程池的解决办法
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-06-27 20:48</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/java-si-chong-xian-cheng-chi-de-shi-yong" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    Java四种线程池的使用
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-06-27 20:31</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    CentOS 7 安装MySQL（yum方式）
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-20 20:58</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-16 21:08</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    RocketMq踩坑实录(2)---connect to XXXX:10909 failed
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-16 21:04</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    MAC下VMware Fusion虚拟机配置网卡
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-15 21:21</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    Linux下编译安装Apache报APR not found错误的解决办法
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-13 21:26</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-06 21:32</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    使用Java登录远程Linux并对服务实现各种操作
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-06 21:30</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    Mac上使用jEnv管理多个JDK版本
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-03-01 21:36</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/bi-ji-qian-yi" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    笔记迁移......
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-02-20 15:46</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/macos-an-zhuang-docker" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    MacOS 安装 Docker
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-02-01 21:53</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    CentOS 7中Docker开启远程访问
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-02-01 21:41</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/mac-an-zhuang-duo-ge-python-ban-ben" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    Mac安装多个Python版本
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2019-01-11 22:09</div>
+              
+            
+              
+            
+              
+            
+          
+            <h2 class="text-gray-600 py-4 animated fadeIn">
+              <i class="remixicon-map-pin-time-line"></i>
+              2018
+            </h2>
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    单机部署HBase 2.1配置文件
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2018-12-12 22:14</div>
+              
+            
+              
+                <a href="https://shingmoyeung.coding.me/post/cong-java-dao-golang-kuai-su-ru-men" class="post">
+                  <h2 class="inline-block font-bold text-lg post-title animated fadeIn">
+                    从Java到Golang快速入门
+                  </h2>
+                </a>
+                <div class="text-sm font-light mt-3 mb-6 text-gray-400 animated fadeInDown" style="animation-delay: 0.4s">2018-12-11 22:15</div>
+              
+            
+          
+        </div>
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
-                      <h2 class="post-title">
-                        MacOS 开启蓝牙音效调整
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">
-                      <h2 class="post-title">
-                        JMeter 参数化实现
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
-                      <h2 class="post-title">
-                        手写Redis @Cacheable注解 参数Java对象作为key值
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
-                      <h2 class="post-title">
-                        手写Redis @Cacheable注解 支持过期时间设置
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa">
-                      <h2 class="post-title">
-                        Executors Java编程规范插件提示手动创建线程池的解决办法
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/java-si-chong-xian-cheng-chi-de-shi-yong">
-                      <h2 class="post-title">
-                        Java四种线程池的使用
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">
-                      <h2 class="post-title">
-                        CentOS 7 安装MySQL（yum方式）
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
-                      <h2 class="post-title">
-                        RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">
-                      <h2 class="post-title">
-                        RocketMq踩坑实录(2)---connect to XXXX:10909 failed
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
-                      <h2 class="post-title">
-                        MAC下VMware Fusion虚拟机配置网卡
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa">
-                      <h2 class="post-title">
-                        Linux下编译安装Apache报APR not found错误的解决办法
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
-                      <h2 class="post-title">
-                        Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
-                      <h2 class="post-title">
-                        使用Java登录远程Linux并对服务实现各种操作
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
-                      <h2 class="post-title">
-                        Mac上使用jEnv管理多个JDK版本
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/bi-ji-qian-yi">
-                      <h2 class="post-title">
-                        笔记迁移......
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/macos-an-zhuang-docker">
-                      <h2 class="post-title">
-                        MacOS 安装 Docker
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
-                      <h2 class="post-title">
-                        CentOS 7中Docker开启远程访问
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/mac-an-zhuang-duo-ge-python-ban-ben">
-                      <h2 class="post-title">
-                        Mac安装多个Python版本
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-              
-                
-              
-            
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2018</h2>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian">
-                      <h2 class="post-title">
-                        单机部署HBase 2.1配置文件
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://shingmoyeung.coding.me/post/cong-java-dao-golang-kuai-su-ru-men">
-                      <h2 class="post-title">
-                        从Java到Golang快速入门
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
-
-          <div class="pagination-container">
+        <div>
+          <div class="pagination-container animated fadeIn">
   
   
 </div>
@@ -357,25 +358,104 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
+<script>
 
-<script type="application/javascript">
+Prism.highlightAll()
 
-AOS.init();
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-hljs.initHighlightingOnLoad()
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
 
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
 </script>
-
-
-
-
+  
   </body>
 </html>
