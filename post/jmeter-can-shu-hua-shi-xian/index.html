@@ -4,14 +4,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569594719521">
+<link rel="shortcut icon" href="http://shingmoyeung.coding.me//favicon.ico?v=1569659323539">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+<link rel="stylesheet" href="http://shingmoyeung.coding.me//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="http://shingmoyeung.coding.me//atom.xml">
 
 
 
@@ -23,8 +23,8 @@
     <div class="sidebar-content">
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569594719521" alt="">
+        <a href="http://shingmoyeung.coding.me/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="http://shingmoyeung.coding.me//images/avatar.png?v=1569659323539" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -84,7 +84,7 @@
   </div>
   <div class="site-footer">
     <div class="py-4 text-gray-700">Powered by <a href="http://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+    <a class="rss" href="http://shingmoyeung.coding.me//atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 <div class="mask" onclick="closeMenu()">
@@ -109,17 +109,17 @@
 2.各字段之间用英文逗号分隔开；<br>
 3.编码格式采用 utf-8。<br>
 假设现在有一个 CSV 格式的数据文件csv_test.txt，该文件内容如下图所示：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585201357.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585201357.png" alt=""><br>
 要实现依次读取文件中的内容，并将内容中第一个字段的值作为关键字在百度中搜索的操作，我们可以这样做：<br>
 1）在jmeter中依次创建【测试计划】、【线程组】和【HTTP 请求】，并添加查看结果的组件【查看结果树】如图：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585347287.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585347287.png" alt=""><br>
 2）添加【CSV Data Set Config】（数据集配置）组件：右击【线程组】—&gt;【添加】—&gt;【配置元件】—&gt;【CSV Data Set Config】。<br>
 3）配置参数</p>
 <p>设置线程组循环次数：选中【线程组】，在右边属性窗口中将【循环次数】设置成 与CSV 数据文件中数据条数相同，在本例中即为3。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585379268.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585379268.png" alt=""><br>
 设置 CSV Data Set Config 组件的参数<br>
 Filename：CSV 数据文件所在路径。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585450434.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585450434.png" alt=""><br>
 File encoding：CSV文件的编码格式，即 utf-8；</p>
 <p>Variable Names（comma-delimited）：给 CSV 数据文件中数据的每个字段取一个名字，作为调用的变量名；CSV 中每个字段都对应一个变量，每个变量用逗号隔开</p>
 <p>Delimiter(use ‘\t’ for tab)：与CSV 中的分隔符 保持一致，本例中即为英文逗号；</p>
@@ -128,64 +128,64 @@ File encoding：CSV文件的编码格式，即 utf-8；</p>
 <p>变量名即为上一步骤中设置的变量名<br>
 变量使用格式为${变量名}<br>
 在 HTTP 请求 URL 路径中使用正确格式调用变量，如图。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585480146.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585480146.png" alt=""><br>
 为了结果更明确，在 HTTP 请求的命名中也调用此变量标注。<br>
 5）执行，结果如下图：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585495252.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585495252.png" alt=""><br>
 结果中显示，我们依次从 CSV 数据文件中获取到了每条数据的第一个字段的值，并将其作为百度搜索的关键字执行了搜索。</p>
 <h3 id="2用户参数组件">2.【用户参数】组件</h3>
 <pre><code>  除了读取外部文件中的数据，我们还可以在jmeter中定义一些数据，实现批量操作数据的功能。但由于此操作不是那么的易用，所以数据量较大时，不建议使用此操作。
 </code></pre>
 <p>下面我们来看一下具体是怎么操作的：<br>
 1）这里我们先把上面添加的 CSV Data Set Config 组件禁用掉（右击该组件后选择【禁用】即可）；<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585540350.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585540350.png" alt=""><br>
 2）通过添加【用户参数】组件，用来配置数据：右击【测试计划】—&gt;【添加】—&gt;【前置处理器】—&gt;【用户参数】，如图：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585555681.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585555681.png" alt=""><br>
 3）配置数据。我们可以看到用户参数面板如下图所示，主要使用的部分就是图中标注出来的三个部分：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585571183.png" alt=""></p>
+<img src="http://shingmoyeung.coding.me//post-images/1569585571183.png" alt=""></p>
 <p>①这里应该不陌生了，就是用来标注我们这部分的参数是给干什么用的，取个名字，见名知意，好让我们以后再看的时候不会迷糊。</p>
 <p>②这里我们看到有四个按钮，第一行的两个是用来操作变量的，第二行的两个是用来操作用户的。这里所谓的变量就是我们要设置的参数变量名，用来在后面调用的；而用户就是参数值，每一个用户对应一条数据。</p>
 <p>③ 点击【添加变量】后会在③中添加一行输入框，提供给我们输入变量名和变量值，输入后保存即可。点击【添加用户】后会在【用户_1】后面添加一列，表示可以多添加一条数据。</p>
 <p>我们还是用上面例子中的数据添加到这，如下图：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585593661.png" alt=""></p>
+<img src="http://shingmoyeung.coding.me//post-images/1569585593661.png" alt=""></p>
 <p>从上面的结构我们可以看出，【用户参数】组件是通过表格的形式来存储数据的，每个变量和变量值都需要我们手动去一条一条添加，可想而知，如果数据量比较大的情况下，我们还是用此方式操作的话，就会比较麻烦了。这种情况下，就建议使用第一种方式来批量操作数据了。</p>
 <p>4）更改线程组设置，让jmeter循环读取我们的数据：</p>
 <p>将线程组的【线程数】更改为与我们【用户参数】中用户数量相同；<br>
 将线程组的【循环次数】更改回 1 次。<br>
 5）调用参数的方式与上面的例子相同，在需要的地方使用&quot;${变量名}&quot;的格式调用即可，这次我们来遍历一下 【country】的值。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585610153.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585610153.png" alt=""><br>
 6）我们来执行一下，看看读取【用户参数】的执行结果：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585624761.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585624761.png" alt=""><br>
 出现上面的结果，就说明我们配置成功了！</p>
 <h3 id="3用户定义的变量组件">3.【用户定义的变量】组件</h3>
 <p>1）通常，在项目的接口中经常会遇到一些相同的部分，当这个相同的不出频繁出现时，我们可以将其抽取出来，作为一个全局的变量供我们调用，定义全局变量我们可以通过定义【用户定义的变量】来实现；<br>
 2）这里我们抽取 HTTP 请求的【服务器名称】和【端口号】来举例。<br>
 3）添加【用户定义的变量】组件：右击【测试计划】—&gt;【添加】—&gt;【配置元件】—&gt;【用户定义的变量】，如图所示，<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585763794.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585763794.png" alt=""><br>
 4）【用户定义的变量】面板如下图所示，我们依次来介绍。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585777158.png" alt=""></p>
+<img src="http://shingmoyeung.coding.me//post-images/1569585777158.png" alt=""></p>
 <p>①取个见名知意的名字<br>
 ②点击【添加】，就会出现③中的输入框；点击【删除】，就会在③中删除一个变量。<br>
 ③【名称】：即参数名，变量名；【值】：参数值，变量值；【Description】：对变量的描述信息，可不填。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585794822.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585794822.png" alt=""><br>
 5）调用方式和之前一样，HTTP 请求的【服务器名称】和【端口号】的位置调用这两个变量：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585826205.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585826205.png" alt=""><br>
 6）查看执行结果，如下：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585842441.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585842441.png" alt=""><br>
 这里我们要注意的是：【用户定义的变量】是全局变量，即这里定义的变量的所有值只会初始化一次，无论后面创建了多少线程，值都不会变。也正是因为这个原因，为了不占用过多资源，建议不要创建太多这种类型的变量。</p>
 <h3 id="4函数组件">4.【函数】组件</h3>
 <pre><code>  在jmeter 中已经内置了一些【函数】供我们使用，给我们的测试工作提供了很大的便利。在jmeter中常用的【函数】主要有6个，我们通过其中的__counter()为例来介绍【函数】组件的使用方式，后面再介绍每个函数的功能。
 </code></pre>
 <p>1）调出【函数】组件有三种方式，我们在使用时选择任意一种即可：</p>
 <p>方式一：菜单栏【选项】—&gt;【函数助手对话框】<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585870572.png" alt=""></p>
+<img src="http://shingmoyeung.coding.me//post-images/1569585870572.png" alt=""></p>
 <p>方式二：工具栏中倒数第二个类似于笔记本的按钮【函数助手对话框】<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585888468.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585888468.png" alt=""><br>
 方式三：使用快捷键：<br>
 Windows 平台：Ctrl+shift+F1<br>
 Mac 平台：shift+command+F1<br>
 执行1）中的操作后，会出现下面的对话框：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585901790.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585901790.png" alt=""><br>
 ①选择我们需要使用的函数__counter</p>
 <p>②设置函数调用时需要的参数：</p>
 <p>第一行：设置此计数器的作用范围：</p>
@@ -193,14 +193,14 @@ Mac 平台：shift+command+F1<br>
 FALSE：全局范围内有效，即在多次循环范围内有效。<br>
 第二行：这里要给函数的返回值取个名字，以便后面调用，这个是选填参数；</p>
 <p>③点击【生成】按钮，在输入框中就会出现完整的函数调用代码，我们直接复制到需要调用该函数的位置即可。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585915316.png" alt=""></p>
+<img src="http://shingmoyeung.coding.me//post-images/1569585915316.png" alt=""></p>
 <p>3） 为了直观体现出参数的作用，我们把线程组的【循环次数】设置为多次，这里就设置为3。</p>
 <p>当参数选择 TRUE 时：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585929491.png" alt=""><br>
-<img src="https://shingmoyeung.github.io/post-images/1569585940974.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585929491.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585940974.png" alt=""><br>
 查看结果，我们可以发现，每次循环都是从1开始的。<br>
 当参数选择 FALSE 时：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585955886.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585955886.png" alt=""><br>
 查看结果，我们可以发现，所有循环使用同一个计数器，新循环开始时，计数器不再重置为1，而是继上次循环结束时的结果递增。<br>
 至此，函数的调用方式就介绍完了，下面就介绍一下jmeter中内置的6个常用函数：</p>
 <p>__counter()：计数器，上面介绍过了，就不再赘述。</p>
@@ -208,7 +208,7 @@ FALSE：全局范围内有效，即在多次循环范围内有效。<br>
 <p>参数1：随机范围的低边界值，即随机范围内的最小值；<br>
 参数2：随机范围的高边界值，即随机范围内的最大值；<br>
 如下图中的设置所示，随机范围为[0,100] ，即两个边界值都可能取到。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569585978485.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569585978485.png" alt=""><br>
 __time()：返回当前时间，默认为距离1970年1月1日 0时0分0秒的毫秒值。</p>
 <p>参数1：设置返回的时间表现形式，<br>
 yyyy：表示年份<br>
@@ -217,22 +217,22 @@ dd：表示日期<br>
 hh/HH：表示小时（hh：12小时制，HH：24小时制）；<br>
 mm：表示分钟<br>
 ss：表示秒<br>
-<img src="https://shingmoyeung.github.io/post-images/1569586026826.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569586026826.png" alt=""><br>
 __CSVRead()：读取外部 CSV 格式文件，类似于 CSV Data Set Config 组件，用来批量操作数据。</p>
 <p>参数1：CSV 文件路径，注意这里要填写 CSV 文件的绝对路径；</p>
 <p>参数2：要读取CSV 文件中哪一个字段的值，这里填写的是字段对应的 index 值，index 从0开始计数，即第一个字段对应的 index 为0 。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569586039719.png" alt=""></p>
+<img src="http://shingmoyeung.coding.me//post-images/1569586039719.png" alt=""></p>
 <p>注意：此函数读取 CSV 文件要注意：</p>
 <p>此函数调用一次，只能读取一个字段的值，所以想要读出所有字段，需要多次调用此函数；<br>
 将线程组的【线程数】设置为与 CSV 文件数据行数相同，可以读出当前字段对应的所有值；<br>
 查看结果</p>
 <p>线程数设置为3，（与 CSV 文件数据行相同）<br>
 只用一次 HTTP 请求，读取一个字段的值<br>
-<img src="https://shingmoyeung.github.io/post-images/1569586054233.png" alt=""><br>
-<img src="https://shingmoyeung.github.io/post-images/1569586065338.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569586054233.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569586065338.png" alt=""><br>
 结果显示，我们只读取了一个字段对应的所有数据。<br>
 下面我们再创建一个 HTTP 请求，多调用一次此函数，读取两个字段的值，注意第二各字段对应的 index 为1，不要忘记修改。<br>
-<img src="https://shingmoyeung.github.io/post-images/1569586083968.png" alt=""><br>
+<img src="http://shingmoyeung.coding.me//post-images/1569586083968.png" alt=""><br>
 由结果看出，线程数为3，发送两次请求，调用两次此函数，成功的读取出了 CSV 文件中的两个字段对应三条数据的所有值。<br>
 __setProperty() 和 __property()：用于线程组之间传参。</p>
 <p>__setProperty() 在线程组1中将属性及属性值放到测试计划的共享空间中；<br>
@@ -242,11 +242,11 @@ __property()在线程组2中从共享空间中获取属性。<br>
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/ce-shi-na-xie-shi-er">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="http://shingmoyeung.coding.me//tag/ce-shi-na-xie-shi-er">
             <span class="flex-auto">测试那些事儿</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/BJd4x8aTJ">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="http://shingmoyeung.coding.me//tag/BJd4x8aTJ">
             <span class="flex-auto">2019-09</span>
           </a>
         
@@ -255,7 +255,7 @@ __property()在线程组2中从共享空间中获取属性。<br>
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://shingmoyeung.github.io/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
+              <a href="http://shingmoyeung.coding.me//post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
                 <h3 class="post-title">
                   <i class="remixicon-arrow-left-line"></i>
                   MacOS 开启蓝牙音效调整
@@ -266,7 +266,7 @@ __property()在线程组2中从共享空间中获取属性。<br>
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
+              <a href="http://shingmoyeung.coding.me//post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
                 <h3 class="post-title">
                   手写Redis @Cacheable注解 参数Java对象作为key值
                   <i class="remixicon-arrow-right-line"></i>
@@ -304,7 +304,7 @@ var dsqjs = new DisqusJS(options)
       </div>
     </div>
 
-    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+    <script src="http://shingmoyeung.coding.me//media/prism.js"></script>  
 <script>
 
 Prism.highlightAll()
