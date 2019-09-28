@@ -1,374 +1,269 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569669783656">
+<title>
+    代码人生
+</title>
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673038247">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.coding.me">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569669783656" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
-          </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
-          </div>
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://shingmoyeung.coding.me">
+                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    代码人生
+                </h1>
+            </div>
         </div>
-      
-    </div>
-  </div>
-</div>
-
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-2-line"></i> 标签云
-        </h2>
-        <div class="tags-container">
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/macos" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-              <span class="flex-auto">MacOS</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">5</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/apple" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-              <span class="flex-auto">Apple</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-              <span class="flex-auto">2019-09</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">5</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/ce-shi-na-xie-shi-er" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-              <span class="flex-auto">测试那些事儿</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-              <span class="flex-auto">代码那些事儿</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">6</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/redis" :style="{ 'animation-delay': `${5 * 0.2}s` }">
-              <span class="flex-auto">Redis</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/2019-06" :style="{ 'animation-delay': `${6 * 0.2}s` }">
-              <span class="flex-auto">2019-06</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/duo-xian-cheng" :style="{ 'animation-delay': `${7 * 0.2}s` }">
-              <span class="flex-auto">多线程</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/2019-03" :style="{ 'animation-delay': `${8 * 0.2}s` }">
-              <span class="flex-auto">2019-03</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">7</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/linux" :style="{ 'animation-delay': `${9 * 0.2}s` }">
-              <span class="flex-auto">Linux</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">7</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" :style="{ 'animation-delay': `${10 * 0.2}s` }">
-              <span class="flex-auto">运维部署</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">7</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/xiao-xi-dui-lie" :style="{ 'animation-delay': `${11 * 0.2}s` }">
-              <span class="flex-auto">消息队列</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/vmware" :style="{ 'animation-delay': `${12 * 0.2}s` }">
-              <span class="flex-auto">VMWare</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/vmware-fusion" :style="{ 'animation-delay': `${13 * 0.2}s` }">
-              <span class="flex-auto">VMWare Fusion</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/apache" :style="{ 'animation-delay': `${14 * 0.2}s` }">
-              <span class="flex-auto">Apache</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/httpd" :style="{ 'animation-delay': `${15 * 0.2}s` }">
-              <span class="flex-auto">Httpd</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/maven" :style="{ 'animation-delay': `${16 * 0.2}s` }">
-              <span class="flex-auto">Maven</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/jdk" :style="{ 'animation-delay': `${17 * 0.2}s` }">
-              <span class="flex-auto">JDK</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/jenv" :style="{ 'animation-delay': `${18 * 0.2}s` }">
-              <span class="flex-auto">jEnv</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/homebrew" :style="{ 'animation-delay': `${19 * 0.2}s` }">
-              <span class="flex-auto">Homebrew</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/V4bUS6WRg" :style="{ 'animation-delay': `${20 * 0.2}s` }">
-              <span class="flex-auto">杂记</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/docker" :style="{ 'animation-delay': `${21 * 0.2}s` }">
-              <span class="flex-auto">Docker</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/2019-02" :style="{ 'animation-delay': `${22 * 0.2}s` }">
-              <span class="flex-auto">2019-02</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/2019-01" :style="{ 'animation-delay': `${23 * 0.2}s` }">
-              <span class="flex-auto">2019-01</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/pyenv" :style="{ 'animation-delay': `${24 * 0.2}s` }">
-              <span class="flex-auto">pyEnv</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/python" :style="{ 'animation-delay': `${25 * 0.2}s` }">
-              <span class="flex-auto">Python</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/2018-12" :style="{ 'animation-delay': `${26 * 0.2}s` }">
-              <span class="flex-auto">2018-12</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/xml" :style="{ 'animation-delay': `${27 * 0.2}s` }">
-              <span class="flex-auto">xml</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/hbase" :style="{ 'animation-delay': `${28 * 0.2}s` }">
-              <span class="flex-auto">HBase</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/da-shu-ju" :style="{ 'animation-delay': `${29 * 0.2}s` }">
-              <span class="flex-auto">大数据</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/golang" :style="{ 'animation-delay': `${30 * 0.2}s` }">
-              <span class="flex-auto">GoLang</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
         </div>
-      </div>
     </div>
+</div>
 
-    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
 <script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-Prism.highlightAll()
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
+        });
     });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
 </script>
-  
-  </body>
+
+            <div class="tags-container main-container">
+                <div class="tags-group">
+                    
+                        <a class="tags-tag i-tag
+                            i-tag-other_3" href="https://shingmoyeung.coding.me/tag/macos">
+                            MacOS
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_4" href="https://shingmoyeung.coding.me/tag/apple">
+                            Apple
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-primary" href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ">
+                            2019-09
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://shingmoyeung.coding.me/tag/ce-shi-na-xie-shi-er">
+                            测试那些事儿
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er">
+                            代码那些事儿
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://shingmoyeung.coding.me/tag/redis">
+                            Redis
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://shingmoyeung.coding.me/tag/2019-06">
+                            2019-06
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://shingmoyeung.coding.me/tag/duo-xian-cheng">
+                            多线程
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_3" href="https://shingmoyeung.coding.me/tag/2019-03">
+                            2019-03
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://shingmoyeung.coding.me/tag/linux">
+                            Linux
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-banana" href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu">
+                            运维部署
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-primary" href="https://shingmoyeung.coding.me/tag/xiao-xi-dui-lie">
+                            消息队列
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/vmware">
+                            VMWare
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/vmware-fusion">
+                            VMWare Fusion
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-banana" href="https://shingmoyeung.coding.me/tag/apache">
+                            Apache
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://shingmoyeung.coding.me/tag/httpd">
+                            Httpd
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-primary" href="https://shingmoyeung.coding.me/tag/maven">
+                            Maven
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/jdk">
+                            JDK
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://shingmoyeung.coding.me/tag/jenv">
+                            jEnv
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://shingmoyeung.coding.me/tag/homebrew">
+                            Homebrew
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://shingmoyeung.coding.me/tag/V4bUS6WRg">
+                            杂记
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/docker">
+                            Docker
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_4" href="https://shingmoyeung.coding.me/tag/2019-02">
+                            2019-02
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://shingmoyeung.coding.me/tag/2019-01">
+                            2019-01
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://shingmoyeung.coding.me/tag/pyenv">
+                            pyEnv
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_4" href="https://shingmoyeung.coding.me/tag/python">
+                            Python
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://shingmoyeung.coding.me/tag/2018-12">
+                            2018-12
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://shingmoyeung.coding.me/tag/xml">
+                            xml
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_3" href="https://shingmoyeung.coding.me/tag/hbase">
+                            HBase
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/da-shu-ju">
+                            大数据
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-info" href="https://shingmoyeung.coding.me/tag/golang">
+                            GoLang
+                        </a>
+                        
+                </div>
+            </div>
+
+            <div class="site-footer">
+  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
+  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</body>
+
 </html>

@@ -1,235 +1,275 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569669783656">
+<title>
+    JDK | 代码人生
+</title>
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673038247">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.coding.me">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569669783656" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
-          </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
-          </div>
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://shingmoyeung.coding.me">
+                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    代码人生
+                </h1>
+            </div>
         </div>
-      
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-line"></i> JDK
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Mac上使用jEnv管理多个JDK版本</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-01 21:36 / 4 min read</div>
-    </div>
-  </section>
-
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
-
-      </div>
-    </div>
-
-    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
 <script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-Prism.highlightAll()
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
+        });
     });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
 </script>
-  
-  </body>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        JDK</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">
+                        Mac上使用jEnv管理多个JDK版本
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-01 21:36</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/jdk" class="post-tag i-tag
+                            i-tag-other_4">
+            #JDK
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/jenv" class="post-tag i-tag
+                            i-tag-success">
+            #jEnv
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/homebrew" class="post-tag i-tag
+                            i-tag-warning">
+            #Homebrew
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/macos" class="post-tag i-tag
+                            i-tag-success">
+            #MacOS
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            使用Java时会接触到不同的版本。大多数时候我在使用Java 8，但是因为某些框架或是工具的要求，这时不得不让Java 7上前线。一般情况下是配置JAVA_HOME，指定不同的Java版本，但是这需要人为手动的输入。如果又要选择其他版本，就需要对JAVA_HOME重新进行设置。终于，我发现了JEnv。
+正如它的官网所宣称的那样，它是来让你忘记怎么配置JAVA_HOME环境变量的神队友。使用简单的命令就可以在不同的Java版本之间进行切换。如果你使用过rbenv，你会发现JEnv就如同rbenv的Java版一样。
+基本使用: 在Mac OS下使用Homebrew安装JEnv：
+&amp;gt; brew install jenv
+
+安装成功后需要进行一下简单的配置，让它可以起作用：
+&amp;gt; echo &#39;export PATH=&amp;quot;$HOME/.jenv/bin:$PATH&amp;quot;&#39; &amp;gt;&amp;gt; ~/.bash_profile
+&amp;gt; echo &#39;eval &amp;quot;$(jenv init -)&amp;quot;&#39; &amp;gt;&amp;gt; ~/.bash_profile
+&amp;gt; source ~/.bash_profile
+
+好了，JEnv已经安装好了，让我们来看一下它找见哪个Java版本了：
+&amp;gt; jenv versions
+* system (set by /Users/bxpeng/.jenv/version)
+
+它只找到了系统默认的Java，*表示当前选择的版本。尽管我已经下载了其他版本的Java，但是它并不会自动发现
+和rbenv不同的是，JEnv不能自己安装任何版本的Java，所以需要我们手动安装好之后再用JEnv指向它们。
+安装Java 7，可以在Oracle进行下载.它将安装到/Library/Java/JavaVirtualMachines/下；
+安装Java 8，可以在Oracle进行下载.它将安装到/Library/Java/JavaVirtualMachines/下。
+使用jenv add将Java 7、Java 8加入jenv中：
+&amp;gt; jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/
+1.7 added
+1.7.0.71 added
+oracle64-1.7.0.71 added
+&amp;gt; jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/
+1.8 added
+1.8.0.25 added
+oracle64-1.8.0.25 added
+
+现在运行jenv versions会显示：
+&amp;gt; jenv versions
+* system (set by /Users/bxpeng/.jenv/version)
+  1.7
+  1.7.0.71
+  oracle64-1.7.0.71
+  1.8
+  1.8.0.25
+  oracle64-1.8.0.25
+
+对于多余的版本使用jenv remove可以从jEnv中去掉不需要的Java版本：
+&amp;gt; jenv remove 1.6
+JDK 1.6 removed
+
+整理后，再运行jenv versions会显示：
+&amp;gt; jenv versions
+* system (set by /Users/bxpeng/.jenv/version)
+  1.7.0.71
+  1.8.0.25
+
+选择一个Java版本，运行jenv local，例如：
+切换本地JDK版本
+&amp;gt; jenv local 1.8.0.25
+
+切换全局JDK版本
+&amp;gt; jenv global 1.8.0.25
+
+查看JDK版本信息
+&amp;gt; java -version
+java version &amp;quot;1.8.0_25&amp;quot;
+Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+
+OK，我们已经成功地指定了某文件夹中local的Java版本。我们也可以运行jenv global设置一个默认的Java版本，运行jenv which java显示可执行的Java的完整路径。
+你也可以在特定的文件夹下使用.java-version文件来设定Java的版本。当我需要在Project中使用Java 7时，仅仅需要把1.7.0.71作为内容保存在.java-version文件中，当进入该文件夹时，JEnv会自动地帮助我设定local的Java的版本。
+作者：JouyPub
+链接：https://www.jianshu.com/p/21f9ae99e88b
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/mac-shang-shi-yong-jenv-guan-li-duo-ge-jdk-ban-ben">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247)">
+        </div>
+        <h1 class="id_card-title">
+            代码人生
+        </h1>
+        <h2 class="id_card-description">
+            代码 人生 感悟 分享
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
+  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>

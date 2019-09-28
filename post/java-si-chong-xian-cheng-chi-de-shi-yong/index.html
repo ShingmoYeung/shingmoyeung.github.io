@@ -1,91 +1,135 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569669783656">
+<title>
+    Java四种线程池的使用 | 代码人生
+</title>
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673038247">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.coding.me">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569669783656" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            文章目录
-          </p>
-          <div class="toc-container hidden lg:block">
-            
-          </div>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Java四种线程池的使用</h1>
-        <div class="text-sm text-gray-700 lg:my-8">
-          2019-06-27 20:31 / 10 min read
-        </div>
         
-        <div class="post-content yue">
-          <p>介绍new Thread的弊端及Java四种线程池的使用</p>
+            
+
+                    
+                        <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+                        <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+                        
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://shingmoyeung.coding.me">
+                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    代码人生
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Java四种线程池的使用
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-06-27 20:31</time>
+                            
+                                <a href="https://shingmoyeung.coding.me/tag/2019-06" class="post-tag i-tag
+                            i-tag-warning">
+                            #2019-06
+                        </a>
+                                
+                                <a href="https://shingmoyeung.coding.me/tag/duo-xian-cheng" class="post-tag i-tag
+                            i-tag-banana">
+                            #多线程
+                        </a>
+                                
+                                <a href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er" class="post-tag i-tag
+                            i-tag-other_3">
+                            #代码那些事儿
+                        </a>
+                                
+                        </div>
+                        
+                                <div class="post-content">
+                                    <p>介绍new Thread的弊端及Java四种线程池的使用</p>
 <p>1，线程池的作用<br>
 线程池作用就是限制系统中执行线程的数量。</p>
 <p>根据系统的环境情况，可以自动或手动设置线程数量，达到运行的最佳效果。<br>
@@ -364,173 +408,97 @@ Wechat：关注公众号，搜云库，专注于开发技术的研究与知识�
 来源：掘金<br>
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">
+                                <h3 class="post-title">
+                                    CentOS 7 安装MySQL（yum方式）
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                                <!-- id-card -->
+                                
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247)">
         </div>
+        <h1 class="id_card-title">
+            代码人生
+        </h1>
+        <h2 class="id_card-description">
+            代码 人生 感悟 分享
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/2019-06">
-            <span class="flex-auto">2019-06</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/duo-xian-cheng">
-            <span class="flex-auto">多线程</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er">
-            <span class="flex-auto">代码那些事儿</span>
-          </a>
-        
-
-
-        <div class="flex justify-between py-8">
-          
-            <div class="prev-post">
-              <a href="https://shingmoyeung.coding.me/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  Executors Java编程规范插件提示手动创建线程池的解决办法
-                </h3>
-              </a>
-            </div>
-          
-
-          
-            <div class="next-post">
-              <a href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">
-                <h3 class="post-title">
-                  CentOS 7 安装MySQL（yum方式）
-                  <i class="remixicon-arrow-right-line"></i>
-                </h3>
-              </a>
-            </div>
-          
         </div>
-
-        
-          
-
-          
-            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
-<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-
-<div id="disqus_thread"></div>
-
-<script>
-
-var options = {
-  shortname: 'codingforever',
-  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
-}
-if ('') {
-  options.api = ''
-}
-var dsqjs = new DisqusJS(options)
-
-</script>
-
-          
-        
-
-      </div>
     </div>
+    
+                                    
 
-    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
+  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+</div>
+
 <script>
-
-Prism.highlightAll()
-
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
+  hljs.initHighlightingOnLoad()
 </script>
-  
-  </body>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+        
+
+                    
+                        <script>
+    window.onload = function() {
+        var options = {
+            shortname: 'codingforever',
+            apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+        }
+        if ('') {
+            options.api = ''
+        }
+        var dsqjs = new DisqusJS(options)
+    }
+</script>
+                            
+                                
+</body>
+
 </html>

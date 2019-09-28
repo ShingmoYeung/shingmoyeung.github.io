@@ -1,248 +1,1074 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569669783656">
+<title>
+    Redis | 代码人生
+</title>
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673038247">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.coding.me">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569669783656" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
-          </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
-          </div>
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://shingmoyeung.coding.me">
+                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    代码人生
+                </h1>
+            </div>
         </div>
-      
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-line"></i> Redis
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">手写Redis @Cacheable注解 参数Java对象作为key值</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-09-07 20:21 / 6 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">手写Redis @Cacheable注解 支持过期时间设置</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-09-07 20:13 / 8 min read</div>
-    </div>
-  </section>
-
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
-
-      </div>
-    </div>
-
-    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
 <script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-Prism.highlightAll()
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
+        });
     });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
 </script>
-  
-  </body>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        Redis</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
+                        手写Redis @Cacheable注解 参数Java对象作为key值
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-09-07 20:21</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er" class="post-tag i-tag
+                            i-tag-success">
+            #代码那些事儿
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/redis" class="post-tag i-tag
+                            i-tag-primary">
+            #Redis
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ" class="post-tag i-tag
+                            i-tag-success">
+            #2019-09
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            1.实现方式说明
+本文在---- 手写redis @ Cacheable注解支持过期时间设置   的基础之上进行扩展。
+1.1问题说明：
+@Cacheable（key = “&#39;leader&#39;+＃p0 +＃p1 +＃p2”）一般用法，＃p0表示方法的第一个参数，＃p1表示第二个参数，以此类推。
+目前方法的第一个参数为Java的对象，但是原注解只支持Java的的基本数据类型。
+1.2实现步骤：
+1.在原注解中加入新的参数，
+objectIndexArray表示哪几个角标参数(从0开始)为java对象，objectFieldArray表示对应位置该对象的字段值作为key
+2.如何获取参数的对象以及该字段的值
+使用的java的反射，拼接get方法获取该字段值。
+2.源代码
+修改java注解@ExtCacheable，本文中使用@NewCacheable
+    package com.huajie.annotation;
+
+    import java.lang.annotation.ElementType;
+
+    import java.lang.annotation.Retention;
+
+    import java.lang.annotation.RetentionPolicy;
+
+    import java.lang.annotation.Target;
+
+    @Target({ ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface NewCacheable {
+
+        String key() default &amp;quot;&amp;quot;;
+
+        int[] objectIndexArray();
+
+        String[] objectFieldArray();
+
+        int expireTime() default 1800;//30分钟
+}
+
+SpringAop切面NewCacheableAspect
+获取AOP整体流程没有任何变化
+主要是关键值获取的方式，发生了变化
+使用Java的反射技术
+完整代码如下：
+    package com.huajie.aspect;
+
+    import com.huajie.annotation.NewCacheable;
+
+    import com.huajie.utils.RedisUtil;
+
+    import com.huajie.utils.StringUtil;
+
+    import lombok.extern.slf4j.Slf4j;
+
+    import org.aspectj.lang.ProceedingJoinPoint;
+
+    import org.aspectj.lang.annotation.Around;
+
+    import org.aspectj.lang.annotation.Aspect;
+
+    import org.aspectj.lang.annotation.Pointcut;
+
+    import org.aspectj.lang.reflect.MethodSignature;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+
+    import org.springframework.stereotype.Component;
+
+    import java.lang.reflect.Method;
+
+    import java.util.ArrayList;
+
+    import java.util.List;
+
+    /**
+
+     * redis缓存处理 不适用与内部方法调用(this.)或者private
+
+    */
+
+    @Component
+
+    @Aspect
+
+    @Slf4j
+
+    public class NewCacheableAspect {
+
+ 
+
+    @Autowired
+
+    private RedisUtil redisUtil;
+
+ 
+
+    @Pointcut(&amp;quot;@annotation(com.huajie.annotation.NewCacheable)&amp;quot;)
+
+    public void annotationPointcut() {
+
+    }
+
+ 
+
+    @Around(&amp;quot;annotationPointcut()&amp;quot;)
+
+    public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+
+    // 获得当前访问的class
+
+    Class&amp;lt;?&amp;gt; className = joinPoint.getTarget().getClass();
+
+    // 获得访问的方法名
+
+    String methodName = joinPoint.getSignature().getName();
+
+    // 得到方法的参数的类型
+
+    Class&amp;lt;?&amp;gt;[] argClass = ((MethodSignature) joinPoint.getSignature()).getParameterTypes();
+
+    Object[] args = joinPoint.getArgs();
+
+    String key = &amp;quot;&amp;quot;;
+
+    int expireTime = 3600;
+
+    try {
+
+    // 得到访问的方法对象
+
+    Method method = className.getMethod(methodName, argClass);
+
+    method.setAccessible(true);
+
+    // 判断是否存在@ExtCacheable注解
+
+    if (method.isAnnotationPresent(NewCacheable.class)) {
+
+    NewCacheable annotation = method.getAnnotation(NewCacheable.class);
+
+    key = getRedisKey(args, annotation);
+
+    expireTime = getExpireTime(annotation);
+
+    }
+
+    } catch (Exception e) {
+
+    throw new RuntimeException(&amp;quot;redis缓存注解参数异常&amp;quot;, e);
+
+    }
+
+    log.info(key);
+
+    boolean hasKey = redisUtil.hasKey(key);
+
+    if (hasKey) {
+
+    return redisUtil.get(key);
+
+    } else {
+
+    Object res = joinPoint.proceed();
+
+    redisUtil.set(key, res);
+
+    redisUtil.expire(key, expireTime);
+
+    return res;
+
+    }
+
+    }
+
+ 
+
+    private int getExpireTime(NewCacheable annotation) {
+
+    return annotation.expireTime();
+
+    }
+
+ 
+
+    private String getRedisKey(Object[] args, NewCacheable annotation) throws Exception{
+
+    String primalKey = annotation.key();
+
+    // 获取#p0...集合
+
+    List&amp;lt;String&amp;gt; keyList = getKeyParsList(primalKey);
+
+    for (String keyName : keyList) {
+
+    int keyIndex = Integer.parseInt(keyName.toLowerCase().replace(&amp;quot;#p&amp;quot;, &amp;quot;&amp;quot;));
+
+    Object parValue = getParValue(annotation, keyIndex, args);
+
+    primalKey = primalKey.replace(keyName, String.valueOf(parValue));
+
+    }
+
+    return primalKey.replace(&amp;quot;+&amp;quot;, &amp;quot;&amp;quot;).replace(&amp;quot;&#39;&amp;quot;, &amp;quot;&amp;quot;);
+
+    }
+
+ 
+
+    private Object getParValue(NewCacheable annotation, int keyIndex, Object[] args) throws Exception{
+
+    int[] objectIndexArray = annotation.objectIndexArray();
+
+    String[] objectFieldArray = annotation.objectFieldArray();
+
+    if (existsObject(keyIndex, objectIndexArray)) {
+
+    return getParValueByObject(args, keyIndex, objectFieldArray);
+
+    } else {
+
+    return args[keyIndex];
+
+    }
+
+    }
+
+ 
+
+    private Object getParValueByObject(Object[] args, int keyIndex, String[] objectFieldArray) throws Exception {
+
+    Class cls = args[keyIndex].getClass();
+
+    Method method;
+
+    if(objectFieldArray!=null&amp;amp;&amp;amp;objectFieldArray.length&amp;gt;=keyIndex){
+
+    method = cls.getMethod(&amp;quot;get&amp;quot; + StringUtil.firstCharToUpperCase(objectFieldArray[keyIndex]));
+
+    }else{
+
+    method = cls.getMethod(&amp;quot;get&amp;quot; + StringUtil.firstCharToUpperCase(cls.getFields()[0].getName()));
+
+    }
+
+    method.setAccessible(true);
+
+    log.info(method.getName());
+
+    return method.invoke(args[keyIndex]);
+
+    }
+
+ 
+
+    private boolean existsObject(int keyIndex, int[] objectIndexArray) {
+
+    if (objectIndexArray == null || objectIndexArray.length &amp;lt;= 0) {
+
+    return false;
+
+    }
+
+    for (int i = 0; i &amp;lt; objectIndexArray.length; i++) {
+
+    if (keyIndex == objectIndexArray[i]) {
+
+    return true;
+
+    }
+
+    }
+
+    return false;
+
+    }
+
+ 
+
+    // 获取key中#p0中的参数名称
+
+    private static List&amp;lt;String&amp;gt; getKeyParsList(String key) {
+
+    List&amp;lt;String&amp;gt; ListPar = new ArrayList&amp;lt;String&amp;gt;();
+
+    if (key.indexOf(&amp;quot;#&amp;quot;) &amp;gt;= 0) {
+
+    int plusIndex = key.substring(key.indexOf(&amp;quot;#&amp;quot;)).indexOf(&amp;quot;+&amp;quot;);
+
+    int indexNext = 0;
+
+    String parName = &amp;quot;&amp;quot;;
+
+    int indexPre = key.indexOf(&amp;quot;#&amp;quot;);
+
+    if (plusIndex &amp;gt; 0) {
+
+    indexNext = key.indexOf(&amp;quot;#&amp;quot;) + key.substring(key.indexOf(&amp;quot;#&amp;quot;)).indexOf(&amp;quot;+&amp;quot;);
+
+    parName = key.substring(indexPre, indexNext);
+
+    } else {
+
+    parName = key.substring(indexPre);
+
+    }
+
+    ListPar.add(parName.trim());
+
+    key = key.substring(indexNext + 1);
+
+    if (key.indexOf(&amp;quot;#&amp;quot;) &amp;gt;= 0) {
+
+    ListPar.addAll(getKeyParsList(key));
+
+    }
+
+    }
+
+    return ListPar;
+    }
+}
+
+3.测试
+业务模块使用方法controller
+    @RequestMapping(&amp;quot;queryQuotaTreeData&amp;quot;)
+	@ResponseBody
+	public List&amp;lt;TreeNode&amp;gt; getTreeData() {
+
+		QuotaManage quotaManage = new QuotaManage();
+
+		quotaManage.setQuotaName(&amp;quot;测试22222&amp;quot;);
+
+		List&amp;lt;TreeNode&amp;gt; list  = this.quotaManageService.queryQuotaTreeData(quotaManage);
+
+		return list;
+
+}
+
+实现层objectIndexArray中的{0}表示第0个参数，objectFieldArray中的“quotaName”表示对应对象中的字段名称
+    @Override
+	@NewCacheable(key=&amp;quot;test+#p0&amp;quot;,objectIndexArray = {0},objectFieldArray = {&amp;quot;quotaName&amp;quot;})
+	public List&amp;lt;TreeNode&amp;gt; queryQuotaTreeData(QuotaManage quotaManage) {
+
+		List&amp;lt;TreeNode&amp;gt; returnNodesList = new ArrayList&amp;lt;TreeNode&amp;gt;();
+
+		List&amp;lt;TreeNode&amp;gt; nodeList = this.mapper.queryQuotaTreeData();
+
+		returnNodesList = treeUtils.getParentList(nodeList);
+
+		log.info(nodeList.size()+&amp;quot;&amp;quot;);
+
+		return returnNodesList;
+}
+
+控制台截图拼接的get方法名称和获取的字段值
+Redis的截图
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
+                        手写Redis @Cacheable注解 支持过期时间设置
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-09-07 20:13</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er" class="post-tag i-tag
+                            i-tag-info">
+            #代码那些事儿
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/redis" class="post-tag i-tag
+                            i-tag-other_1">
+            #Redis
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ" class="post-tag i-tag
+                            i-tag-error">
+            #2019-09
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            原理解释
+友情链接  手写Redis @Cacheable注解参数java对象作为键值
+@Cacheable注解作用，将带有该注解方法的返回值存放到redis的的中;
+使用方法在方法上使用@Cacheable（键=“测试+＃P0 + P1＃...”）
+表示键值为测试+方法第一个参数+方法第二个参数，值值为该方法的返回值。
+以下源代码表示获取人员列表，Redis的中存放的关键值为&#39;领袖&#39;+ leaderGroupId + UUID + yearDetailId
+    @Override
+	@Cacheable(key=&amp;quot;&#39;leader&#39;+#p0+#p1+#p2&amp;quot;,value=&amp;quot;leader&amp;quot;)
+	public List&amp;lt;Leader&amp;gt; listLeaders(String leaderGroupId, String uuid, String yearDetailId) {
+		return sysIndexMapper.listLeaders(leaderGroupId, uuid, yearDetailId);
+	}
+
+等同于
+    @Override
+	public List&amp;lt;Leader&amp;gt; listLeaders(String leaderGroupId, String uuid, String yearDetailId) {
+		String key = &amp;quot;leader&amp;quot; + leaderGroupId + uuid + yearDetailId;
+		// 判断缓存是否存在redis中
+		boolean hasKey = redisUtil.hasKey(key);
+		if (hasKey) {
+            //如果存在 返还redis中的值
+			Object leadersList = redisUtil.get(key);
+			return (List&amp;lt;Leader&amp;gt;) leadersList;
+		} else {
+			List&amp;lt;Leader&amp;gt; leadersQuotaDetailList = sysIndexMapper.listLeaders(leaderGroupId, uuid, yearDetailId);
+            //将查询结果存放在redis中
+			redisUtil.set(key, leadersQuotaDetailList);
+			return leadersQuotaDetailList;
+		}
+	}
+    ```
+说白了就是在原方法的前面判断的关键值是否存在的Redis的中，如果存在就取内存中的值，如果不存在就查询数据库，将查询结果存放在Redis的的中。
+
+#### 实现方法
+使用代理模式，在方法执行前和执行后可以添加其他处理程序，本文采用springAOP +注解方式。
+集成Redis，封装Redis工具类
+原版本不支持关键过期时间设置，本文将实现
+源代码
+缓存配置类RedisConfig
+```java
+    package com.huajie.config;
+
+    import org.springframework.beans.factory.annotation.Value;
+
+    import org.springframework.cache.CacheManager;
+
+    import org.springframework.cache.annotation.CachingConfigurerSupport;
+
+    import org.springframework.cache.annotation.EnableCaching;
+
+    import org.springframework.cache.interceptor.KeyGenerator;
+
+    import org.springframework.context.annotation.Bean;
+
+    import org.springframework.context.annotation.Configuration;
+
+    import org.springframework.data.redis.cache.RedisCacheManager;
+
+    import org.springframework.data.redis.connection.RedisConnectionFactory;
+
+    import org.springframework.data.redis.core.RedisTemplate;
+
+    import org.springframework.data.redis.core.StringRedisTemplate;
+
+    import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+
+    import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+    import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
+    import com.fasterxml.jackson.annotation.PropertyAccessor;
+
+    import com.fasterxml.jackson.databind.ObjectMapper;
+
+    
+
+    /**
+
+    * Redis缓存配置类
+
+    */
+
+    @Configuration
+
+    @EnableCaching
+
+    public class RedisConfig extends CachingConfigurerSupport {
+
+ 
+
+	@Value(&amp;quot;${spring.redis.host}&amp;quot;)
+
+	private String host;
+
+	@Value(&amp;quot;${spring.redis.port}&amp;quot;)
+
+	private int port;
+
+	@Value(&amp;quot;${spring.redis.timeout}&amp;quot;)
+
+	private int timeout;
+
+ 
+
+	// 自定义缓存key生成策略
+
+	@Bean
+
+	public KeyGenerator keyGenerator() {
+
+		return new KeyGenerator() {
+
+			@Override
+
+			public Object generate(Object target, java.lang.reflect.Method method, Object... params) {
+
+				StringBuffer sb = new StringBuffer();
+
+				sb.append(target.getClass().getName());
+
+				sb.append(method.getName());
+
+				for (Object obj : params) {
+
+					sb.append(obj.toString());
+
+				}
+
+				return sb.toString();
+
+			}
+
+		};
+
+	}
+
+ 
+
+	// 缓存管理器
+
+	@Bean
+
+	public CacheManager cacheManager(@SuppressWarnings(&amp;quot;rawtypes&amp;quot;) RedisTemplate redisTemplate) {
+
+		RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+
+		// 设置缓存过期时间
+
+		cacheManager.setDefaultExpiration(10000);
+
+		return cacheManager;
+
+	}
+
+ 
+
+	@Bean
+
+	public RedisTemplate&amp;lt;String, Object&amp;gt; redisTemplate(RedisConnectionFactory factory) {
+
+		RedisTemplate&amp;lt;String, Object&amp;gt; template = new RedisTemplate&amp;lt;String, Object&amp;gt;();
+
+		template.setConnectionFactory(factory);
+
+		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+
+		ObjectMapper om = new ObjectMapper();
+
+		om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+
+		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+
+		jackson2JsonRedisSerializer.setObjectMapper(om);
+
+		StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+
+		// key采用String的序列化方式
+
+		template.setKeySerializer(stringRedisSerializer);
+
+		// hash的key也采用String的序列化方式
+
+		template.setHashKeySerializer(stringRedisSerializer);
+
+		// value序列化方式采用jackson
+
+		template.setValueSerializer(jackson2JsonRedisSerializer);
+
+		// hash的value序列化方式采用jackson
+
+		template.setHashValueSerializer(jackson2JsonRedisSerializer);
+
+		template.afterPropertiesSet();
+
+		return template;
+
+	}
+
+ 
+	private void setSerializer(StringRedisTemplate template) {
+
+		@SuppressWarnings({ &amp;quot;rawtypes&amp;quot;, &amp;quot;unchecked&amp;quot; })
+
+		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+
+		ObjectMapper om = new ObjectMapper();
+
+		om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+
+		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+
+		jackson2JsonRedisSerializer.setObjectMapper(om);
+
+		template.setValueSerializer(jackson2JsonRedisSerializer);
+
+	}
+}
+
+Redis的依赖引入，配置文件，工具类RedisUtil，网上几个版本都类似，本文参考以下版本传送门
+https://www.cnblogs.com/zeng1994/p/03303c805731afc9aa9c60dbbd32a323.html
+准备工作做好之后开始正式编写注解@Cacheable nextkey（）用做二级缓存本文中不会用到
+nextKey用法详情&amp;gt; 设计模式（实战） - 责任链模式 &amp;lt;
+创建的Java的注解@ExtCacheable
+    package com.huajie.annotation;
+
+    import java.lang.annotation.ElementType;
+
+    import java.lang.annotation.Retention;
+
+    import java.lang.annotation.RetentionPolicy;
+
+    import java.lang.annotation.Target;
+
+    
+    @Target({ ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface ExtCacheable {
+
+	String key() default &amp;quot;&amp;quot;;
+
+	String nextKey() default &amp;quot;&amp;quot;;
+
+	int expireTime() default 1800;//30分钟
+
+}
+
+SpringAop切面CacheableAspect
+    package com.huajie.aspect;
+
+    import java.lang.reflect.Method;
+
+    import java.util.ArrayList;
+
+    import java.util.List;
+
+    import org.aspectj.lang.ProceedingJoinPoint;
+
+    import org.aspectj.lang.annotation.Around;
+
+    import org.aspectj.lang.annotation.Aspect;
+
+    import org.aspectj.lang.annotation.Pointcut;
+
+    import org.aspectj.lang.reflect.MethodSignature;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+
+    import org.springframework.stereotype.Component;
+
+    import com.huajie.annotation.ExtCacheable;
+
+    import com.huajie.utils.RedisUtil;
+
+    
+
+    /**
+
+     * redis缓存处理
+
+     * 不适用与内部方法调用(this.)或者private
+
+    */
+
+    @Component
+
+    @Aspect
+
+    public class CacheableAspect {
+
+	
+
+	@Autowired
+
+	private RedisUtil redisUtil;
+
+ 
+
+	@Pointcut(&amp;quot;@annotation(com.huajie.annotation.ExtCacheable)&amp;quot;)
+
+	public void annotationPointcut() {
+
+	}
+
+ 
+
+	@Around(&amp;quot;annotationPointcut()&amp;quot;)
+
+	public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+
+		// 获得当前访问的class
+
+		Class&amp;lt;?&amp;gt; className = joinPoint.getTarget().getClass();
+
+		// 获得访问的方法名
+
+		String methodName = joinPoint.getSignature().getName();
+
+		// 得到方法的参数的类型
+
+		Class&amp;lt;?&amp;gt;[] argClass = ((MethodSignature) joinPoint.getSignature()).getParameterTypes();
+
+		Object[] args = joinPoint.getArgs();
+
+		String key = &amp;quot;&amp;quot;;
+
+		int expireTime = 1800;
+
+		try {
+
+			// 得到访问的方法对象
+
+			Method method = className.getMethod(methodName, argClass);
+
+			method.setAccessible(true);
+
+			// 判断是否存在@ExtCacheable注解
+
+			if (method.isAnnotationPresent(ExtCacheable.class)) {
+
+				ExtCacheable annotation = method.getAnnotation(ExtCacheable.class);
+
+				key = getRedisKey(args,annotation);
+
+				expireTime = getExpireTime(annotation);
+
+			}
+
+		} catch (Exception e) {
+
+			throw new RuntimeException(&amp;quot;redis缓存注解参数异常&amp;quot;, e);
+
+		}
+
+		// 获取缓存是否存在
+
+		boolean hasKey = redisUtil.hasKey(key);
+
+		if (hasKey) {
+
+			return redisUtil.get(key);
+
+		} else {
+
+                         //执行原方法（java反射执行method获取结果）
+
+			Object res = joinPoint.proceed();
+
+                         //设置缓存
+
+			redisUtil.set(key, res);
+
+                         //设置过期时间
+
+			redisUtil.expire(key, expireTime);
+
+			return res;
+
+		}
+
+	}
+
+	
+
+	private int getExpireTime(ExtCacheable annotation) {
+
+		return annotation.expireTime();
+
+	}
+
+ 
+
+	private String getRedisKey(Object[] args,ExtCacheable annotation) {
+
+		String primalKey = annotation.key();
+
+		//获取#p0...集合
+
+		List&amp;lt;String&amp;gt; keyList = getKeyParsList(primalKey);
+
+		for (String keyName : keyList) {
+
+			int keyIndex = Integer.parseInt(keyName.toLowerCase().replace(&amp;quot;#p&amp;quot;, &amp;quot;&amp;quot;));
+
+			Object parValue = args[keyIndex];
+
+			primalKey = primalKey.replace(keyName, String.valueOf(parValue));
+
+		}
+
+		return primalKey.replace(&amp;quot;+&amp;quot;,&amp;quot;&amp;quot;).replace(&amp;quot;&#39;&amp;quot;,&amp;quot;&amp;quot;);
+
+	}
+
+ 
+
+	// 获取key中#p0中的参数名称
+
+	private static List&amp;lt;String&amp;gt; getKeyParsList(String key) {
+
+		List&amp;lt;String&amp;gt; ListPar = new ArrayList&amp;lt;String&amp;gt;();
+
+		if (key.indexOf(&amp;quot;#&amp;quot;) &amp;gt;= 0) {
+
+			int plusIndex = key.substring(key.indexOf(&amp;quot;#&amp;quot;)).indexOf(&amp;quot;+&amp;quot;);
+
+			int indexNext = 0;
+
+			String parName = &amp;quot;&amp;quot;;
+
+			int indexPre = key.indexOf(&amp;quot;#&amp;quot;);
+
+			if(plusIndex&amp;gt;0){
+
+				indexNext = key.indexOf(&amp;quot;#&amp;quot;) + key.substring(key.indexOf(&amp;quot;#&amp;quot;)).indexOf(&amp;quot;+&amp;quot;);
+
+				parName = key.substring(indexPre, indexNext);
+
+			}else{
+
+				parName = key.substring(indexPre);
+
+			}
+
+			ListPar.add(parName.trim());
+
+			key = key.substring(indexNext + 1);
+
+			if (key.indexOf(&amp;quot;#&amp;quot;) &amp;gt;= 0) {
+
+				ListPar.addAll(getKeyParsList(key));
+
+			}
+
+		}
+
+		return ListPar;
+
+	}
+}
+
+业务模块使用方法
+    @Override
+	@ExtCacheable(key = &amp;quot;Leaders+#p0+#p1+#p2&amp;quot;)
+	// 手机端获取领导人员列表
+	public List&amp;lt;Leader&amp;gt; listLeaders(String leaderGroupId, String uuid, String yearDetailId) {
+		List&amp;lt;Leader&amp;gt; leadersQuotaDetailList = sysIndexMapper.listLeaders(leaderGroupId, uuid, yearDetailId);
+		return leadersQuotaDetailList;
+}
+
+业务模块过期时间使用方法，5分钟过期
+    @Override
+	@ExtCacheable(key = &amp;quot;mobileCacheFlag&amp;quot;, expireTime = 60 * 5)
+	public int cacheFlag() {
+		int mobileCacheFlag = 1;
+		mobileCacheFlag = sysIndexMapper.cacheFlag();
+		return mobileCacheFlag;
+
+}
+
+Redis的的截图
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247)">
+        </div>
+        <h1 class="id_card-title">
+            代码人生
+        </h1>
+        <h2 class="id_card-description">
+            代码 人生 感悟 分享
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
+  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>

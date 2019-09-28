@@ -1,313 +1,923 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
+<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569669783656">
+<title>
+    2019-03 | 代码人生
+</title>
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673038247">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.coding.me">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569669783656" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
-          </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
-          </div>
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://shingmoyeung.coding.me">
+                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    代码人生
+                </h1>
+            </div>
         </div>
-      
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-line"></i> 2019-03
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">CentOS 7 安装MySQL（yum方式）</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-20 20:58 / 2 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-16 21:08 / 6 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">RocketMq踩坑实录(2)---connect to XXXX:10909 failed</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-16 21:04 / 1 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">MAC下VMware Fusion虚拟机配置网卡</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-15 21:21 / 1 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Linux下编译安装Apache报APR not found错误的解决办法</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-13 21:26 / 3 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${5 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-06 21:32 / 2 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${6 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">使用Java登录远程Linux并对服务实现各种操作</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-06 21:30 / 4 min read</div>
-    </div>
-  </section>
-
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
-
-      </div>
-    </div>
-
-    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
 <script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-Prism.highlightAll()
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
+        });
     });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
 </script>
-  
-  </body>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        2019-03</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">
+                        CentOS 7 安装MySQL（yum方式）
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-20 20:58</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-success">
+            #2019-03
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
+                            i-tag-info">
+            #Linux
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" class="post-tag i-tag
+                            i-tag-error">
+            #运维部署
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            1.下载mysql源安装包
+shell&amp;gt; wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
+
+2.安装mysql源
+shell&amp;gt; yum localinstall mysql57-community-release-el7-8.noarch.rpm 
+
+3.检查mysql源是否安装成功
+shell&amp;gt; yum repolist enabled | grep &amp;quot;mysql.*-community.*&amp;quot;
+
+4.修改 vim /etc/yum.repos.d/mysql-community.repo源 ，改变默认安装的mysql版本。比如要安装5.6版本，将5.7源的enabled=1改成enabled=0。然后再将5.6源的enabled=0改成enabled=1即可。
+
+5.安装MySQL
+shell&amp;gt; yum install mysql-community-server
+
+6.启动MySQL服务
+shell&amp;gt; systemctl start mysqld
+
+7.开机启动
+shell&amp;gt; systemctl enable mysqld
+shell&amp;gt; systemctl daemon-reload
+
+8.修改root本地登录密码
+1）查看mysql密码
+shell&amp;gt; grep &#39;temporary password&#39; /var/log/mysqld.log
+
+
+2）连接mysql
+shell&amp;gt; mysql -uroot -p
+
+3）修改密码[注意：后面的分号一定要跟上]
+mysql&amp;gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;MyNewPass4!&#39;;
+
+或者：
+mysql&amp;gt; set password for &#39;root&#39;@&#39;localhost&#39;=password(&#39;MyNewPass4!&#39;);  
+mysql&amp;gt; show variables like &#39;%password%&#39;;
+
+9.添加远程登录用户
+mysql&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;caoxiaobo&#39;@&#39;%&#39; IDENTIFIED BY &#39;Caoxiaobo0917!&#39; WITH GRANT OPTION;
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/centos-7-an-zhuang-mysqlyum-fang-shi">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
+                        RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-16 21:08</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/xiao-xi-dui-lie" class="post-tag i-tag
+                            i-tag-primary">
+            #消息队列
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-banana">
+            #2019-03
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
+                            i-tag-other_3">
+            #Linux
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" class="post-tag i-tag
+                            i-tag-other_2">
+            #运维部署
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            背景
+最近在学习RocketMQ，第一步就是安装部署并启动RocketMQ。使用最新版本的RocketMQ，版本为4.2.0，安装后启动相关服务。
+启动nameServer:
+nohup mqnamesrv &amp;amp;
+
+由于broker和nameServer在同一台机器上,启动broker:
+nohup mqbroker -n localhost:9876 &amp;amp;
+
+接下来运行producer的demo,但是在运行demo的过程中出现了问题,异常堆栈如下:
+org.apache.rocketmq.client.exception.MQClientException: 
+Send [3] times, still failed, cost [3004]ms, 
+Topic: MQ-MSG-TOPICS-TEST, BrokersSent: 
+[iZnqntg5t2znd7Z, iZnqntg5t2znd7Z, iZnqntg5t2znd7Z]
+See http://rocketmq.apache.org/docs/faq/ for further details.
+    at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.
+    sendDefaultImpl(DefaultMQProducerImpl.java:544)
+    at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.
+    send(DefaultMQProducerImpl.java:1069)
+    at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.
+    send(DefaultMQProducerImpl.java:1023)
+    at org.apache.rocketmq.client.producer.DefaultMQProducer.
+    send(DefaultMQProducer.java:214)
+    at core.RocketMQProducer.send(RocketMQProducer.java:44)
+    at core.RocketMQProducerTest.main(RocketMQProducerTest.java:20)
+Caused by: org.apache.rocketmq.remoting.exception.RemotingConnectException:
+connect to &amp;lt;172.18.46.234:10909&amp;gt; failed
+    at org.apache.rocketmq.remoting.netty.NettyRemotingClient.
+    invokeSync(NettyRemotingClient.java:388)
+    at org.apache.rocketmq.client.impl.MQClientAPIImpl.
+    sendMessageSync(MQClientAPIImpl.java:351)
+    at org.apache.rocketmq.client.impl.MQClientAPIImpl.
+    sendMessage(MQClientAPIImpl.java:335)
+    at org.apache.rocketmq.client.impl.MQClientAPIImpl.
+    sendMessage(MQClientAPIImpl.java:298)
+    at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.
+    sendKernelImpl(DefaultMQProducerImpl.java:696)
+    at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.
+    sendDefaultImpl(DefaultMQProducerImpl.java:463)
+    ... 5 more
+
+现将问题的排查及解决方法记录如下.
+排查
+遇到这个问题后,根据异常信息知道是无法连接到172.18.46.234:10909.那么这个地址是nameServer的还是broker的呢?
+在demo中配置的nameServer地址是阿里云服务器的公网地址,而且端口号是默认的9876,因此172.18.46.234:10909是broker的地址,即producer尝试连接broker时失败.
+后来发现172.18.46.234是我的阿里云服务器的内网地址,我们回忆下RocketMQ的工作流程:
+启动nameServer
+broker启动时使用-n localhost:9876指定nameServer,将自己的IP地址注册到nameServer
+producer首先连接nameServer,获取可用的broker地址
+producer根据从nameServer获取的broker地址,将信息发送给broker
+因此错误的原因是broker将自己内网地址发送给了nameServer,producer从nameServer获取的是broker的内网IP地址,自然无法连接broker.
+解决方案
+由上可知,只要broker将自己的外网地址注册到nameServer即可,查阅资料发现,broker注册到nameServer的地址可以使用参数配置,参数为brokerIP1和brokerIP2(个人推测这两个IP应该一个是普通channel,一个是vip channel),但是如何在broker启动时设置这两个参数呢?
+查看RocketMQ中org.apache.rocketmq.broker.BrokerStartup源码可知,broker启动选项如下:
+
+
+
+短选项
+长选项
+是否必填
+是否需要参数
+参数是否可选
+含义
+
+
+
+
+n
+nameSrvAddr
+否
+是
+否
+Name server address list, eg: 192.168.0.1:9876;192.168.0.2:9876
+
+
+c
+configFile
+否
+是
+否
+Broker config properties file
+
+
+h
+help
+否
+否
+-
+Print help
+
+
+p
+printConfigItem
+否
+否
+-	vPrint all config item
+
+
+
+m
+printImportantConfig
+否
+否
+-
+Print important config item
+
+
+
+备注
+若选项需要参数,则参数是否可选为否时表示该选项后必须跟一个参数
+若选项无需参数,则参数是否可选无意义
+由上可知,启动broker时共有5个选项,比较常用的是-n和-c,-n用于指定nameServer的IP地址及端口号,-c用于指定配置文件,同时nameServer的IP地址及端口号也可用nameSrvAddr在配置文件中设置,这样启动broker时就不用使用选项指定nameServer了.
+RocketMQ在$ROCKETMQ_HOME/conf下提供了几个默认的配置文件,如2m-2s-async文件夹中提供了4个配置文件,分别是2个master和2个slave,且master和slave使用异步方式同步数据;而broker.conf提供了集群中只有一个master,无slave的配置文件,在配置文件中添加brokerIP1,brokerIP2,nameSrvAddr属性,内容如下:
+brokerClusterName = DefaultCluster
+brokerName = broker-a
+brokerId = 0
+deleteWhen = 04
+fileReservedTime = 48
+brokerRole = ASYNC_MASTER
+flushDiskType = ASYNC_FLUSH
+# brokerIP1和brokerIP2默认获取本地ip地址,在云服务器上会获取内网ip地址,因此必须显式设置
+brokerIP1=*.*.*.*
+brokerIP2=*.*.*.*
+# 将namesrvAddr设置在configfile中
+namesrvAddr=localhost:9876
+
+其中brokerIP1和brokerIP2修改为自己云服务器的外网地址.
+启动broker(假设当前工作目录为$ROCKETMQ_HOME/bin):
+nohup mqbroker -c ../conf/broker.conf &amp;amp;
+1
+再次运行demo,即可成功向broker发送消息.
+总结
+broker向nameServer注册的地址是brokerIP1,brokerIP2,
+@ImportantField
+private String brokerIP1 = RemotingUtil.getLocalAddress();
+private String brokerIP2 = RemotingUtil.getLocalAddress();
+
+在阿里云服务器上获取的是内网IP地址,因此producer从nameServer获取的broker地址是broker的内网IP地址,无法向broker发送消息.
+可以通过-c指定broker启动时的配置文件,在配置文件中添加brokerIP1和brokerIP2属性,其值为阿里云服务器的外网IP地址,即可解决上述问题.
+除此之外,RocketMQ还提供了-h,-p,-m用于打印帮助,打印配置项和打印重要配置项供用户参考.
+还可将nameServer的地址通过nameSrvAddr属性写在配置文件中,这样启动时就无需通过-n设置nameServer地址.
+参考
+rocketmq官网quick-start
+作者：pfjia
+来源：CSDN
+原文：https://blog.csdn.net/jpf254/article/details/80748021
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">
+                        RocketMq踩坑实录(2)---connect to XXXX:10909 failed
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-16 21:04</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/xiao-xi-dui-lie" class="post-tag i-tag
+                            i-tag-other_2">
+            #消息队列
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-other_2">
+            #2019-03
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
+                            i-tag-other_2">
+            #Linux
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" class="post-tag i-tag
+                            i-tag-warning">
+            #运维部署
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            就是启动好nameServer和Broker之后, 启动生产者会报这样的错误,但是官网上并没有解决这个问题的办法.
+多方查找资料后发现,主要有两个解决办法:
+a. 一个是说,在代码里设置不走vip通道,但是我这边没有生效
+
+b. 第二个方法,修改brok.conf
+
+我这边添加了两行配置: 
+ 
+据说这个问题的原因是因为虚拟机的多网卡造成的. 
+但是启动broker的指令要修改下, 要将这个配置文件指定加载,很多答案都没有写明这个,希望大家重视一下,不然修改也没用:
+nohup sh mqbroker -n localhost:9876 -c ../conf/broker.conf &amp;amp;
+
+--------------------- 
+作者：多吃核桃会补脑 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_14853889/article/details/81053145 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/rocketmq-cai-keng-shi-lu-2-connect-to-xxxx10909-failed">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
+                        MAC下VMware Fusion虚拟机配置网卡
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-15 21:21</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/macos" class="post-tag i-tag
+                            i-tag-success">
+            #MacOS
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/apple" class="post-tag i-tag
+                            i-tag-success">
+            #Apple
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/vmware" class="post-tag i-tag
+                            i-tag-banana">
+            #VMWare
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/vmware-fusion" class="post-tag i-tag
+                            i-tag-">
+            #VMWare Fusion
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-">
+            #2019-03
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            需求
+虚拟机两块网卡，一块通过NAT上网，一块通过Hostonly与MAC宿主机通信。
+配置方法
+1、配置NAT
+NAT配置很简单，直接在虚拟机的网卡设置里配置即可，如图：
+
+
+2、配置hostnonly网络
+首先，在虚拟机设置里配置第二块网卡连接hostonly，如图：
+
+然后，修改配置文件，关闭hostonly网络的DHCP，使用固定IP，便于与虚拟机的连接：
+sudo vi /Library/Preferences/VMware\ Fusion/networking
+
+VERSION=1,0
+answer VNET_1_DHCP no    #关闭dhcp
+answer VNET_1_DHCP_CFG_HASH 9503E18413CDE50A84F0D124C42535C62DF8193B
+answer VNET_1_HOSTONLY_NETMASK 255.255.255.0    #hostonly网络子网掩码
+answer VNET_1_HOSTONLY_SUBNET 10.10.10.0    #hostonly网络地址
+answer VNET_1_VIRTUAL_ADAPTER yes
+answer VNET_1_VIRTUAL_ADAPTER_ADDR 10.10.10.1    #宿主机的IP地址
+
+保存退出，退出vmware fusion，重新打开，配置虚拟机的IP地址就可以了。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa">
+                        Linux下编译安装Apache报APR not found错误的解决办法
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-13 21:26</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/apache" class="post-tag i-tag
+                            i-tag-other_3">
+            #Apache
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-error">
+            #2019-03
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
+                            i-tag-info">
+            #Linux
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" class="post-tag i-tag
+                            i-tag-other_4">
+            #运维部署
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            我在编译安装完Nginx、MySQL和PHP(见之前一篇博客:LNMP环境搭建详细教程)之后,进行apache的编译安装:
+cd /usr/local/src 
+
+wget http://mirror.bit.edu.cn/apache/httpd/httpd-2.4.34.tar.gz　
+
+tar zxvf httpd-2.4.34.tar.gz　　
+
+cd httpd-2.4.34　　
+
+./configure --prefix=/usr/local/httpd　　
+
+就在这个时候提示:configure: error: APR not found. Please read the documentation.
+这说明缺少APR依赖,那么安装即可,可以用yum安装但是不推荐,因为yum安装的APR版本可能不足以支持你所安装的apache版本,所以还是要用编译安装高版本的APR:
+cd /usr/local/src
+
+wget http://archive.apache.org/dist/apr/apr-1.6.3.tar.gz 
+
+wget http://archive.apache.org/dist/apr/apr-util-1.6.1.tar.gz
+
+依次下载上述两个安装包并逐个解压缩:
+tar zxvf apr-1.6.3.tar.gz
+
+tar zxvf apr-util-1.6.1.tar.gz
+cd/usr/local/src/apr-1.6.3 #安装apr
+
+./configure --prefix=/usr/local/apr  
+
+make &amp;amp;&amp;amp; make install
+cd /usr/local/src/apr-util-1.6.1  #安装apr-util
+
+./configure --prefix=/usr/local/apr-util --with-apr=/usr/local/apr   
+
+make &amp;amp;&amp;amp; make install
+
+依赖全部安装完毕后再次切换到httpd的安装目录安装apache:
+cd /usr/local/src/httpd-2.4.34
+
+./configure --prefix=/usr/local/httpd --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util
+
+make &amp;amp;&amp;amp; make install
+
+到此安装成功,想要启动、停止、重启apache需要用到命令:
+/usr/local/httpd/bin/httpd -k start   ##开启
+
+/usr/local/httpd/bin/httpd -k stop    ##停止
+
+/usr/local/httpd/bin/httpd -k restart ##重启
+
+这里我在重启的时候就报了之前一篇博客:LNMP环境搭建详细教程中讲述的一个错误:
+bind() to 0.0.0.0:80 failed (98: Address already in use)  这是因为我之前安装了nginx已经占用了80端口并且正在运行端口发生冲突,
+所以就需要修改httpd的端口号,配置文件位置/usr/local/httpd/conf/httpd.conf:
+vim /usr/local/httpd/conf/httpd.conf
+
+搜索Listen 80将其改为Listen 8080(修改的端口号可以随便定义,范围是065535,其中0没有任何意义,也可以理解为165535),重启httpd提示新的错误:Could not reliably determine the server&#39;s fully qualified domain name,
+这是因为httpd.conf中ServerName未修改,搜索ServerName,将其改为:ServerName localhost:8080之后再次重启错误消失,查看一下正在运行的服务:
+
+ps:上述安装的依赖版本并不是固定的,在安装的时候最好到官网看一下文档说明,选用高级的版本,比如用apr-1.3.*的版本,用来编译安装httpd-2.4.*的apache的时候就编译不了了
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/linux-xia-bian-yi-an-zhuang-apache-bao-apr-not-found-cuo-wu-de-jie-jue-ban-fa">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">
+                        Linux系统CentOS 7修改httpd服务Apache网站根目录/var/www/html
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-06 21:32</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/httpd" class="post-tag i-tag
+                            i-tag-info">
+            #Httpd
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/apache" class="post-tag i-tag
+                            i-tag-primary">
+            #Apache
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-success">
+            #2019-03
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
+                            i-tag-success">
+            #Linux
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" class="post-tag i-tag
+                            i-tag-other_2">
+            #运维部署
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+本文基于阿里云服务器CentOS7.4 讲述，如果文中有错误或者不足，敬请在评论区指出
+
+昨天我写了一篇博客讲述CentOS 7安装部署httpd服务，在安装部署好httpd服务后，访问公网IP可以正常访问，默认Apache网站根目录/var/www/html，如果我们要修改为自定义的目录路径怎么办呢？
+1、执行vim /etc/httpd/conf/httpd.conf指令
+键盘输入E，进人可编辑模式
+
+2、找到 DocumentRoot &amp;quot;/var/www/html&amp;quot; 这一段 #apache的根目录，把/var/www/html 这个目录改为/home/kevin/web
+3、再找到 &amp;lt;Directory &amp;quot;/var/www/html&amp;quot;&amp;gt; #定义apache /var/www/html这个区域，把 /var/www/html改成/home/kevin/web
+这样我们就把apahce的默认路径改掉了，登录云服务器后台管理重启服务器。
+重启云服务器后，现在我们去访问公网IP
+
+会发现访问拒绝，这是为什么呢？主要是因为没有权限，执行chmod -R 755 /home/kevin。
+现在访问公网ip就可以正常访问，并可以将文件上传（通过Xftp5或者WinScp）至/home/kevin/web目录下下载。当然这个时候不排除有可能重新启动后，访问公网IP 还是不能访问，这个时候可以尝试将防火墙服务关闭再访问，如果关闭防火墙服务可以通过公网IP 访问看到
+Testing 123..
+说明是防火墙阻挡了80端口，将80端口放开就行
+添加
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+重新载入
+firewall-cmd --reload
+
+查看
+firewall-cmd --zone=public --query-port=80/tcp
+
+
+作者：雨打芭蕉
+来源：CSDN
+原文：https://blog.csdn.net/oyudabajiao/article/details/79777755
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/linux-xi-tong-centos-7-xiu-gai-httpd-fu-wu-apache-wang-zhan-gen-mu-lu-varwwwithhtml">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
+                        使用Java登录远程Linux并对服务实现各种操作
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-06 21:30</time>
+                    
+                        <a href="https://shingmoyeung.coding.me/tag/maven" class="post-tag i-tag
+                            i-tag-primary">
+            #Maven
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/2019-03" class="post-tag i-tag
+                            i-tag-warning">
+            #2019-03
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
+                            i-tag-">
+            #Linux
+        </a>
+                        
+                        <a href="https://shingmoyeung.coding.me/tag/dai-ma-na-xie-shi-er" class="post-tag i-tag
+                            i-tag-other_3">
+            #代码那些事儿
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            本文采用jar依赖为
+&amp;lt;!-- SSH2连接Linux服务器依赖 https://mvnrepository.com/artifact/ch.ethz.ganymed/ganymed-ssh2 --&amp;gt;
+&amp;lt;dependency&amp;gt;
+   &amp;lt;groupId&amp;gt;ch.ethz.ganymed&amp;lt;/groupId&amp;gt;
+   &amp;lt;artifactId&amp;gt;ganymed-ssh2&amp;lt;/artifactId&amp;gt;
+   &amp;lt;version&amp;gt;build210&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+
+在访问linux时，首先需要使用工具类jar包：ganymed-ssh2
+登录远程服务器：
+public boolean login(){
+	//创建远程连接，默认连接端口为22，如果不使用默认，可以使用方法
+	//new Connection(ip, port)创建对象
+	Connection conn = new Connection(ip);        
+	try {
+		//连接远程服务器
+		conn.connect();
+		//使用用户名和密码登录
+        return conn.authenticateWithPassword(usr, psword);
+	} catch (IOException e) {   
+		System.err.printf(&amp;quot;用户%s密码%s登录服务器%s失败！&amp;quot;, usr, psword, ip);
+		e.printStackTrace();
+  }
+  return false;
+}
+/**
+  * 上传本地文件到服务器目录下
+  * @param conn Connection对象
+  * @param fileName 本地文件
+  * @param remotePath 服务器目录
+  */
+public void putFile(Connection conn, String fileName, String remotePath){
+	SCPClient sc = new SCPClient(conn);
+	try {
+		//将本地文件放到远程服务器指定目录下，默认的文件模式为 0600，即 rw，
+		//如要更改模式，可调用方法 put(fileName, remotePath, mode),模式须是4位数字且以0开头
+		sc.put(fileName, remotePath);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+/**
+  * 下载服务器文件到本地目录
+  * @param fileName 服务器文件
+  * @param localPath 本地目录
+  */
+public void copyFile(Connection conn, String fileName,String localPath){
+	SCPClient sc = new SCPClient(conn);
+	try {
+		sc.get(fileName, localPath);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+}
+/**
+ * 在远程LINUX服务器上，在指定目录下，获取文件各个属性
+ * @param[in] conn Conncetion对象
+ * @param[in] remotePath 远程主机的指定目录
+ */
+public void getFileProperties(Conncetion conn, String remotePath){
+	try {
+		SFTPv3Client sft = new SFTPv3Client(conn);
+		Vector&amp;lt;?&amp;gt; v = sft.ls(remotePath);
+       
+		for(int i=0;i&amp;lt;v.size();i++){
+			SFTPv3DirectoryEntry s = new SFTPv3DirectoryEntry();
+			s = (SFTPv3DirectoryEntry) v.get(i);
+			//文件名
+			String filename = s.filename;
+			//文件的大小
+			Long fileSize = s.attributes.size;
+		}
+			
+		sft.close();
+       
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
+}
+/**
+ * 在远程LINUX服务器上，在指定目录下，删除指定文件
+ * @param[in] fileName 文件名
+ * @param[in] remotePath 远程主机的指定目录
+ * @return
+ */
+public void delFile(String remotePath, String fileName){
+	try {
+		SFTPv3Client sft = new SFTPv3Client(conn);
+		//获取远程目录下文件列表
+		Vector&amp;lt;?&amp;gt; v = sft.ls(remotePath);
+   
+		for(int i=0;i&amp;lt;v.size();i++){
+			SFTPv3DirectoryEntry s = new SFTPv3DirectoryEntry();
+			s = (SFTPv3DirectoryEntry) v.get(i);
+			//判断列表中文件是否与指定文件名相同
+			if(s.filename.equals(fileName)){
+				//rm()方法中，须是文件绝对路径+文件名称
+				sft.rm(remotePath + s.filename);
+			}
+		sft.close();
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
+}
+
+/**
+ * 执行脚本
+ * @param conn Connection对象
+ * @param cmds 要在linux上执行的指令
+ */
+public int exec(Connection conn, String cmds){
+	InputStream stdOut = null;
+	InputStream stdErr = null;
+	int ret = -1;
+	try {
+		//在connection中打开一个新的会话
+		Session session = conn.openSession();
+		//在远程服务器上执行linux指令
+		session.execCommand(cmds);
+		//指令执行结束后的输出
+		stdOut = new StreamGobbler(session.getStdout());
+		//指令执行结束后的错误
+		stdErr = new StreamGobbler(session.getStderr());
+		//等待指令执行结束
+		session.waitForCondition(ChannelCondition.EXIT_STATUS, TIME_OUT);
+	   	//取得指令执行结束后的状态
+		ret = session.getExitStatus(); 
+		
+		conn.close();
+	}catch(Exception e){
+		 e.printStackTrace();
+	}
+ 
+	return ret;
+}
+
+
+作者：我有健康
+来源：CSDN
+原文：https://blog.csdn.net/QQ156881887/article/details/80209864
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://shingmoyeung.coding.me/images/avatar.png?v=1569673038247)">
+        </div>
+        <h1 class="id_card-title">
+            代码人生
+        </h1>
+        <h2 class="id_card-description">
+            代码 人生 感悟 分享
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
+  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
 </html>
