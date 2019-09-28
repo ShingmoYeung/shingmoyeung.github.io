@@ -1,362 +1,244 @@
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    测试那些事儿 | 代码人生
-</title>
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673939483">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569674275868">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-148889074-1');
-    </script>
-    
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://shingmoyeung.coding.me">
-                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673939483" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    代码人生
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
 <script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
+  gtag('config', 'UA-148889074-1');
 </script>
 
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        测试那些事儿</b>
-    </div>
-    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">
-                        JMeter 参数化实现
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-09-19 19:49</time>
-                    
-                        <a href="https://shingmoyeung.coding.me/tag/ce-shi-na-xie-shi-er" class="post-tag i-tag
-                            i-tag-other_1">
-            #测试那些事儿
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.coding.me">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569674275868" alt="">
         </a>
-                        
-                        <a href="https://shingmoyeung.coding.me/tag/BJd4x8aTJ" class="post-tag i-tag
-                            i-tag-">
-            #2019-09
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            在测试过程中，我们经常遇到需要根据需求动态操作数据的情况，常规的固定数据无法满足我们的需要，这个时候，我们可以通过jmeter 提供的参数化组件来实现动态的获取数据、改变数据。
-Jmeter 中常用的参数化方式
-  JMeter 为我们提供了四种实现参数化的方式，分别是【CSV Data Set Config】（数据集配置）组件、【用户参数】组件、【用户定义的变量】组件和【函数】组件，四种方式都有各自的使用场景，互为补充。
-
-1.【CSV Data Set Config】（数据集配置）组件
-  我们借助此组件可以实现动态的从外部CSV文件中获取数据，从而达到批量操作数据的目的。
-
-使用此组件的前提条件：我们需要有一个 CSV 格式的数据文件。
-CSV文件编写格式：
-1.每一行代表一条数据；
-2.各字段之间用英文逗号分隔开；
-3.编码格式采用 utf-8。
-假设现在有一个 CSV 格式的数据文件csv_test.txt，该文件内容如下图所示：
-
-要实现依次读取文件中的内容，并将内容中第一个字段的值作为关键字在百度中搜索的操作，我们可以这样做：
-1）在jmeter中依次创建【测试计划】、【线程组】和【HTTP 请求】，并添加查看结果的组件【查看结果树】如图：
-
-2）添加【CSV Data Set Config】（数据集配置）组件：右击【线程组】—&amp;gt;【添加】—&amp;gt;【配置元件】—&amp;gt;【CSV Data Set Config】。
-3）配置参数
-设置线程组循环次数：选中【线程组】，在右边属性窗口中将【循环次数】设置成 与CSV 数据文件中数据条数相同，在本例中即为3。
-
-设置 CSV Data Set Config 组件的参数
-Filename：CSV 数据文件所在路径。
-
-File encoding：CSV文件的编码格式，即 utf-8；
-Variable Names（comma-delimited）：给 CSV 数据文件中数据的每个字段取一个名字，作为调用的变量名；CSV 中每个字段都对应一个变量，每个变量用逗号隔开
-Delimiter(use ‘\t’ for tab)：与CSV 中的分隔符 保持一致，本例中即为英文逗号；
-一般情况下，我们只需要设置这四个属性即可。
-4）使用变量
-变量名即为上一步骤中设置的变量名
-变量使用格式为${变量名}
-在 HTTP 请求 URL 路径中使用正确格式调用变量，如图。
-
-为了结果更明确，在 HTTP 请求的命名中也调用此变量标注。
-5）执行，结果如下图：
-
-结果中显示，我们依次从 CSV 数据文件中获取到了每条数据的第一个字段的值，并将其作为百度搜索的关键字执行了搜索。
-2.【用户参数】组件
-  除了读取外部文件中的数据，我们还可以在jmeter中定义一些数据，实现批量操作数据的功能。但由于此操作不是那么的易用，所以数据量较大时，不建议使用此操作。
-
-下面我们来看一下具体是怎么操作的：
-1）这里我们先把上面添加的 CSV Data Set Config 组件禁用掉（右击该组件后选择【禁用】即可）；
-
-2）通过添加【用户参数】组件，用来配置数据：右击【测试计划】—&amp;gt;【添加】—&amp;gt;【前置处理器】—&amp;gt;【用户参数】，如图：
-
-3）配置数据。我们可以看到用户参数面板如下图所示，主要使用的部分就是图中标注出来的三个部分：
-
-①这里应该不陌生了，就是用来标注我们这部分的参数是给干什么用的，取个名字，见名知意，好让我们以后再看的时候不会迷糊。
-②这里我们看到有四个按钮，第一行的两个是用来操作变量的，第二行的两个是用来操作用户的。这里所谓的变量就是我们要设置的参数变量名，用来在后面调用的；而用户就是参数值，每一个用户对应一条数据。
-③ 点击【添加变量】后会在③中添加一行输入框，提供给我们输入变量名和变量值，输入后保存即可。点击【添加用户】后会在【用户_1】后面添加一列，表示可以多添加一条数据。
-我们还是用上面例子中的数据添加到这，如下图：
-
-从上面的结构我们可以看出，【用户参数】组件是通过表格的形式来存储数据的，每个变量和变量值都需要我们手动去一条一条添加，可想而知，如果数据量比较大的情况下，我们还是用此方式操作的话，就会比较麻烦了。这种情况下，就建议使用第一种方式来批量操作数据了。
-4）更改线程组设置，让jmeter循环读取我们的数据：
-将线程组的【线程数】更改为与我们【用户参数】中用户数量相同；
-将线程组的【循环次数】更改回 1 次。
-5）调用参数的方式与上面的例子相同，在需要的地方使用&amp;quot;${变量名}&amp;quot;的格式调用即可，这次我们来遍历一下 【country】的值。
-
-6）我们来执行一下，看看读取【用户参数】的执行结果：
-
-出现上面的结果，就说明我们配置成功了！
-3.【用户定义的变量】组件
-1）通常，在项目的接口中经常会遇到一些相同的部分，当这个相同的不出频繁出现时，我们可以将其抽取出来，作为一个全局的变量供我们调用，定义全局变量我们可以通过定义【用户定义的变量】来实现；
-2）这里我们抽取 HTTP 请求的【服务器名称】和【端口号】来举例。
-3）添加【用户定义的变量】组件：右击【测试计划】—&amp;gt;【添加】—&amp;gt;【配置元件】—&amp;gt;【用户定义的变量】，如图所示，
-
-4）【用户定义的变量】面板如下图所示，我们依次来介绍。
-
-①取个见名知意的名字
-②点击【添加】，就会出现③中的输入框；点击【删除】，就会在③中删除一个变量。
-③【名称】：即参数名，变量名；【值】：参数值，变量值；【Description】：对变量的描述信息，可不填。
-
-5）调用方式和之前一样，HTTP 请求的【服务器名称】和【端口号】的位置调用这两个变量：
-
-6）查看执行结果，如下：
-
-这里我们要注意的是：【用户定义的变量】是全局变量，即这里定义的变量的所有值只会初始化一次，无论后面创建了多少线程，值都不会变。也正是因为这个原因，为了不占用过多资源，建议不要创建太多这种类型的变量。
-4.【函数】组件
-  在jmeter 中已经内置了一些【函数】供我们使用，给我们的测试工作提供了很大的便利。在jmeter中常用的【函数】主要有6个，我们通过其中的__counter()为例来介绍【函数】组件的使用方式，后面再介绍每个函数的功能。
-
-1）调出【函数】组件有三种方式，我们在使用时选择任意一种即可：
-方式一：菜单栏【选项】—&amp;gt;【函数助手对话框】
-
-方式二：工具栏中倒数第二个类似于笔记本的按钮【函数助手对话框】
-
-方式三：使用快捷键：
-Windows 平台：Ctrl+shift+F1
-Mac 平台：shift+command+F1
-执行1）中的操作后，会出现下面的对话框：
-
-①选择我们需要使用的函数__counter
-②设置函数调用时需要的参数：
-第一行：设置此计数器的作用范围：
-TRUE：用户范围内有效，在本例中我们可以认为是单次循环内有效；
-FALSE：全局范围内有效，即在多次循环范围内有效。
-第二行：这里要给函数的返回值取个名字，以便后面调用，这个是选填参数；
-③点击【生成】按钮，在输入框中就会出现完整的函数调用代码，我们直接复制到需要调用该函数的位置即可。
-
-3） 为了直观体现出参数的作用，我们把线程组的【循环次数】设置为多次，这里就设置为3。
-当参数选择 TRUE 时：
-
-
-查看结果，我们可以发现，每次循环都是从1开始的。
-当参数选择 FALSE 时：
-
-查看结果，我们可以发现，所有循环使用同一个计数器，新循环开始时，计数器不再重置为1，而是继上次循环结束时的结果递增。
-至此，函数的调用方式就介绍完了，下面就介绍一下jmeter中内置的6个常用函数：
-__counter()：计数器，上面介绍过了，就不再赘述。
-__random()：产生一个随机数。
-参数1：随机范围的低边界值，即随机范围内的最小值；
-参数2：随机范围的高边界值，即随机范围内的最大值；
-如下图中的设置所示，随机范围为[0,100] ，即两个边界值都可能取到。
-
-__time()：返回当前时间，默认为距离1970年1月1日 0时0分0秒的毫秒值。
-参数1：设置返回的时间表现形式，
-yyyy：表示年份
-MM：表示月份
-dd：表示日期
-hh/HH：表示小时（hh：12小时制，HH：24小时制）；
-mm：表示分钟
-ss：表示秒
-
-__CSVRead()：读取外部 CSV 格式文件，类似于 CSV Data Set Config 组件，用来批量操作数据。
-参数1：CSV 文件路径，注意这里要填写 CSV 文件的绝对路径；
-参数2：要读取CSV 文件中哪一个字段的值，这里填写的是字段对应的 index 值，index 从0开始计数，即第一个字段对应的 index 为0 。
-
-注意：此函数读取 CSV 文件要注意：
-此函数调用一次，只能读取一个字段的值，所以想要读出所有字段，需要多次调用此函数；
-将线程组的【线程数】设置为与 CSV 文件数据行数相同，可以读出当前字段对应的所有值；
-查看结果
-线程数设置为3，（与 CSV 文件数据行相同）
-只用一次 HTTP 请求，读取一个字段的值
-
-
-结果显示，我们只读取了一个字段对应的所有数据。
-下面我们再创建一个 HTTP 请求，多调用一次此函数，读取两个字段的值，注意第二各字段对应的 index 为1，不要忘记修改。
-
-由结果看出，线程数为3，发送两次请求，调用两次此函数，成功的读取出了 CSV 文件中的两个字段对应三条数据的所有值。
-__setProperty() 和 __property()：用于线程组之间传参。
-__setProperty() 在线程组1中将属性及属性值放到测试计划的共享空间中；
-__property()在线程组2中从共享空间中获取属性。
-至此，Jmeter的参数化实现方式就介绍完了，希望以后看到的时候不会迷糊！哈哈~~
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://shingmoyeung.coding.me/images/avatar.png?v=1569673939483)">
-        </div>
-        <h1 class="id_card-title">
-            代码人生
-        </h1>
-        <h2 class="id_card-description">
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
             代码 人生 感悟 分享
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
+          </p>
+          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
             
-                <a href="https://github.com/ShingmoYeung" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-
+              
+                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
+                  <i class="remixicon-github-line"></i>
+                </a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
+                  <i class="remixicon-qq-line"></i>
+                </a>
+              
+            
+          </div>
         </div>
+      
     </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            随心 随性
-        </div>
-    </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
-  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+  </div>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
+        <h2 class="text-lg text-gray-700 mb-8">
+          <i class="remixicon-bookmark-line"></i> 测试那些事儿
+        </h2>
+        
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
+    
+    <div class="content">
+      <a href="https://shingmoyeung.coding.me/post/jmeter-can-shu-hua-shi-xian">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">JMeter 参数化实现</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        
+      </div>
+      <div class="text-gray-400 text-sm font-light">2019-09-19 19:49 / 11 min read</div>
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
+  </section>
 
+        <div class="pagination-container animated fadeIn">
+  
+  
+</div>
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
 </html>

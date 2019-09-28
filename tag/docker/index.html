@@ -1,342 +1,257 @@
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    Docker | 代码人生
-</title>
-<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569673939483">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.coding.me/favicon.ico?v=1569674275868">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://shingmoyeung.coding.me/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://shingmoyeung.coding.me/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding.me/atom.xml">
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-148889074-1');
-    </script>
-    
-</head>
-
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://shingmoyeung.coding.me">
-                <img class="avatar" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569673939483" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    代码人生
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
 <script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
+  gtag('config', 'UA-148889074-1');
 </script>
 
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        Docker</b>
-    </div>
-    
-        
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://shingmoyeung.coding.me/post/macos-an-zhuang-docker">
-                        MacOS 安装 Docker
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-02-01 21:53</time>
-                    
-                        <a href="https://shingmoyeung.coding.me/tag/docker" class="post-tag i-tag
-                            i-tag-other_1">
-            #Docker
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.coding.me">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding.me/images/avatar.png?v=1569674275868" alt="">
         </a>
-                        
-                        <a href="https://shingmoyeung.coding.me/tag/2019-02" class="post-tag i-tag
-                            i-tag-other_3">
-            #2019-02
-        </a>
-                        
-                        <a href="https://shingmoyeung.coding.me/tag/macos" class="post-tag i-tag
-                            i-tag-info">
-            #MacOS
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            系统要求
-Docker for Mac 要求系统最低为 macOS 10.10.3 Yosemite，或者 2010 年以后的 Mac 机型，准确说是带Intel MMU 虚拟化的，最低 4GB 内存。
-如果系统不满足需求，可以安装 Docker Toolbox。
-安装
-使用 Homebrew 安装
-Homebrew 的 Cask 已经支持 Docker for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
-brew cask install docker
-
-手动下载安装
-如果需要手动下载，可以通过这个链接下载：https://download.docker.com/mac/stable/Docker.dmg
-如同 macOS 其它软件一样，安装也非常简单，双击下载的 .dmg 文件，然后将那只叫 Moby 的鲸鱼图标拖拽到 Application 文件夹即可（其间可能会询问系统密码）。
-
-运行
-从应用中找到 Docker 图标并点击运行。
-
-运行之后，会在右上角菜单栏看到多了一个鲸鱼图标，这个图标表明了 Docker 的运行状态。
-
-第一次点击图标，可能会看到这个安装成功的界面，点击 &amp;quot;Got it!&amp;quot; 可以关闭这个窗口。
-
-以后每次点击鲸鱼图标会弹出操作菜单。
-
-在国内使用 Docker 的话，需要配置加速器，在菜单中点击 Preferences...，然后查看 Advanced 标签，在其中的 Registry mirrors 部分里可以点击加号来添加加速器地址。
-启动终端后，通过命令可以检查安装后的 Docker 版本
-$ docker --version
-Docker version 1.12.3, build 6b644ec
-$ docker-compose --version
-docker-compose version 1.8.1, build 878cff1
-$ docker-machine --version
-docker-machine version 0.8.2, build e18a919
-
-如果 docker version、docker info 都正常的话，可以运行一个 Nginx 服务器：
-$ docker run -d -p 80:80 --name webserver nginx
-
-服务运行后，可以访问 http://localhost，如果看到了 &amp;quot;Welcome to nginx!&amp;quot;，就说明 Docker for Mac 安装成功了。
-
-要停止 Nginx 服务器并删除执行下面的命令：
-$ docker stop webserver
-$ docker rm webserver
-
-参考文档
-Docker官方MacOS 安装文档
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/macos-an-zhuang-docker">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
-                        CentOS 7中Docker开启远程访问
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-02-01 21:41</time>
-                    
-                        <a href="https://shingmoyeung.coding.me/tag/docker" class="post-tag i-tag
-                            i-tag-other_2">
-            #Docker
-        </a>
-                        
-                        <a href="https://shingmoyeung.coding.me/tag/2019-02" class="post-tag i-tag
-                            i-tag-error">
-            #2019-02
-        </a>
-                        
-                        <a href="https://shingmoyeung.coding.me/tag/linux" class="post-tag i-tag
-                            i-tag-banana">
-            #Linux
-        </a>
-                        
-                        <a href="https://shingmoyeung.coding.me/tag/yun-wei-bu-shu" class="post-tag i-tag
-                            i-tag-primary">
-            #运维部署
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            在作为docker远程服务的centos7机器中配置：
-1、在/usr/lib/systemd/system/docker.service，配置远程访问。主要是在[Service]这个部分，加上下面两个参数
-# vim /usr/lib/systemd/system/docker.service
-[Service]
-ExecStart=
-ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
-
-
-2、docker重新读取配置文件，重新启动docker服务
-# systemctl daemon-reload
-
-# systemctl restart docker
-
-3、查看docker进程，发现docker守护进程在已经监听2375的tcp端口
-# ps -ef|grep docker
-root     26208     1  0 23:51 ?        00:00:00 /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
-
-4、查看系统的网络端口，发现tcp的2375端口，的确是docker的守护进程在监听
-# netstat -tulp
-Active Internet connections (only servers)
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
-tcp        0      0 0.0.0.0:ssh             0.0.0.0:*               LISTEN      886/sshd            
-tcp6       0      0 [::]:2375               [::]:*                  LISTEN      26208/dockerd
-
-5、这里拿本地的ubuntu做客户端，来访问阿里云上centos7的docker服务，访问成功。139.129.130.123是阿里云上的centos7机器公网ip。
-$ sudo docker -H tcp://139.129.130.123:2375 images
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-mysql               5.6                 f8fe303bcac2        4 days ago          298MB
-
-6、浏览器访问地址
-http://139.129.130.123:2375/info
-http://192.168.128.162:2375/v1.38/images/json?filters={&amp;quot;reference&amp;quot;:{&amp;quot;mysql&amp;quot;:true}}
-
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://shingmoyeung.coding.me/images/avatar.png?v=1569673939483)">
-        </div>
-        <h1 class="id_card-title">
-            代码人生
-        </h1>
-        <h2 class="id_card-description">
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
             代码 人生 感悟 分享
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
+          </p>
+          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
             
-                <a href="https://github.com/ShingmoYeung" target="_blank" rel="noopener noreferrer"><i
-                class="fa fa-github"></i></a>
-                
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-
+              
+                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
+                  <i class="remixicon-github-line"></i>
+                </a>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
+                  <i class="remixicon-qq-line"></i>
+                </a>
+              
+            
+          </div>
         </div>
+      
     </div>
-    
-
-                        <!-- 公告栏 -->
-                        
-    <div class="notice-card i-card ">
-        <div class="notice-title i-card-title">公告</div>
-        <div class="notice-content">
-            随心 随性
-        </div>
-    </div>
-    
-
-                </div>
-            </div>
-
-
-
-            <div class="site-footer">
-  Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | 
-  <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+  </div>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
-
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.coding.me/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
+        <h2 class="text-lg text-gray-700 mb-8">
+          <i class="remixicon-bookmark-line"></i> Docker
+        </h2>
+        
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
+    
+    <div class="content">
+      <a href="https://shingmoyeung.coding.me/post/macos-an-zhuang-docker">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">MacOS 安装 Docker</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        
+      </div>
+      <div class="text-gray-400 text-sm font-light">2019-02-01 21:53 / 2 min read</div>
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
+  </section>
 
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
+    
+    <div class="content">
+      <a href="https://shingmoyeung.coding.me/post/centos-7-zhong-docker-kai-qi-yuan-cheng-fang-wen">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">CentOS 7中Docker开启远程访问</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        
+      </div>
+      <div class="text-gray-400 text-sm font-light">2019-02-01 21:41 / 2 min read</div>
+    </div>
+  </section>
+
+        <div class="pagination-container animated fadeIn">
+  
+  
+</div>
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.coding.me/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
 </html>
