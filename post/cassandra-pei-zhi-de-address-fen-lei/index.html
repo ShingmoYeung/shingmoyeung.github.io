@@ -1,0 +1,331 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569822802228">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569822802228" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#listen_address">listen_address</a></li>
+<li><a href="#broadcast_address">broadcast_address</a></li>
+<li><a href="#listen_on_broadcast_address">listen_on_broadcast_address</a></li>
+<li><a href="#rpc_address">rpc_address</a></li>
+<li><a href="#broadcast_rpc_address">broadcast_rpc_address</a></li>
+<li><a href="#%E5%90%84%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E5%A4%84">各有什么用处</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Cassandra配置的address分类</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-11-07 13:44 / 3 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h2 id="前言">前言</h2>
+<p>在Cassandra的配置文件里面有诸多的address，如listen_address、rpc_address等，那么这些address分别的用处是什么。在这里简单的介绍一下<br>
+note：版本3.11.2<br>
+在Cassandra的配置文件里面存在以下的address：<br>
+listen_address<br>
+broadcast_address<br>
+listen_on_broadcast_address<br>
+rpc_address<br>
+broadcast_rpc_address</p>
+<h2 id="listen_address">listen_address</h2>
+<p>默认是localhost。</p>
+<p>该配置是为了告诉集群中其他节点如何连接到该节点上。一个集群中该节点的address必须唯一，因为该地址就像一个独一无二的身份id，只有知道该连接，Cassandra集群才可以建立连接</p>
+<p>可以设置为空。Cassandra通过InetAddress.getLocalHost()可以从系统获取本地地址。<br>
+如果Cassandra找不到正确的地址，你可以指定IP地址或者主机名称。<br>
+如果是单节点集群，你可以使用默认配置(localhost)。<br>
+永远不要指定0.0.0.0，总是错的。</p>
+<h2 id="broadcast_address">broadcast_address</h2>
+<p>默认是被注释掉的。默认值1.2.3.4</p>
+<p>广播地址，用来向其他Cassandra节点发送广播</p>
+<p>如果设置为空，将采用与listen_address一样的地址</p>
+<h2 id="listen_on_broadcast_address">listen_on_broadcast_address</h2>
+<p>默认是注释掉的。默认值false</p>
+<p>当使用多个物理网络接口时，把该项设置为true，监听除了listen_address之外的broadcast_address，从而运行节点可以在两个接口中通信</p>
+<h2 id="rpc_address">rpc_address</h2>
+<p>默认值localhost</p>
+<p>Thrift RPC 服务和本地传输服务都会使用该地址，简单的可以理解为client与Cassandra服务端通信的地址</p>
+<p>如果不设置该项，将会采用listen_address的设置<br>
+该配置可以设置为0.0.0.0，但是如果这样设置了，你必须设置broadcast_rpc_address为其他地址</p>
+<h2 id="broadcast_rpc_address">broadcast_rpc_address</h2>
+<p>默认注释掉。默认值1.2.3.4</p>
+<p>rpc地址广播到驱动和其他节点上。该节点不能被设置为0.0.0.0。<br>
+如果该配置设置为空将会默认使用rpc_address的地址。<br>
+如果rpc_address设置为0.0.0.0，该配置必须设置一个地址。</p>
+<h2 id="各有什么用处">各有什么用处</h2>
+<p>上面基本上就是对配置文件里面的翻译，但是看完之后，还是不清楚到底是干什么用的。下面就简单的介绍一下<br>
+Cassandra节点之间的通信采用的是listen_address<br>
+Client连接到服务端用的是rpc_address。有两种方式，thrift和NativeTransport（CQL）这两个都是用的rpc_address。接口不一样。如果rpc_address没设置就用listen_address<br>
+上面两个是比较常用的，必须要区分清楚，否则会很混乱。其他的我还没有玩透，所以就不说了，用过的朋友可以讲一下。<br>
+关于内部类的详细文章可以参考目录 <a href="https://www.smxknife.com/">smxknife's Java内部类</a></p>
+<p>作者：smxknife<br>
+链接：https://www.imooc.com/article/27250<br>
+来源：慕课网<br>
+本文原创发布于慕课网 ，转载请注明出处，谢谢合作</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/9AwjBjbuz">
+            <span class="flex-auto">Cassandra</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/MH5d6PTjEh">
+            <span class="flex-auto">分布式</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/D3MElEJDiV">
+            <span class="flex-auto">数据库</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/sxfJT6ld-T">
+            <span class="flex-auto">集群</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/1p3HLnMJ92">
+            <span class="flex-auto">2018-11</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/elk-logstash-shi-qu-wen-ti">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  elk-logstash时区问题
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/spring-boot-cache-pei-zhi-xu-lie-hua-cheng-json-zi-fu-chuan">
+                <h3 class="post-title">
+                  Spring Boot Cache配置 序列化成JSON字符串
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

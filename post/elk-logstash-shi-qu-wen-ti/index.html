@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569822802228">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569822802228" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E5%A6%82%E5%9B%BE14%E5%8F%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%9C%E9%87%87%E9%9B%86%E5%88%B0%E4%BA%8615%E5%8F%B7%E6%85%A2%E4%BA%868%E5%B0%8F%E6%97%B6%E5%B8%8C%E6%9C%9B%E5%BE%97%E5%88%B0%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E5%87%8C%E6%99%A80%E7%82%B9%E7%B4%A2%E5%BC%95%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2">问题:如图14号的数据，结果采集到了15号，慢了8小时，希望得到的结果，是凌晨0点索引自动切换</a></li>
+<li><a href="#%E5%8E%9F%E5%9B%A0-%E5%8E%9F%E6%9D%A5logstash%E7%94%A8%E7%9A%84utc%E6%97%B6%E9%97%B4-logstash%E5%9C%A8%E6%8C%89%E6%AF%8F%E5%A4%A9%E8%BE%93%E5%87%BA%E5%88%B0elasticsearch%E6%97%B6%E5%9B%A0%E4%B8%BA%E6%97%B6%E5%8C%BA%E4%BD%BF%E7%94%A8utc%E9%80%A0%E6%88%90%E6%AF%8F%E5%A4%A9800%E6%89%8D%E5%88%9B%E5%BB%BA%E5%BD%93%E5%A4%A9%E7%B4%A2%E5%BC%95%E8%80%8C800%E4%BB%A5%E5%89%8D%E6%95%B0%E6%8D%AE%E5%88%99%E8%BE%93%E5%87%BA%E5%88%B0%E6%98%A8%E5%A4%A9%E7%9A%84%E7%B4%A2%E5%BC%95">原因: 原来Logstash用的UTC时间, logstash在按每天输出到elasticsearch时，因为时区使用utc，造成每天8:00才创建当天索引，而8:00以前数据则输出到昨天的索引</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E4%BF%AE%E6%94%B9logstash%E9%85%8D%E7%BD%AE">解决:修改logstash配置</a>
+<ul>
+<li><a href="#1-%E5%A2%9E%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%AD%97%E6%AE%B5%E8%AE%A1%E7%AE%97timestamap8%E5%B0%8F%E6%97%B6">1. 增加一个字段，计算timestamap+8小时</a></li>
+<li><a href="#2-%E7%94%A8mutate%E6%8F%92%E4%BB%B6%E5%85%88%E8%BD%AC%E6%8D%A2%E4%B8%BAstring%E7%B1%BB%E5%9E%8Bgsub%E5%8F%AA%E5%A4%84%E7%90%86string%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9C%A8%E7%94%A8%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E6%9C%80%E7%BB%88%E5%BE%97%E5%88%B0%E6%83%B3%E8%A6%81%E7%9A%84%E6%97%A5%E6%9C%9F">2. 用mutate插件先转换为string类型,gsub只处理string类型的数据，在用正则匹配，最终得到想要的日期</a></li>
+<li><a href="#3output%E9%85%8D%E7%BD%AE">3.output配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">elk-logstash时区问题</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-11-17 13:35 / 2 min read
+        </div>
+        
+        <div class="post-content yue">
+          <blockquote>
+<p>http://www.cnblogs.com/wangpei886/p/8043021.html<br>
+使用版本:elk6.0<br>
+配置文件:logstash.confg</p>
+</blockquote>
+<pre><code class="language-config">output {
+  elasticsearch {
+    id =&gt; &quot;logstash-%{+YYYY.MM.dd}&quot;
+  }
+}
+</code></pre>
+<h3 id="问题如图14号的数据结果采集到了15号慢了8小时希望得到的结果是凌晨0点索引自动切换">问题:如图14号的数据，结果采集到了15号，慢了8小时，希望得到的结果，是凌晨0点索引自动切换</h3>
+<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1569821755633.png" alt=""></figure>
+<h3 id="原因-原来logstash用的utc时间-logstash在按每天输出到elasticsearch时因为时区使用utc造成每天800才创建当天索引而800以前数据则输出到昨天的索引">原因: 原来Logstash用的UTC时间, logstash在按每天输出到elasticsearch时，因为时区使用utc，造成每天8:00才创建当天索引，而8:00以前数据则输出到昨天的索引</h3>
+<p>查看一些论坛,不建议更改源码，因为logstash和elasticsearch是按照UTC时间的，kibana却是按照正常你所在的时区显示的</p>
+<h3 id="解决修改logstash配置">解决:修改logstash配置</h3>
+<p>logstash在按每天输出到elasticsearch时，因为时区使用utc，造成每天8:00才创建当天索引，而8:00以前数据则输出到昨天的索引<br>
+在logstash filter 解决</p>
+<h4 id="1-增加一个字段计算timestamap8小时">1. 增加一个字段，计算timestamap+8小时</h4>
+<pre><code class="language-config">            ruby {
+                # 新增索引日期,解决地区时差问题
+                code =&gt; &quot;event.set('index_date', event.get('@timestamp').time.localtime + 8*60*60)&quot;
+            }
+</code></pre>
+<h4 id="2-用mutate插件先转换为string类型gsub只处理string类型的数据在用正则匹配最终得到想要的日期">2. 用mutate插件先转换为string类型,gsub只处理string类型的数据，在用正则匹配，最终得到想要的日期</h4>
+<pre><code class="language-config">　　# 定义索引名时间
+            mutate {
+                 convert =&gt; [&quot;index_date&quot;, &quot;string&quot;]
+                 gsub =&gt; [&quot;index_date&quot;, &quot;T([\S\s]*?)Z&quot;, &quot;&quot;]
+                 gsub =&gt; [&quot;index_date&quot;, &quot;-&quot;, &quot;.&quot;]
+            }
+</code></pre>
+<h4 id="3output配置">3.output配置</h4>
+<pre><code class="language-config">      elasticsearch {
+        hosts =&gt; [&quot;localhost:9200&quot;]
+        index =&gt; &quot;log1-%{index_date}&quot;
+      }
+</code></pre>
+<ul>
+<li>这里是取系统时间，你可以取你日志里面的时间戳来做索引名<br>
+或许有其他更好的方案！请留言告知<br>
+机会往往留给有准备的人!</li>
+</ul>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/34LK2kKwv">
+            <span class="flex-auto">ELK</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/n1fSulW2tB">
+            <span class="flex-auto">SpringBoot</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/1p3HLnMJ92">
+            <span class="flex-auto">2018-11</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/log4j2-he-logstash-zheng-he-logstash-chong-qi-zhi-hou-cheng-xu-xu-yao-chong-qi-wen-ti-jie-jue">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  log4j2 和logstash整合，logstash重启之后，程序需要重启问题解决
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/cassandra-pei-zhi-de-address-fen-lei">
+                <h3 class="post-title">
+                  Cassandra配置的address分类
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

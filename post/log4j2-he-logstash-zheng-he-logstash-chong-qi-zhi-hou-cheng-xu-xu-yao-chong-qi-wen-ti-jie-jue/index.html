@@ -1,0 +1,394 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1569822802228">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1569822802228" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">log4j2 和logstash整合，logstash重启之后，程序需要重启问题解决</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-11-17 13:40 / 6 min read
+        </div>
+        
+        <div class="post-content yue">
+          <blockquote>
+<p>版权声明：本文为博主原创文章，未经博主允许不得转载。	https://blog.csdn.net/zhuyumeng_limin/article/details/79817770</p>
+</blockquote>
+<p>最近在做后台项目改造，将原来的项目变成springCloud微服务架构的。其中做了elk日志收集，人手有限没有用到异步消息，filebeat之类的，先做个低配的吧。直接log4j2将日志扔到logstash里面去，大体配置如下：</p>
+<pre><code class="language-xml">&lt;Appenders&gt;
+   &lt;!--这个输出控制台的配置--&gt;
+       &lt;Console name=&quot;Console&quot; target=&quot;SYSTEM_OUT&quot;&gt;
+           &lt;!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）--&gt;
+           &lt;ThresholdFilter level=&quot;debug&quot; onMatch=&quot;ACCEPT&quot; onMismatch=&quot;DENY&quot;/&gt;
+           &lt;PatternLayout pattern=&quot;${log.pattern}&quot;/&gt;
+       &lt;/Console&gt;
+
+       &lt;Socket name=&quot;Logstash_client&quot; host=&quot;xxx.xxx.xxx.xx&quot; port=&quot;1560&quot; protocol=&quot;TCP&quot;&gt;
+           &lt;PatternLayout pattern=&quot;${PATTERN}&quot; /&gt;
+       &lt;/Socket&gt;
+       &lt;Socket name=&quot;Logstash_edit&quot; host=&quot;xxx.xxx.xxx.xx&quot; port=&quot;1561&quot; protocol=&quot;TCP&quot;&gt;
+           &lt;PatternLayout pattern=&quot;${PATTERN}&quot; /&gt;
+       &lt;/Socket&gt;
+
+&lt;/Appenders&gt;
+&lt;!--然后定义logger，只有定义了logger并引入的appender，appender才会生效--&gt;
+   &lt;Loggers&gt;
+       &lt;Logger name=&quot;client_log&quot; level=&quot;debug&quot;&gt;
+           &lt;AppenderRef ref=&quot;Logstash_client&quot;/&gt;
+           &lt;AppenderRef ref=&quot;Console&quot;/&gt;
+       &lt;/Logger&gt;
+       &lt;Logger name=&quot;edit_log&quot; level=&quot;debug&quot; additivity=&quot;false&quot;&gt;
+           &lt;AppenderRef ref=&quot;Logstash_edit&quot;/&gt;
+           &lt;AppenderRef ref=&quot;Console&quot;/&gt;
+       &lt;/Logger&gt;
+   &lt;/Loggers&gt;
+</code></pre>
+<p>logstash那边的配置tcp接收</p>
+<pre><code class="language-config">input {  
+    tcp{  
+        port =&gt; 1560
+    }
+    tcp{
+        port =&gt; 1561
+    }  
+}
+</code></pre>
+<p>Java里面调用：</p>
+<pre><code class="language-java">//编辑后台的logger
+Logger logger_edit= LogManager.getLogger(&quot;edit_log&quot;);
+//客户端的logger
+Logger logger_client= LogManager.getLogger(&quot;client_log&quot;);
+</code></pre>
+<p>ok，可以接收到。</p>
+<p>可是有个问题，logstash重启之后，就接收不到日志了，除非log4j2程序重启才可以，这不行啊，线上环境岂能随便重启。百度谷歌群里大咖一通问，找到办法了。不适用socket长连接甩日志了，改用gelf就可以，基本配置：</p>
+<pre><code class="language-maven">pom：
+&lt;dependency&gt;
+   &lt;groupId&gt;biz.paluch.logging&lt;/groupId&gt;
+   &lt;artifactId&gt;logstash-gelf&lt;/artifactId&gt;
+   &lt;version&gt;1.11.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<pre><code class="language-xml">log4j2：
+&lt;Gelf name=&quot;Logstash_client&quot; host=&quot;udp:ip地址&quot; port=&quot;1560&quot; version=&quot;1.1&quot; extractStackTrace=&quot;true&quot;
+             filterStackTrace=&quot;true&quot; mdcProfiling=&quot;true&quot; includeFullMdc=&quot;true&quot; maximumMessageSize=&quot;8192&quot;
+             originHost=&quot;%host{fqdn}&quot; additionalFieldTypes=&quot;fieldName1=String,fieldName2=Double,fieldName3=Long&quot;&gt;
+           &lt;Field name=&quot;level&quot; pattern=&quot;%level&quot; /&gt;
+           &lt;Field name=&quot;message&quot; pattern=&quot;%message&quot; /&gt;
+       &lt;/Gelf&gt;
+       &lt;Gelf name=&quot;Logstash_edit&quot; host=&quot;udp:ip地址&quot; port=&quot;1561&quot; version=&quot;1.1&quot; extractStackTrace=&quot;true&quot;
+             filterStackTrace=&quot;true&quot; mdcProfiling=&quot;true&quot; includeFullMdc=&quot;true&quot; maximumMessageSize=&quot;8192&quot;
+             originHost=&quot;%host{fqdn}&quot; additionalFieldTypes=&quot;fieldName1=String,fieldName2=Double,fieldName3=Long&quot;&gt;
+           &lt;Field name=&quot;level&quot; pattern=&quot;%level&quot; /&gt;
+           &lt;Field name=&quot;message&quot; pattern=&quot;%message&quot; /&gt;
+       &lt;/Gelf&gt;
+       &lt;!--&lt;Socket name=&quot;Logstash_client&quot; host=&quot;222.175.121.252&quot; port=&quot;1560&quot; protocol=&quot;TCP&quot;&gt;
+           &lt;PatternLayout pattern=&quot;${PATTERN}&quot; /&gt;
+       &lt;/Socket&gt;
+       &lt;Socket name=&quot;Logstash_edit&quot; host=&quot;222.175.121.252&quot; port=&quot;1561&quot; protocol=&quot;TCP&quot;&gt;
+           &lt;PatternLayout pattern=&quot;${PATTERN}&quot; /&gt;
+       &lt;/Socket&gt;--&gt;
+
+
+&lt;/Appenders&gt;
+&lt;!--然后定义logger，只有定义了logger并引入的appender，appender才会生效--&gt;
+   &lt;Loggers&gt;
+       &lt;Logger name=&quot;client_log&quot; level=&quot;debug&quot;&gt;
+           &lt;!--&lt;AppenderRef ref=&quot;Logstash_client&quot;/&gt;--&gt;
+           &lt;AppenderRef ref=&quot;Console&quot;/&gt;
+       &lt;/Logger&gt;
+       &lt;Logger name=&quot;edit_log&quot; level=&quot;debug&quot;&gt;
+           &lt;!--&lt;AppenderRef ref=&quot;Logstash_edit&quot;/&gt;--&gt;
+           &lt;AppenderRef ref=&quot;Console&quot;/&gt;
+       &lt;/Logger&gt;
+       &lt;AsyncRoot level=&quot;debug&quot;&gt;
+           &lt;!-- 这儿为trace表示什么都可以打印出来了,其他几个级别分别为：TRACE、DEBUG、INFO、WARN、ERROR和FATAL --&gt;
+           &lt;AppenderRef ref=&quot;Console&quot;/&gt;
+       &lt;/AsyncRoot&gt;
+   &lt;/Loggers&gt;
+</code></pre>
+<pre><code class="language-config">logstash：
+input{
+    gelf {
+        port =&gt; 1561
+        tags =&gt; [&quot;cms_log&quot;]
+        codec =&gt; &quot;json&quot;
+    }
+    gelf {
+        port =&gt; 1560
+        tags =&gt; [&quot;client_log&quot;]
+        codec =&gt; &quot;json&quot;
+    }
+    stdin{}
+
+
+}
+filter {
+  date {
+    match =&gt; [ &quot;timeMillis&quot;, &quot;UNIX_MS&quot; ]
+  }
+  json {
+   source =&gt; &quot;message&quot;
+   remove_field =&gt; [&quot;short_message&quot;,&quot;facility&quot;,&quot;host&quot;,&quot;message&quot;]
+  }
+  if &quot;cms_log&quot; in [tags] {
+    geoip {
+      source =&gt; &quot;ip&quot;
+    }
+  }
+}
+</code></pre>
+<p>Java程序调用方法一样，ok这样重启一下logstash，应用程序就不互相影响了。不过貌似要想更好的使用还得需要加异步消息缓冲储存，以后再研究吧~</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/UCoreDsNC">
+            <span class="flex-auto">Log4j2</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/34LK2kKwv">
+            <span class="flex-auto">ELK</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/1p3HLnMJ92">
+            <span class="flex-auto">2018-11</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/centos7-shi-yong-firewalld-da-kai-guan-bi-fang-huo-qiang-yu-duan-kou">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  CentOS7使用firewalld打开关闭防火墙与端口
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/elk-logstash-shi-qu-wen-ti">
+                <h3 class="post-title">
+                  elk-logstash时区问题
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
