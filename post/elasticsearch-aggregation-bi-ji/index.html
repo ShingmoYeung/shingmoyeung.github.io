@@ -1,0 +1,482 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1570520744392">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1570520744392" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#aggregation-%E6%A6%82%E8%BF%B0">Aggregation 概述</a></li>
+<li><a href="#aggregation-%E7%B1%BB%E5%9E%8B">Aggregation 类型</a>
+<ul>
+<li><a href="#metrics">Metrics:</a></li>
+<li><a href="#bucketing">Bucketing:</a></li>
+<li><a href="#matrix">Matrix:</a></li>
+<li><a href="#pipeline">Pipeline:</a></li>
+</ul>
+</li>
+<li><a href="#aggregation-%E7%BB%93%E6%9E%84">Aggregation 结构</a>
+<ul>
+<li><a href="#aggregation-request">Aggregation request:</a></li>
+<li><a href="#aggregation-response">Aggregation response:</a></li>
+<li><a href="#aggregation-%E5%B1%9E%E6%80%A7">Aggregation 属性:</a></li>
+<li><a href="#bucket-%E5%B1%9E%E6%80%A7">Bucket 属性:</a></li>
+</ul>
+</li>
+<li><a href="#sql%E6%98%A0%E5%B0%84%E6%88%90aggregation">SQL映射成Aggregation</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">其他注意事项</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Elasticsearch Aggregation笔记</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-10-08 15:27 / 7 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.github.io/post-images/elasticsearch-aggregation-bi-ji.jpg" alt="">
+        
+        <div class="post-content yue">
+          <h2 id="aggregation-概述">Aggregation 概述</h2>
+<p>Aggregation 可以和普通查询结果并存，一个查询结果中也允许包含多个不相关的Aggregation. 如果只关心聚合结果而不关心查询结果的话会把SearchSource的size设置为0，能有效提高性能.</p>
+<h2 id="aggregation-类型">Aggregation 类型</h2>
+<h3 id="metrics">Metrics:</h3>
+<p>简单聚合类型, 对于目标集和中的所有文档计算聚合指标, 一般没有嵌套的sub aggregations. 比如 平均值(avg) , 求和 (sum), 计数 (count), 基数 (cardinality). Cardinality对应distinct count</p>
+<h3 id="bucketing">Bucketing:</h3>
+<p>桶聚合类型, 在一系列的桶而不是所有文档上计算聚合指标,每个桶表示原始结果集合中符合某种条件的子集. 一般有嵌套的sub aggregations. 典型的如TermsAggregation, HistogramAggregation</p>
+<h3 id="matrix">Matrix:</h3>
+<p>矩阵聚合, 多维度聚合, 即根据两个或者多个聚合维度计算二维甚至多维聚合指标表格. 目前貌似只有一种MatrixStatAggregation. 并且目前不支持脚本(scripting)</p>
+<h3 id="pipeline">Pipeline:</h3>
+<p>管道聚合, 在之前聚合结果的基础上再次进行聚合计算, 往往和Bucketing Aggregation 结合起来使用. 举列: 先求出过去30天每天的交易总金额 (Bucketing aggregation)，再统计交易总金额大于10000的天数 (Pipeline aggregation).</p>
+<h2 id="aggregation-结构">Aggregation 结构</h2>
+<h3 id="aggregation-request">Aggregation request:</h3>
+<p>两层结构:<br>
+Aggregation -&gt; SubAggregation<br>
+Sub aggregation是在原来的Aggregation的计算结果中进一步做聚合计算</p>
+<h3 id="aggregation-response">Aggregation response:</h3>
+<p>三层结构: (针对Bucketing aggregation) MultiBucketsAggregation -&gt; Buckets -&gt; Aggregations</p>
+<h3 id="aggregation-属性">Aggregation 属性:</h3>
+<p>name: 和请求中的Aggregation的名字对应<br>
+buckets: 每个Bucket对应Agggregation结果中每一个可能的取值和相应的聚合结果.</p>
+<h3 id="bucket-属性">Bucket 属性:</h3>
+<p>key: 对应的是聚合维度可能的取值, 具体的值和Aggregation的类型有关, 比如Term aggregation (按交易类型计算总金额), 那么Bucket key值就是所有可能的交易类型 (credit/debit etc). 又比如DateHistogram aggregation (按天计算交易笔数), 那么Bucket key值就是具体的日期.<br>
+docCount: 对应的是每个桶中的文本数量.<br>
+value: 对应的是聚合指标的计算结果. 注意如果是多层Aggregation计算, 中间层的Aggregation value一般没有值, 比如Term aggregation. 只有到底层具体计算指标的Aggregation才有值.<br>
+aggregations: 对应请求中当前Aggregation的subAggregation的计算结果 (如果存在)</p>
+<h2 id="sql映射成aggregation">SQL映射成Aggregation</h2>
+<p>SQL映射实现的前提: 只针对聚合计算，即sql select部分存在聚合函数类型的column</p>
+<p>映射过程很难直接描述，上几个例子方便大家理解，反正SQL的结构也无非就是SELECT/FROM/WHERE/GROUP BY/HAVING/ORDER BY. ORDER BY先不讨论，一般聚合结果不太关心顺序. FROM也很容易理解,就是索引的名字.</p>
+<p>SQL组成部分对应的ES Builder:</p>
+<table>
+<thead>
+<tr>
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>select column (聚合函数)</td>
+<td>MetricsAggregationBuilder 由 column对应聚合函数决定 (例如MaxAggregationBuilder)</td>
+<td></td>
+</tr>
+<tr>
+<td>select column (group by 字段)</td>
+<td>Bucket key</td>
+<td></td>
+</tr>
+<tr>
+<td>where</td>
+<td>FiltersAggregationBuilder + FiltersAggregator.KeydFilter</td>
+<td>keyedFilter = FiltersAggregator.KeyedFilter(&quot;combineCondition&quot;, sub QueryBuilder) <br/> AggregationBuilders.filters(&quot;whereAggr&quot;, keyedFilter)</td>
+</tr>
+<tr>
+<td>group by</td>
+<td>TermsAggregationBuilder</td>
+<td>AggregationBuilders.terms(&quot;aggregation name&quot;).field(fieldName)</td>
+</tr>
+<tr>
+<td>having</td>
+<td>MetricsAggregationBuilder 由 having 条件聚合函数决定 (例如 MaxAggregationBuilder) + BucketSelectorPipelineAggregationBuilder</td>
+<td>PipelineAggregatorBuilders.bucketSelector(aggregationName, bucketPathMap, script)</td>
+</tr>
+</tbody>
+</table>
+<p>常用的SQL运算符和聚合函数对应的ES Builder:</p>
+<table>
+<thead>
+<tr>
+<th>SQL Element</th>
+<th>Aggregation Type</th>
+<th>Code to build</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count(field)</td>
+<td>ValueCountAggregationBuilder</td>
+<td>AggregationBuilders.count(metricsName).field(fieldName)</td>
+</tr>
+<tr>
+<td>count(distinct field)</td>
+<td>CardinalityAggregationBuilder</td>
+<td>AggregationBuilders.cardinality(metricsName).field(fieldName)</td>
+</tr>
+<tr>
+<td>sum(field)</td>
+<td>SumAggregationBuilder</td>
+<td>AggregationBuilders.sum(metricsName).field(fieldName)</td>
+</tr>
+<tr>
+<td>min(field)</td>
+<td>MinAggregationBuilder</td>
+<td>AggregationBuilders.min(metricsName).field(fieldName)</td>
+</tr>
+<tr>
+<td>max(field)</td>
+<td>MaxAggregationBuilder</td>
+<td>AggregationBuilders.max(metricsName).field(fieldName)</td>
+</tr>
+<tr>
+<td>avg(field)</td>
+<td>AvgAggregationBuilder</td>
+<td>AggregationBuilders.avg(metricsName).field(fieldName)</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>BoolQueryBuilder</td>
+<td>QueryBuilders.boolQuery().must().add(sub QueryBuilder)</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>BoolQueryBuilder</td>
+<td>QueryBuilders.boolQuery().should().add(sub QueryBuilder)</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>BoolQueryBuilder</td>
+<td>QueryBuilders.boolQuery().mustNot().add(sub QueryBuilder)</td>
+</tr>
+<tr>
+<td>=</td>
+<td>TermQueryBuilder</td>
+<td>QueryBuilders.termQuery(fieldName, value)</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>TermsQueryBuilder</td>
+<td>QueryBuilders.termsQuery(fieldName, values)</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>WildcardQueryBuilder</td>
+<td>QueryBuilders.wildcardQuery(fieldName, value)</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>RangeQueryBuilder</td>
+<td>QueryBuilders.rangeQuery(fieldName).gt(value)</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>RangeQueryBuilder</td>
+<td>QueryBuilders.rangeQuery(fieldName).gte(value)</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>RangeQueryBuilder</td>
+<td>QueryBuilders.rangeQuery(fieldName).lt(value)</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>RangeQueryBuilder</td>
+<td>QueryBuilders.rangeQuery(fieldName).lte(value)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-sql">1.select count(payerId) as payerCount from Payment group by country
+</code></pre>
+<p><img src="https://shingmoyeung.github.io/post-images/1570520471977.png" alt=""><br>
+这里需要注意的是payerId这个doc的属性在实际构造的Aggregation query 中变成了 payerId.keyword，Elasticsearch 默认对于分词的字段(text类型)不支持聚合，会报出 &quot;Fielddata is disabled on text fields by default. Set fielddata=true&quot;的错误. fielddata聚合是一个非常costly的运算,一般不建议使用. 好在Elasticsearch索引时默认会对payerId这个属性生成两个字段, payerId 是分词的text类型, payerId.keyword是不分词的keyword类型.</p>
+<pre><code class="language-sql">2.select max(payerId) from Payment group by accountId, country
+</code></pre>
+<p><img src="https://shingmoyeung.github.io/post-images/1570520497971.png" alt=""><br>
+两个group by 条件对应两层term aggregation</p>
+<pre><code class="language-sql">3.select count(distinct payerId) as payerCount from Payment where country in ('CN', 'GE') group by accountId, country
+</code></pre>
+<p><img src="https://shingmoyeung.github.io/post-images/1570520529935.png" alt=""><br>
+增加了where条件, 在顶层是一个FiltersAggregationBuilder. 其中分为两部分, 其中filters对应的是所有查询条件构建的一个KeyedFilter, 其中又包含了多个子查询条件. aggregations 对应的是groupBy条件和select部分的聚合函数</p>
+<pre><code class="language-sql">4.select count(distinct payerId) as payerCount from Payment where withinTime(createAt, 1, 'DAY') and name like '%SH%' group by accountId, country
+</code></pre>
+<p><img src="https://shingmoyeung.github.io/post-images/1570520558064.png" alt=""><br>
+多个where条件, 用BoolQueryBuilder组合起来</p>
+<pre><code class="language-sql">5.select max(amount) as maxAmt, min(amount) as minAmt from Payment where amount &gt; 1000.00 or amount &lt;= 50.53 group by accountId, country having count(distinct beneficiaryId) &gt; 3 and sum(amount) &gt; 1530.20
+</code></pre>
+<p><img src="https://shingmoyeung.github.io/post-images/1570520594471.png" alt=""><br>
+史上最复杂SQL产生! 这里主要关注having部分的处理, 用到了Pipeline类型的BucketSelectorPipelineAggregationBuilder. 在最后一个GroupBy 条件对应的term aggregation下增加了两类子节点: sub aggregations 除了包括select 部分的聚合函数还包括having条件对应的聚合函数. pipeline aggregations 包括having条件对应的 BucketSelectorPipelineAggregationBuilder. BucketSelectorPipelineAggregationBuilder 主要的属性有: bucketsPathMap: 保存了path的名字和对应的聚合属性的映射，script: 用脚本描述聚合条件，但是条件左侧不直接使用属性名而是path的名字替换<br>
+注意虽然从逻辑上来说having 条件是应用在之前计算出聚合的结果之上, 但是从ES Aggregation的结构来看, BucketSelectorPipelineAggregationBuilder和having 条件中对应聚合指标的Aggregation是兄弟关系而不是父子关系！<br>
+另外要注意script path 是对于兄弟节点(sibling node)一个相对路径而不是从根节点Aggregation的绝对路径,用的是聚合属性的名称而不是Aggregation本身的名称. 并且要求根据路径访问到的Bucket必须是唯一的，因为BucketSelector只是根据条件判断当前Bucket是否被选择, 如果路径返回多个Bucket则无法应用这种Bool判断.</p>
+<pre><code class="language-sql">6.select count(paymentId) from Payment group by timeRange(createdAt, '1D', 'yyyy/MM/dd')
+</code></pre>
+<p><img src="https://shingmoyeung.github.io/post-images/1570520626313.png" alt=""><br>
+这里用到一个自定义函数timeRage, 表示对于createAt这个属性按天聚合，对应的ES aggregation类型为DateHistogramAggregation</p>
+<h2 id="其他注意事项">其他注意事项</h2>
+<p>Bucket count</p>
+<p>Distinct count: Elasticsearch 采用的是基于hyperLogLog的近似算法.</p>
+<h2 id="reference">Reference</h2>
+<blockquote>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/fielddata.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/fielddata.html</a><br>
+©著作权归作者所有：来自51CTO博客作者zhanjia的原创作品，如需转载，请注明出处，否则将追究法律责任</p>
+</blockquote>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/UUFkIbjzq">
+            <span class="flex-auto">ElasticSearch</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/PB_DSrSEc">
+            <span class="flex-auto">2019-10</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/34LK2kKwv">
+            <span class="flex-auto">ELK</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
+                <h3 class="post-title">
+                  MacOS 开启蓝牙音效调整
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
