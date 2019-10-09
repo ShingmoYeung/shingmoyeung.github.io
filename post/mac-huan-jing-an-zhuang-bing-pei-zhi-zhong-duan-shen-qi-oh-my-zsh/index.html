@@ -46,22 +46,15 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E5%AE%89%E8%A3%85-homebrew">第一步，安装 HomeBrew</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E6%9B%B4%E6%96%B0-zsh-git">第二步，更新 zsh、git</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%88%87%E6%8D%A2%E8%87%B3-zsh-%E5%B9%B6%E5%AE%89%E8%A3%85-oh-my-zsh">第三步，切换至 zsh 并安装 oh-my-zsh</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E9%85%8D%E7%BD%AE-oh-my-zsh">第四步，配置 oh-my-zsh</a>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#a-%E4%B8%80%E4%B8%AA%E6%98%AF%E8%AF%B4%E5%9C%A8%E4%BB%A3%E7%A0%81%E9%87%8C%E8%AE%BE%E7%BD%AE%E4%B8%8D%E8%B5%B0vip%E9%80%9A%E9%81%93%E4%BD%86%E6%98%AF%E6%88%91%E8%BF%99%E8%BE%B9%E6%B2%A1%E6%9C%89%E7%94%9F%E6%95%88">a. 一个是说,在代码里设置不走vip通道,但是我这边没有生效</a></li>
-<li><a href="#b-%E7%AC%AC%E4%BA%8C%E4%B8%AA%E6%96%B9%E6%B3%95%E4%BF%AE%E6%94%B9brokconf">b. 第二个方法,修改brok.conf</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#%E4%B8%BB%E9%A2%98">主题</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6">插件</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F%E5%85%B6%E4%B8%AD-zsh-autosuggestions-%E5%92%8C-zsh-syntax-highlighting-%E6%98%AF%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AE%89%E8%A3%85%E7%9A%84%E6%8F%92%E4%BB%B6%E9%9C%80%E8%A6%81%E7%94%A8-git-%E5%B0%86%E6%8F%92%E4%BB%B6-clone-%E5%88%B0%E6%8C%87%E5%AE%9A%E6%8F%92%E4%BB%B6%E7%9B%AE%E5%BD%95%E4%B8%8B">注意：其中 zsh-autosuggestions 和 zsh-syntax-highlighting 是自定义安装的插件，需要用 git 将插件 clone 到指定插件目录下：</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E9%85%8D%E7%BD%AE">更新配置</a></li>
 </ul>
 </li>
 </ul>
@@ -112,68 +105,122 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">RocketMq踩坑实录(2)---connect to XXXX:10909 failed</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Mac环境安装并配置终端神器 oh-my-zsh</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-03-16 21:04 / 1 min read
+          2019-10-09 08:02 / 4 min read
         </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.github.io/post-images/mac-huan-jing-an-zhuang-bing-pei-zhi-zhong-duan-shen-qi-oh-my-zsh.png" alt="">
         
         <div class="post-content yue">
-          <p>就是启动好nameServer和Broker之后, 启动生产者会报这样的错误,但是官网上并没有解决这个问题的办法.<br>
-多方查找资料后发现,主要有两个解决办法:</p>
-<h6 id="a-一个是说在代码里设置不走vip通道但是我这边没有生效">a. 一个是说,在代码里设置不走vip通道,但是我这边没有生效</h6>
-<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1569589532551.png" alt=""></figure>
-<h6 id="b-第二个方法修改brokconf">b. 第二个方法,修改brok.conf</h6>
-<p><img src="https://shingmoyeung.github.io/post-images/1569589546128.png" alt=""><br>
-我这边添加了两行配置: <br>
-<img src="https://shingmoyeung.github.io/post-images/1569589559934.png" alt=""> <br>
-据说这个问题的原因是因为虚拟机的多网卡造成的. <br>
-但是启动broker的指令要修改下, 要将这个配置文件指定加载,很多答案都没有写明这个,希望大家重视一下,不然修改也没用:</p>
-<pre><code class="language-shell">nohup sh mqbroker -n localhost:9876 -c ../conf/broker.conf &amp;
+          <blockquote>
+<p>本文转载于 <a href="https://a1049145827.github.io/2019/05/15/Mac-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E7%BB%88%E7%AB%AF%E7%A5%9E%E5%99%A8-oh-my-zsh/">https://a1049145827.github.io/2019/05/15/Mac-环境安装并配置终端神器-oh-my-zsh/</a><br>
+老话说在前头：工欲善其事，必先利其器。想要玩转 macOS 的终端，想要用的顺手、看着高端，折腾是必不可少的。</p>
+</blockquote>
+<h2 id="第一步安装-homebrew">第一步，安装 HomeBrew</h2>
+<p>作为 macOS 必备的包管理工具，相信大家肯定已经很熟悉了，没安装的朋友可以执行下面命令装一下，安装过的可以执行下面命令可以进行更新。</p>
+<pre><code class="language-shell">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 </code></pre>
-<p>--------------------- <br>
-作者：多吃核桃会补脑 <br>
-来源：CSDN <br>
-原文：https://blog.csdn.net/qq_14853889/article/details/81053145 <br>
-版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+<h2 id="第二步更新-zsh-git">第二步，更新 zsh、git</h2>
+<p>macOS 一般会自带 zsh，不过版本会比较早，我们先更新一下，以便使用最新特性。</p>
+<pre><code class="language-shell">brew install zsh
+
+==&gt; Downloading https://homebrew.bintray.com/bottles/zsh-5.7.1.high_sierra.bottle.tar.gz
+######################################################################## 100.0%
+==&gt; Pouring zsh-5.7.1.high_sierra.bottle.tar.gz
+/usr/local/Cellar/zsh/5.7.1: 1,515 files, 13.3MB
+</code></pre>
+<h2 id="第三步切换至-zsh-并安装-oh-my-zsh">第三步，切换至 zsh 并安装 oh-my-zsh</h2>
+<p>查看当前使用的 shell</p>
+<pre><code class="language-shell">echo $SHELL
+/bin/bash
+</code></pre>
+<p>查看安装的 shell</p>
+<pre><code class="language-shell">cat /etc/shells
+/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</code></pre>
+<p>切换为 zsh</p>
+<pre><code class="language-shell">chsh -s /bin/zsh
+</code></pre>
+<p>重启终端即可使用 zsh。</p>
+<p>接下来安装 oh-my-zsh</p>
+<pre><code class="language-shell">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+安装完成后，终端展示如下内容：
+
+  ____  / /_     ____ ___  __  __   ____  _____/ /_  
+ / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ 
+/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / 
+\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  
+                        /____/                       ....is now installed!
+
+
+Please look over the ~/.zshrc file to select plugins, themes, and options.
+
+p.s. Follow us at https://twitter.com/ohmyzsh.
+
+p.p.s. Get stickers and t-shirts at http://shop.planetargon.com.
+</code></pre>
+<h2 id="第四步配置-oh-my-zsh">第四步，配置 oh-my-zsh</h2>
+<p>看到这里，安装流程已经完毕啦，执行最后的配置，就可以进行体验了。</p>
+<p>打开 oh-my-zsh 配置文件</p>
+<pre><code class="language-shell"># 打开 zshrc 文件进行编辑，也可以使用 vim 编辑器
+open ~/.zshrc
+# 本人使用的是 vs code
+open ~/.zshrc -a Visual\ Studio\ Code
+</code></pre>
+<h3 id="主题">主题</h3>
+<p>配置项 ZSH_THEME 即为 oh-my-zsh 的主题配置，oh-my-zsh 的 GitHub Wiki 页面提供了 主题列表<br>
+当设置为 ZSH_THEME=random 时，每次打开终端都会使用一种随机的主题。</p>
+<h3 id="插件">插件</h3>
+<pre><code class="language-shell">plugins=(git osx autojump zsh-autosuggestions zsh-syntax-highlighting)
+</code></pre>
+<h3 id="注意其中-zsh-autosuggestions-和-zsh-syntax-highlighting-是自定义安装的插件需要用-git-将插件-clone-到指定插件目录下">注意：其中 zsh-autosuggestions 和 zsh-syntax-highlighting 是自定义安装的插件，需要用 git 将插件 clone 到指定插件目录下：</h3>
+<pre><code class="language-shell"># 自动提示插件
+git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+# 语法高亮插件
+git clone git://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+</code></pre>
+<p>需要其他插件的可以自行安装，如果插件未安装，开启终端的时候会报错，按照错误提示，安装对应的插件即可。</p>
+<h3 id="更新配置">更新配置</h3>
+<pre><code class="language-shell">source ~/.zshrc
+</code></pre>
+<p>更新完配置即可生效，不想更新配置的话，新开一个终端同样可以生效。</p>
+<p>正所谓风雨之后见彩虹，经过这一番捣鼓，电脑用起来更加顺手了，可以愉快的开发了。</p>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/xiao-xi-dui-lie">
-            <span class="flex-auto">消息队列</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/Qb7HF6EnB">
+            <span class="flex-auto">Shell</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-03">
-            <span class="flex-auto">2019-03</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/PB_DSrSEc">
+            <span class="flex-auto">2019-10</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux">
-            <span class="flex-auto">Linux</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/macos">
+            <span class="flex-auto">MacOS</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yun-wei-bu-shu">
-            <span class="flex-auto">运维部署</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/apple">
+            <span class="flex-auto">Apple</span>
           </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://shingmoyeung.github.io/post/rocketmq-ji-rocketmq-qi-dong-hou-producer-wu-fa-lian-jie-dao-broker-de-cuo-wu-ji-jie-jue-fang-an">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  RocketMQ-记RocketMQ启动后producer无法连接到broker的错误及解决方案
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/mac-xia-vmware-fusion-xu-ni-ji-pei-zhi-wang-qia">
+              <a href="https://shingmoyeung.github.io/post/elasticsearch-aggregation-bi-ji">
                 <h3 class="post-title">
-                  Mac下VMware Fusion虚拟机配置网卡
+                  Elasticsearch Aggregation笔记
                   <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>

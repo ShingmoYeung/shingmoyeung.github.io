@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shingmoyeung.github.io</id>
     <title>代码人生</title>
-    <updated>2019-10-08T07:45:50.690Z</updated>
+    <updated>2019-10-09T00:10:04.004Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shingmoyeung.github.io"/>
     <link rel="self" href="https://shingmoyeung.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://shingmoyeung.github.io/images/avatar.png</logo>
     <icon>https://shingmoyeung.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 代码人生</rights>
+    <entry>
+        <title type="html"><![CDATA[Mac环境安装并配置终端神器 oh-my-zsh]]></title>
+        <id>https://shingmoyeung.github.io/post/mac-huan-jing-an-zhuang-bing-pei-zhi-zhong-duan-shen-qi-oh-my-zsh</id>
+        <link href="https://shingmoyeung.github.io/post/mac-huan-jing-an-zhuang-bing-pei-zhi-zhong-duan-shen-qi-oh-my-zsh">
+        </link>
+        <updated>2019-10-09T00:02:57.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Elasticsearch Aggregation笔记]]></title>
         <id>https://shingmoyeung.github.io/post/elasticsearch-aggregation-bi-ji</id>
