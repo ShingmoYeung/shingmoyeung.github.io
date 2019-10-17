@@ -1,0 +1,639 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1571274057450">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1571274057450" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%BC%95%E5%87%BA%E9%97%AE%E9%A2%98">引出问题</a>
+<ul>
+<li><a href="#1-%E7%A1%AC%E7%BC%96%E7%A0%81">1、硬编码</a></li>
+<li><a href="#2-%E6%A0%A1%E9%AA%8C%E6%A1%86%E6%9E%B6">2、校验框架</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a>
+<ul>
+<li><a href="#1-%E5%AE%9E%E7%8E%B0validation%E7%9A%84defaultgroupsequenceprovider%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E7%BB%84%E7%AD%96%E7%95%A5">1、实现Validation的DefaultGroupSequenceProvider接口，自定义分组策略</a></li>
+<li><a href="#2-%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%AE%9E%E7%8E%B0">2、工具类实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">利用JSR303 Validation实现分组序列@GroupSequenceProvider方法内不同情况多字段校验</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-10-17 07:55 / 11 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.github.io/post-images/li-yong-jsr303-validation-shi-xian-fen-zu-xu-lie-groupsequenceprovider-fang-fa-nei-bu-tong-qing-kuang-duo-zi-duan-xiao-yan.png" alt="">
+        
+        <div class="post-content yue">
+          <h2 id="引出问题">引出问题</h2>
+<p>项目中参数校验作为常规编码操作是很正常的一件事，一般会想到至少两种解决方案：</p>
+<h3 id="1-硬编码">1、硬编码</h3>
+<p>参数做编码校验</p>
+<h3 id="2-校验框架">2、校验框架</h3>
+<p>比如JSR303 Validation</p>
+<h2 id="解决方法">解决方法</h2>
+<p>下面我们主要就JSR303 Validation来说说在一个方法内，不同情况下同一个bean做参数校验的问题。<br>
+先放上需要校验的实体类</p>
+<pre><code class="language-java">package com.xxx.gateway.bean;
+
+import com.xxx.gateway.common.jsr303.VehiclePushDataGroupSequenceProvider;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.group.GroupSequenceProvider;
+
+import javax.validation.constraints.Pattern;
+import java.io.Serializable;
+
+/**
+ * Created by IntelliJ IDEA 2019.
+ * User: shingmoyeung.
+ * Date: 2019/9/20.
+ * Time: 08:12.
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 位置对象
+ */
+@Setter
+@Getter
+@GroupSequenceProvider(value = VehiclePushDataGroupSequenceProvider.class)
+public class VehiclePushData implements Serializable {
+    /**
+     * 用户ID，必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;userId不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9a-z]{1,32}$&quot;, message = &quot;userId长度必须介于（含）1-32位之间&quot;)
+    private String userId;
+    /**
+     * 群组ID，必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;groupId不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9a-z]{1,32}$&quot;, message = &quot;groupId长度必须介于（含）1-32位之间&quot;)
+    private String groupId;
+    /**
+     * 群组CODE，必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;groupCode不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^1[0-9]{5,}$&quot;, message = &quot;groupCode长度最小6位&quot;)
+    private String groupCode;
+    /**
+     * 行程结束标识 0：未结束 1：结束，必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;isOver不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^[0-1]{1}$&quot;, message = &quot;isOver值必须是0或1&quot;)
+    private String isOver;
+    /**
+     * 车辆位置（逗号分隔经纬度），必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;vehiclePosition不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^([0-9]*.{0,1}[0-9]{1,}),([0-9]*.{0,1}[0-9]{1,})$&quot;, message = &quot;vehiclePosition经纬度格式不正确，正确格式：123.21321,12.13213&quot;)
+    private String vehiclePosition;
+    /**
+     * 汽车速度，必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;vehicleSpeed不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9]*.{0,1}[0-9]{1,}$&quot;, message = &quot;vehicleSpeed的值格式不正确&quot;)
+    private String vehicleSpeed;
+    /**
+     * 终端标识(1-小程序,2-车机,3-安卓手机,4-IOS手机)，必需
+     */
+    @NotBlank(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, message = &quot;terminalType不可为空&quot;)
+    @Pattern(groups = {WechatGroup.class, AppGroup.class, CarGroup.class}, regexp = &quot;^[1-4]{1}$&quot;, message = &quot;terminalType的值必须在（含）1-4之间&quot;)
+    private String terminalType;
+    /**
+     * 路况，非必需 unknown = 0 light = 1 medium = 2 heavy = 3 blocked = 4 none = 5
+     */
+    @NotBlank(groups = {AppGroup.class, CarGroup.class}, message = &quot;roadCondition不可为空&quot;)
+    @Pattern(groups = {AppGroup.class, CarGroup.class}, regexp = &quot;^[0-5]{1}$&quot;, message = &quot;roadCondition的值必须在（含）0-5之间&quot;)
+    private String roadCondition;
+    /**
+     * 剩余里程，非必需
+     */
+    @NotBlank(groups = {AppGroup.class, CarGroup.class}, message = &quot;surplusDistance不可为空&quot;)
+    @Pattern(groups = {AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9]*.{0,1}[0-9]{1,}$&quot;, message = &quot;surplusDistance的值格式不正确&quot;)
+    private String surplusDistance;
+    /**
+     * 剩余时间，非必需
+     */
+    @NotBlank(groups = {AppGroup.class, CarGroup.class}, message = &quot;surplusTime不可为空&quot;)
+    @Pattern(groups = {AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9]*.{0,1}[0-9]{1,}$&quot;, message = &quot;surplusTime的值格式不正确&quot;)
+    private String surplusTime;
+    /**
+     * 行驶里程，非必需
+     */
+    @NotBlank(groups = {AppGroup.class, CarGroup.class}, message = &quot;travDistance不可为空&quot;)
+    @Pattern(groups = {AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9]*.{0,1}[0-9]{1,}$&quot;, message = &quot;travDistance的值格式不正确&quot;)
+    private String travDistance;
+    /**
+     * 行驶时间，非必需
+     */
+    @NotBlank(groups = {AppGroup.class, CarGroup.class}, message = &quot;travTime不可为空&quot;)
+    @Pattern(groups = {AppGroup.class, CarGroup.class}, regexp = &quot;^[0-9]*.{0,1}[0-9]{1,}$&quot;, message = &quot;travTime的值格式不正确&quot;)
+    private String travTime;
+    /**
+     * 导航状态，非必需 1:导航中 2:未导航 3:导航中止
+     */
+    @NotBlank(groups = {CarGroup.class}, message = &quot;naviStatus不可为空&quot;)
+    @Pattern(groups = {CarGroup.class}, regexp = &quot;^[1-3]{1}$&quot;, message = &quot;naviStatus的值必须在（含）1-3之间&quot;)
+    private String naviStatus;
+
+    /**
+     * 微信小程序数据组
+     */
+    public interface WechatGroup {
+    }
+
+    /**
+     * 手机APP数据组
+     */
+    public interface AppGroup {
+    }
+
+    /**
+     * 车机数据组
+     */
+    public interface CarGroup {
+    }
+}
+</code></pre>
+<p>针对这种情况，目前我在项目中提供两种实现方式。</p>
+<h3 id="1-实现validation的defaultgroupsequenceprovider接口自定义分组策略">1、实现Validation的DefaultGroupSequenceProvider接口，自定义分组策略</h3>
+<pre><code class="language-java">package com.xxx.gateway.common.jsr303;
+
+import com.xxx.gateway.bean.VehiclePushData;
+import com.xxx.gateway.common.Constant;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.spi.group.DefaultGroupSequenceProvider;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by IntelliJ IDEA 2019.
+ * User: shingmoyeung.
+ * Date: 2019/10/15.
+ * Time: 16:45.
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 自定义Validation的分组GroupSequenceProvider
+ */
+@Slf4j
+public class VehiclePushDataGroupSequenceProvider implements DefaultGroupSequenceProvider&lt;VehiclePushData&gt;, Constant {
+    /**
+     * 自定义Validation的分组GroupSequenceProvider
+     *
+     * @param vehiclePushData {@link VehiclePushData} 对象
+     * @return
+     */
+    @Override
+    public List&lt;Class&lt;?&gt;&gt; getValidationGroups(VehiclePushData vehiclePushData) {
+        List&lt;Class&lt;?&gt;&gt; defaultGroupSequence = new ArrayList&lt;&gt;();
+        //这一步不能省，否则Default分组都不会执行了，会抛错的
+        defaultGroupSequence.add(VehiclePushData.class);
+        //这块判空请务必要做
+        if (vehiclePushData != null) {
+            String terminalType = vehiclePushData.getTerminalType();
+            log.info(&quot;terminalType为 {} 执行对应校验逻辑&quot;, terminalType);
+            if (TERMINAL_TYPE_WECHAT.equals(terminalType)) {
+                defaultGroupSequence.add(VehiclePushData.WechatGroup.class);
+            } else if (TERMINAL_TYPE_CAR_MACHINE.equals(terminalType)) {
+                defaultGroupSequence.add(VehiclePushData.CarGroup.class);
+            } else {
+                defaultGroupSequence.add(VehiclePushData.AppGroup.class);
+            }
+        }
+        return defaultGroupSequence;
+    }
+}
+</code></pre>
+<p>然后，在通过如下代码完成校验</p>
+<pre><code class="language-java">package com.xxx.gateway.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.xxx.gateway.bean.VehiclePushData;
+import com.xxx.gateway.common.Constant;
+import com.xxx.gateway.common.ResponseBean;
+import com.xxx.gateway.common.ResultEnum;
+import com.xxx.gateway.feign.GroupFeign;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Scope;
+import org.springframework.http.MediaType;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+
+/**
+ * Created by IntelliJ IDEA 2019.
+ * User: shingmoyeung.
+ * Date: 2019/9/20.
+ * Time: 10:04.
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 设备发送数据
+ */
+@RefreshScope
+@RestController
+@Scope(value = &quot;prototype&quot;)
+public class MessageController implements Constant {
+    private final static Logger logger = LoggerFactory.getLogger(MessageController.class);
+    /**
+     * {@link KafkaTemplate}
+     */
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
+    /**
+     * Group服务 Feign接口
+     */
+    @Autowired
+    private GroupFeign groupFeign;
+    /**
+     * topic名称
+     */
+    @Value(value = &quot;${gateway.producer.topic:push_data_input}&quot;)
+    private String producerTopic;
+
+    /**
+     * 网关推送数据
+     *
+     * @param vehiclePushData 推送数据对象
+     * @return
+     */
+    @PostMapping(value = &quot;/sendLocationData&quot;, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public ResponseBean sendLocationData(@Validated @RequestBody VehiclePushData vehiclePushData) {
+        Map&lt;String, Object&gt; map = null;
+        ResponseBean responseBean = null;
+        try {
+            if (TERMINAL_TYPE_WECHAT.equals(vehiclePushData.getTerminalType())) {
+                //微信小程序点位
+                responseBean = this.uploadData(vehiclePushData);
+            } else {
+                //非微信，即车机、手机app传入-检查群组服务，网关过滤上传的位置点数据
+                responseBean = this.groupFeign.checkUpload(vehiclePushData.getGroupId(), vehiclePushData.getUserId());
+                if (responseBean.getCode() == ResultEnum.SUCCESS.getCode()) {
+                    map = (Map&lt;String, Object&gt;) responseBean.getData();
+                    int ifUpload = (int) map.get(&quot;ifUpload&quot;);
+                    //不使用手机上传的点且非车机点位
+                    if (ifUpload == IF_UPLOAD_CAR_MACHINE &amp;&amp; !TERMINAL_TYPE_CAR_MACHINE.equals(vehiclePushData.getTerminalType())) {
+                        logger.warn(&quot;无效位置点信息&quot;);
+                    } else {
+                        //其他情况上传点位
+                        responseBean = this.uploadData(vehiclePushData);
+                    }
+                } else if (responseBean.getCode() == ResultEnum.NO_RESULT.getCode()) {
+                    logger.warn(&quot;无无历史记录点，首次上传点位&quot;);
+                    //首次点位上传
+                    responseBean = this.uploadData(vehiclePushData);
+                } else {
+                    logger.error(&quot;网关调用群组服务出现异常 状态码 {} 响应信息 {}&quot;, responseBean.getCode(), responseBean.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            logger.error(&quot;网关推送数据出现异常 {}&quot;, e.getMessage());
+            responseBean = new ResponseBean(ResultEnum.FAILURE, null);
+        }
+        return responseBean;
+    }
+
+    /**
+     * 上传数据至kafka，等待天眼平台个群组服务消费
+     *
+     * @param vehiclePushData 推送数据对象
+     * @return
+     * @throws Exception
+     */
+    private ResponseBean uploadData(VehiclePushData vehiclePushData) throws Exception {
+        //发送设备位置数据至kafka
+        this.sendDataToKafka(this.producerTopic, vehiclePushData);
+        return new ResponseBean(ResultEnum.SUCCESS, null);
+    }
+
+    /**
+     * 发送数据到kafka队列中
+     *
+     * @param topic  topic
+     * @param object 数据对象
+     * @throws Exception
+     */
+    private void sendDataToKafka(String topic, Object object) throws Exception {
+        //发送消息，topic不存在将自动创建新的topic
+        ListenableFuture&lt;SendResult&lt;String, String&gt;&gt; future = this.kafkaTemplate.send(topic, JSON.toJSONString(object));
+        //添加成功发送消息的回调和失败的回调
+        future.addCallback(new ListenableFutureCallback&lt;SendResult&lt;String, String&gt;&gt;() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                logger.warn(&quot;Producer: The message failed to be sent {}&quot;, throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(SendResult&lt;String, String&gt; stringObjectSendResult) {
+                logger.info(&quot;Producer-&gt;result {}&quot;, stringObjectSendResult.getProducerRecord());
+            }
+        });
+    }
+}
+</code></pre>
+<p>这里注意，一定是@Validated注解，才会走分组策略</p>
+<h3 id="2-工具类实现">2、工具类实现</h3>
+<pre><code class="language-java">package com.xxx.gateway.utils;
+
+import com.xxx.gateway.bean.VehiclePushData;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import java.util.Set;
+
+/**
+ * Created by IntelliJ IDEA 2019.
+ * User: shingmoyeung.
+ * Date: 2019/10/15.
+ * Time: 17:11.
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: JSR303校验工具类
+ */
+@Slf4j
+public class ValidationUtil {
+    /**
+     * JSR303校验
+     *
+     * @param vehiclePushData {@link VehiclePushData} 对象
+     * @param groups          Validation分组
+     */
+    public static void customValidationBean(VehiclePushData vehiclePushData, Class&lt;?&gt;... groups) {
+        Set&lt;ConstraintViolation&lt;VehiclePushData&gt;&gt; result = Validation.buildDefaultValidatorFactory().getValidator().validate(vehiclePushData, groups);
+        for (ConstraintViolation&lt;VehiclePushData&gt; vehiclePushDataConstraintViolation : result) {
+            log.error(&quot;JSR303校验出现问题 {}, {}, {}&quot;, vehiclePushDataConstraintViolation.getPropertyPath(), vehiclePushDataConstraintViolation.getInvalidValue(), vehiclePushDataConstraintViolation.getMessage());
+        }
+    }
+}
+</code></pre>
+<p>然后，在代码中通过如下访问</p>
+<pre><code class="language-java">ValidationUtil.customValidationBean('这里是需要校验的实体类', '这里是实体类校验的分组’);
+</code></pre>
+<p>到这里，就实现了上述校验要求。</p>
+<blockquote>
+<p>本文参考以下文章<br>
+<a href="https://blog.csdn.net/f641385712/article/details/99725482">分组序列@GroupSequenceProvider、@GroupSequence控制数据校验顺序，解决多字段联合逻辑校验问题【享学Spring MVC】</a></p>
+</blockquote>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/hu0pgKYJA">
+            <span class="flex-auto">JSR303</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/PB_DSrSEc">
+            <span class="flex-auto">2019-10</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/springboot-shi-yong-jsr-303-validation-kuang-jia-wan-cheng-can-shu-xiao-yan-he-jsr303-yi-chang-chu-li">
+                <h3 class="post-title">
+                  SpringBoot使用JSR 303 Validation框架完成参数校验和JSR303异常处理
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '870e4dfaeeaa8b0758df',
+    clientSecret: '44347dbcd89e9b0cb3fe811eab465f0bdc553bb0',
+    repo: 'shingmoyeung.github.io',
+    owner: 'ShingmoYeung',
+    admin: ['ShingmoYeung'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
