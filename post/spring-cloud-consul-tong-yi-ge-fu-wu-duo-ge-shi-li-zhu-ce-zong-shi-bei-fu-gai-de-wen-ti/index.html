@@ -46,18 +46,12 @@
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li>
+<li><a href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0">问题描述</a></li>
+<li><a href="#%E5%88%86%E6%9E%90%E8%A7%A3%E5%86%B3">分析解决</a>
 <ul>
-<li>
-<ul>
-<li><a href="#1-%E5%9C%A8usrlibsystemdsystemdockerservice%E9%85%8D%E7%BD%AE%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE-%E4%B8%BB%E8%A6%81%E6%98%AF%E5%9C%A8service%E8%BF%99%E4%B8%AA%E9%83%A8%E5%88%86%E5%8A%A0%E4%B8%8A%E4%B8%8B%E9%9D%A2%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0">1、在/usr/lib/systemd/system/docker.service，配置远程访问。主要是在[Service]这个部分，加上下面两个参数</a></li>
-<li><a href="#2-docker%E9%87%8D%E6%96%B0%E8%AF%BB%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8docker%E6%9C%8D%E5%8A%A1">2、docker重新读取配置文件，重新启动docker服务</a></li>
-<li><a href="#3-%E6%9F%A5%E7%9C%8Bdocker%E8%BF%9B%E7%A8%8B%E5%8F%91%E7%8E%B0docker%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E5%9C%A8%E5%B7%B2%E7%BB%8F%E7%9B%91%E5%90%AC2375%E7%9A%84tcp%E7%AB%AF%E5%8F%A3">3、查看docker进程，发现docker守护进程在已经监听2375的tcp端口</a></li>
-<li><a href="#4-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BD%91%E7%BB%9C%E7%AB%AF%E5%8F%A3%E5%8F%91%E7%8E%B0tcp%E7%9A%842375%E7%AB%AF%E5%8F%A3%E7%9A%84%E7%A1%AE%E6%98%AFdocker%E7%9A%84%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E5%9C%A8%E7%9B%91%E5%90%AC">4、查看系统的网络端口，发现tcp的2375端口，的确是docker的守护进程在监听</a></li>
-<li><a href="#5-%E8%BF%99%E9%87%8C%E6%8B%BF%E6%9C%AC%E5%9C%B0%E7%9A%84ubuntu%E5%81%9A%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9D%A5%E8%AE%BF%E9%97%AE%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%8Acentos7%E7%9A%84docker%E6%9C%8D%E5%8A%A1%E8%AE%BF%E9%97%AE%E6%88%90%E5%8A%9F-139129130123%E6%98%AF%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%8A%E7%9A%84centos7%E6%9C%BA%E5%99%A8%E5%85%AC%E7%BD%91ip">5、这里拿本地的ubuntu做客户端，来访问阿里云上centos7的docker服务，访问成功。139.129.130.123是阿里云上的centos7机器公网ip。</a></li>
-<li><a href="#6-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%E5%9C%B0%E5%9D%80">6、浏览器访问地址</a></li>
-</ul>
-</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%951">解决方法1</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952">解决方法2</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%953">解决方法3</a></li>
 </ul>
 </li>
 </ul>
@@ -108,63 +102,104 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">CentOS 7中Docker开启远程访问</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Spring Cloud Consul同一个服务多个实例注册总是被覆盖的问题</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-02-01 21:41 / 2 min read
+          2019-10-25 10:27 / 4 min read
         </div>
         
         <div class="post-content yue">
-          <p>在作为docker远程服务的centos7机器中配置：</p>
-<h4 id="1-在usrlibsystemdsystemdockerservice配置远程访问-主要是在service这个部分加上下面两个参数">1、在/usr/lib/systemd/system/docker.service，配置远程访问。主要是在[Service]这个部分，加上下面两个参数</h4>
-<pre><code class="language-shell"># vim /usr/lib/systemd/system/docker.service
-[Service]
-ExecStart=
-ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
+          <p>由于Eureka宣告进入维护模式，所以抽空研究下Spring Cloud Consul做为服务注册中心。</p>
+<p>此处不再赘述Consul原理、安装、使用等步骤，具体可以在网络查询，详细教程到处都是。主要描述下问题和解决方式：</p>
+<h2 id="问题描述">问题描述</h2>
+<p>新建了一个微服务 service-a，从ip为【192.168.1.10】的机器启动，查看Consul一切正常，不关闭当前服务，再从ip为【192.18.1.20】的机器启动一个实例，查看Consul发现原来的注册实例还是只有一个，服务实例的ip地址被覆盖了；</p>
+<h2 id="分析解决">分析解决</h2>
+<p>服务注册时，Consul是通过【instance-id】来区分服务实例的，出现服务实例注册被覆盖的情况，很有可能是因为多个实例【instance-id】重复导致。跟踪下源码，发现该字段默认是通过【application name】+ 【port】组成，所以服务注册会被覆盖；</p>
+<h3 id="解决方法1">解决方法1</h3>
+<p>通过查询官方文档，给出了解决方案：</p>
+<blockquote></blockquote>
+<p>By default a consul instance is registered with an ID that is equal to its Spring Application Context ID. By default, the Spring Application Context ID is spring.application.name:comma,separated,profiles:{spring.application.name}:comma,separated,profiles:spring.application.name:comma,separated,profiles:{server.port}. For most cases, this will allow multiple instances of one service to run on one machine. If further uniqueness is required, Using Spring Cloud you can override this by providing a unique identifier in spring.cloud.consul.discovery.instanceId.</p>
+<p>将【instance-id】属性增加随机数，可以解决以上重复问题：</p>
+<pre><code class="language-yaml">spring:
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1569591868968.png" alt=""></figure>
-<h4 id="2-docker重新读取配置文件重新启动docker服务">2、docker重新读取配置文件，重新启动docker服务</h4>
-<pre><code class="language-shell"># systemctl daemon-reload
+<h3 id="解决方法2">解决方法2</h3>
+<p>通过查看类【HostInfoEnvironmentPostProcessor】，发现能够取到IP地址，可以改为以下方式：</p>
+<pre><code class="language-yaml">instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+prefer-ip-address: true
+</code></pre>
+<h3 id="解决方法3">解决方法3</h3>
+<p>通过扩展【ConsulServiceRegistry】类，自定义consul注册默认的实例名：</p>
+<pre><code class="language-java">package com.irootech.config;
 
-# systemctl restart docker
+import com.ecwid.consul.v1.ConsulClient;
+import org.springframework.cloud.consul.discovery.ConsulDiscoveryProperties;
+import org.springframework.cloud.consul.discovery.HeartbeatProperties;
+import org.springframework.cloud.consul.discovery.TtlScheduler;
+import org.springframework.cloud.consul.serviceregistry.ConsulRegistration;
+import org.springframework.cloud.consul.serviceregistry.ConsulServiceRegistry;
+
+public class CustomConsulServiceRegistry extends ConsulServiceRegistry {
+
+    public CustomConsulServiceRegistry(ConsulClient client, ConsulDiscoveryProperties properties, TtlScheduler ttlScheduler, HeartbeatProperties heartbeatProperties) {
+        super(client, properties, ttlScheduler, heartbeatProperties);
+    }
+
+    @Override
+    public void register(ConsulRegistration reg) {
+        reg.getService().setId(reg.getService().getName() + &quot;:&quot; + reg.getService().getAddress() + &quot;:&quot; + reg.getService().getPort());
+        super.register(reg);
+    }
+}
 </code></pre>
-<h4 id="3-查看docker进程发现docker守护进程在已经监听2375的tcp端口">3、查看docker进程，发现docker守护进程在已经监听2375的tcp端口</h4>
-<pre><code class="language-shell"># ps -ef|grep docker
-root     26208     1  0 23:51 ?        00:00:00 /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
+<p>注入spring即可</p>
+<pre><code class="language-java">package com.irootech.config;
+
+import com.ecwid.consul.v1.ConsulClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.consul.discovery.ConsulDiscoveryProperties;
+import org.springframework.cloud.consul.discovery.HeartbeatProperties;
+import org.springframework.cloud.consul.discovery.TtlScheduler;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class ConsulServiceRegistryConfig {
+
+    @Autowired(required = false)
+    private TtlScheduler ttlScheduler;
+
+    @Bean
+    public CustomConsulServiceRegistry consulServiceRegistry(ConsulClient consulClient, ConsulDiscoveryProperties properties, HeartbeatProperties heartbeatProperties) {
+        return new CustomConsulServiceRegistry(consulClient, properties, ttlScheduler, heartbeatProperties);
+    }
+}
 </code></pre>
-<h4 id="4-查看系统的网络端口发现tcp的2375端口的确是docker的守护进程在监听">4、查看系统的网络端口，发现tcp的2375端口，的确是docker的守护进程在监听</h4>
-<pre><code class="language-shell"># netstat -tulp
-Active Internet connections (only servers)
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
-tcp        0      0 0.0.0.0:ssh             0.0.0.0:*               LISTEN      886/sshd            
-tcp6       0      0 [::]:2375               [::]:*                  LISTEN      26208/dockerd
-</code></pre>
-<h4 id="5-这里拿本地的ubuntu做客户端来访问阿里云上centos7的docker服务访问成功-139129130123是阿里云上的centos7机器公网ip">5、这里拿本地的ubuntu做客户端，来访问阿里云上centos7的docker服务，访问成功。139.129.130.123是阿里云上的centos7机器公网ip。</h4>
-<pre><code class="language-shell">$ sudo docker -H tcp://139.129.130.123:2375 images
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-mysql               5.6                 f8fe303bcac2        4 days ago          298MB
-</code></pre>
-<h4 id="6-浏览器访问地址">6、浏览器访问地址</h4>
-<pre><code class="language-url">http://139.129.130.123:2375/info
-http://192.168.128.162:2375/v1.38/images/json?filters={&quot;reference&quot;:{&quot;mysql&quot;:true}}
-</code></pre>
+<p>注意：使用这个方法无需在配置文件配置【instance-id】节点</p>
+<blockquote>
+<p>版权声明：本文为CSDN博主「加斯特独挨踢」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：<a href="https://blog.csdn.net/zhangjin530/article/details/90911940">https://blog.csdn.net/zhangjin530/article/details/90911940</a></p>
+</blockquote>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/docker">
-            <span class="flex-auto">Docker</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/1-vVvSnUg">
+            <span class="flex-auto">服务注册</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-02">
-            <span class="flex-auto">2019-02</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/PB_DSrSEc">
+            <span class="flex-auto">2019-10</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux">
-            <span class="flex-auto">Linux</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/MH5d6PTjEh">
+            <span class="flex-auto">分布式</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yun-wei-bu-shu">
-            <span class="flex-auto">运维部署</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
           </a>
         
 
@@ -172,10 +207,10 @@ http://192.168.128.162:2375/v1.38/images/json?filters={&quot;reference&quot;:{&q
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://shingmoyeung.github.io/post/macos-an-zhuang-docker">
+              <a href="https://shingmoyeung.github.io/post/consul-shan-chu-wu-xiao-de-fu-wu-huo-duo-shi-li-xia-de-wu-xiao-jie-dian">
                 <h3 class="post-title">
                   <i class="remixicon-arrow-left-line"></i>
-                  MacOS 安装 Docker
+                  Consul 删除无效的服务或多实例下的无效节点
                 </h3>
               </a>
             </div>
@@ -183,9 +218,9 @@ http://192.168.128.162:2375/v1.38/images/json?filters={&quot;reference&quot;:{&q
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/centos-7-shang-an-zhuang-docker">
+              <a href="https://shingmoyeung.github.io/post/li-yong-jsr303-validation-shi-xian-fen-zu-xu-lie-groupsequenceprovider-fang-fa-nei-bu-tong-qing-kuang-duo-zi-duan-xiao-yan">
                 <h3 class="post-title">
-                  CentOS 7上安装Docker
+                  利用JSR303 Validation实现分组序列@GroupSequenceProvider方法内不同情况多字段校验
                   <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>
