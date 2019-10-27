@@ -43,7 +43,15 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%A7%A3%E5%86%B3-%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98">解决 时间机器备份速度太慢的问题</a></li>
+<li><a href="#macos-%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4">macOS 时光机器备份加速命令</a></li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -88,122 +96,56 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">单机部署HBase 2.1配置文件</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2018-12-12 22:14 / 3 min read
+          2019-10-28 07:44 / 3 min read
         </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.github.io/post-images/mac-shi-jian-ji-qi-time-machine-bei-fen-su-du-tai-man-de-jie-jue-fang-fa-jia-su-bei-fen-ming-ling.jpg" alt="">
         
         <div class="post-content yue">
-          <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;
-&lt;!--
-/**
- *
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * &quot;License&quot;); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
---&gt;
-&lt;configuration&gt;
-    &lt;!-- 主机IP，也可以是主机名 --&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.master&lt;/name&gt;
-        &lt;value&gt;master&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;!-- zookeeper地址，也可以是主机名 --&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
-        &lt;value&gt;master&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.table.sanity.checks&lt;/name&gt;
-        &lt;value&gt;false&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
-        &lt;value&gt;true&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;!-- 配置本地单机模式 --&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.rootdir&lt;/name&gt;
-        &lt;value&gt;file:///home/deploy/data/hbasedata/hbase&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
-        &lt;value&gt;/home/deploy/data/hbasedata/zkdata&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.unsafe.stream.capability.enforce&lt;/name&gt;
-        &lt;value&gt;false&lt;/value&gt;
-        &lt;description&gt;
-            Controls whether HBase will check for stream capabilities (hflush/hsync).
-
-            Disable this if you intend to run on LocalFileSystem, denoted by a rootdir
-            with the 'file://' scheme, but be mindful of the NOTE below.
-
-            WARNING: Setting this to false blinds you to potential data loss and
-            inconsistent system state in the event of process and/or node failures. If
-            HBase is complaining of an inability to use hsync or hflush it's most
-            likely not a false positive.
-        &lt;/description&gt;
-    &lt;/property&gt;
-&lt;/configuration&gt;
+          <p>相信用过一段时间电脑的人，都知道经常备份的重要性了。特别最近很多人需要将 Mac 升级到最新版本的 macOS Catalina，为防意外发生，就更需要在动手前做好备份了。<br>
+macOS 自带的「时间机器」(Time Machine) 绝对就是 Mac 上最方便的备份工具了，一来完全免费，可以“无感”地替你默默在后台备份，而且因为它是苹果自家开发的，兼容性也最好，所以推荐大家都使用“时间机器”来备份 Mac 电脑。</p>
+<h2 id="解决-时间机器备份速度太慢的问题">解决 时间机器备份速度太慢的问题</h2>
+<p>然而部分同学在尝试使用时间机器备份系统资料时，却发现它的首次备份速度非常慢，跟自己的网络和机器配置似乎并不匹配，甚至有时花费超过 48 小时都无法完成，即便接了网线、关掉所有 APP 后，备份速度都没有明显提升。<br>
+其实，时光机器备份太慢是由于 macOS 本身对其进行了限流的措施，对硬盘读写的频率和内存使用都做了一定的限制，主要是为了防止在备份期间影响了用户正常使用电脑工作。但如果你正在等它完成备份，再去进行系统升级或其他操作，就比较悲剧了。</p>
+<h2 id="macos-时光机器备份加速命令">macOS 时光机器备份加速命令</h2>
+<p>如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：</p>
+<pre><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=0
 </code></pre>
+<p>这时你就会发现时光机器的备份速度变快很多很多了！！基本能达到网络和硬盘读写的应有的速度了。等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。</p>
+<pre><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
+</code></pre>
+<p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
+<blockquote>
+<p>文章链接：<a href="https://www.iplaysoft.com/p/speed-up-time-machine">https://www.iplaysoft.com/p/speed-up-time-machine</a>(转载时请注明本文出处及文章链接)</p>
+</blockquote>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2018-12">
-            <span class="flex-auto">2018-12</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/PB_DSrSEc">
+            <span class="flex-auto">2019-10</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/xml">
-            <span class="flex-auto">xml</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/macos">
+            <span class="flex-auto">MacOS</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/hbase">
-            <span class="flex-auto">HBase</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/da-shu-ju">
-            <span class="flex-auto">大数据</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yun-wei-bu-shu">
-            <span class="flex-auto">运维部署</span>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/V4bUS6WRg">
+            <span class="flex-auto">杂记</span>
           </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://shingmoyeung.github.io/post/centos72-nei-wang-huan-jing-an-zhuang-mysql5724">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  Centos7.2内网环境安装MySQL5.7.24
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/cong-java-dao-golang-kuai-su-ru-men">
+              <a href="https://shingmoyeung.github.io/post/consul-shan-chu-wu-xiao-de-fu-wu-huo-duo-shi-li-xia-de-wu-xiao-jie-dian">
                 <h3 class="post-title">
-                  从Java到Golang快速入门
+                  Consul 删除无效的服务或多实例下的无效节点
                   <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>
