@@ -40,38 +40,22 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#gox">gox</a>
+<ul>
+<li><a href="#windows%E7%94%A8%E6%88%B7-git-bash-%E6%9D%A5%E6%89%A7%E8%A1%8Cgoxsh%E8%BF%99%E4%B8%AA%E8%84%9A%E6%9C%AC">*windows用户 git-bash 来执行gox.sh这个脚本</a></li>
+<li><a href="#unix%E7%94%A8%E6%88%B7-%E5%85%88-chmod-x-goxsh-%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90%E5%9C%A8%E4%BD%BF%E7%94%A8-goxsh-%E6%89%A7%E8%A1%8C%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85">*unix用户 先 chmod +x gox.sh 添加可以执行权限.在使用 ./gox.sh 执行一键安装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -115,90 +99,106 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-line"></i> 2019-09
-        </h2>
-        
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-      <a href="https://shingmoyeung.github.io/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://shingmoyeung.github.io/post-images/macos-kai-qi-lan-ya-yin-xiao-diao-zheng.jpg'">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">golang.org/x一键安装脚本</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-11-08 13:36 / 2 min read
         </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">MacOS 开启蓝牙音效调整</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-09-27 22:21 / 1 min read</div>
-    </div>
-  </section>
+        <div class="post-content yue">
+          <h2 id="gox">gox</h2>
+<p>通过github.com/golang,一键安装golang.org/x的包<br>
+对于大陆的gopher来说,go get 安装 golang.org/x的包经常失败<br>
+所以在这里写了一个bash脚本一键安装golang.org/x的包</p>
+<h3 id="windows用户-git-bash-来执行goxsh这个脚本">*windows用户 git-bash 来执行gox.sh这个脚本</h3>
+<h3 id="unix用户-先-chmod-x-goxsh-添加可以执行权限在使用-goxsh-执行一键安装">*unix用户 先 chmod +x gox.sh 添加可以执行权限.在使用 ./gox.sh 执行一键安装</h3>
+<pre><code class="language-shell">#!/usr/bin/env bash
+#为了兼容windows下的bash
+cd $GOPATH;
+#创建 $GOPATH/src/golang.org/x 目录
+mkdir -p src/golang.org/x;
+cd src/golang.org/x;
+echo &quot;已经安装的golang.org/x package&quot;;
+ls;
+echo &quot;下面一行 for in 中包的名字您可以自己来定义&quot;
+for name in &quot;glog&quot; &quot;image&quot; &quot;perf&quot; &quot;snappy&quot; &quot;term&quot; &quot;sync&quot; &quot;winstrap&quot; &quot;cwg&quot; &quot;leveldb&quot; &quot;text&quot; &quot;net&quot; &quot;build&quot; &quot;protobuf&quot; &quot;dep&quot; &quot;sys&quot; &quot;crypto&quot; &quot;gddo&quot; &quot;tools&quot; &quot;scratch&quot; &quot;proposal&quot; &quot;mock&quot; &quot;oauth2&quot; &quot;freetype&quot; &quot;debug&quot; &quot;mobile&quot; &quot;gofrontend&quot; &quot;lint&quot; &quot;appengine&quot; &quot;geo&quot; &quot;review&quot; &quot;arch&quot; &quot;vgo&quot; &quot;exp&quot; &quot;time&quot;;do
+   if [ -d &quot;$name&quot; ]
+   then
+     cd $name;
+     echo $name &quot;包已经存在,使用git pull来更新源码&quot;;
+     git pull;
+   else
+     git_url=&quot;https://github.com/golang/${name}.git&quot;;
+     echo &quot;开始clone golang.org/x 在github.com上的镜像代码:${git_url}&quot;;
+     git clone --depth 1 &quot;$git_url&quot;;
+     cd $name;
+   fi
+   #go install;
+done
+</code></pre>
+<blockquote>
+<p>本文转载自：<a href="https://studygolang.com/articles/14715">https://studygolang.com/articles/14715</a>，本站转载出于传递更多信息之目的，版权归原作者或者来源机构所有。</p>
+</blockquote>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/jmeter-can-shu-hua-shi-xian">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">JMeter 参数化实现</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-09-19 19:49 / 11 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">手写Redis @Cacheable注解 参数Java对象作为key值</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-09-07 20:21 / 6 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/shou-xie-redis-cacheable-zhu-jie-zhi-chi-guo-qi-shi-jian-she-zhi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">手写Redis @Cacheable注解 支持过期时间设置</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-09-07 20:13 / 8 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-    
-      <a href="https://shingmoyeung.github.io/post/bi-ji-qian-yi" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
-        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://shingmoyeung.github.io/post-images/bi-ji-qian-yi.jpg'">
         </div>
-      </a>
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/bi-ji-qian-yi">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">笔记迁移......</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-02-20 15:46 / 1 min read</div>
-    </div>
-  </section>
 
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/Iksyep1pq">
+            <span class="flex-auto">2019-11</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/golang">
+            <span class="flex-auto">GoLang</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/mac-shi-jian-ji-qi-time-machine-bei-fen-su-du-tai-man-de-jie-jue-fang-fa-jia-su-bei-fen-ming-ling">
+                <h3 class="post-title">
+                  Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '870e4dfaeeaa8b0758df',
+    clientSecret: '44347dbcd89e9b0cb3fe811eab465f0bdc553bb0',
+    repo: 'shingmoyeung.github.io',
+    owner: 'ShingmoYeung',
+    admin: ['ShingmoYeung'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
 
       </div>
     </div>
