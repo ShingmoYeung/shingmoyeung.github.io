@@ -40,37 +40,9 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
+          <div class="toc-container hidden lg:block">
             
           </div>
         </div>
@@ -115,95 +87,154 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-line"></i> 代码那些事儿
-        </h2>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">SpringBoot定时任务单线程和多线程的实现</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-11-21 14:40 / 3 min read
+        </div>
         
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Executors Java编程规范插件提示手动创建线程池的解决办法</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-06-27 20:48 / 8 min read</div>
-    </div>
-  </section>
+        <div class="post-content yue">
+          <p>默认情况下，SpringBoot下所有的定时任务都是用同一个线程池中同一个线程去执行的，即单线程执行。<br>
+从ScheduledAnnotationBeanPostProcessor类开始。ScheduledTaskRegistrar（定时任务注册类）中的ScheduleTasks中又这样一段判断：</p>
+<pre><code class="language-java">if (this.taskScheduler == null) {
+	this.localExecutor = Executors.newSingleThreadScheduledExecutor();
+	this.taskScheduler = new ConcurrentTaskScheduler(this.localExecutor);
+}
+</code></pre>
+<p>这就说明如果taskScheduler为空，那么就给定时任务做了一个单线程的线程池，正好在这个类中还有一个设置taskScheduler的方法：</p>
+<pre><code class="language-java">public void setScheduler(Object scheduler) {
+	Assert.notNull(scheduler, &quot;Scheduler object must not be null&quot;);
+	if (scheduler instanceof TaskScheduler) {
+		this.taskScheduler = (TaskScheduler) scheduler;
+	}
+	else if (scheduler instanceof ScheduledExecutorService) {
+		this.taskScheduler = new ConcurrentTaskScheduler(((ScheduledExecutorService) scheduler));
+	}
+	else {
+		throw new IllegalArgumentException(&quot;Unsupported scheduler type: &quot; + scheduler.getClass());
+	}
+}
+</code></pre>
+<p>这样问题就很简单了，只需用调用这个方法显式的设置一个ScheduledExecutorService就可以达到并发的效果了。要做的仅仅是实现SchedulingConfigurer接口，重写configureTasks方法就OK了；</p>
+<pre><code class="language-java">package com.autoai.car.config;
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/java-si-chong-xian-cheng-chi-de-shi-yong">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Java四种线程池的使用</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-06-27 20:31 / 10 min read</div>
-    </div>
-  </section>
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/shi-yong-java-deng-lu-yuan-cheng-linux-bing-dui-fu-wu-shi-xian-ge-chong-cao-zuo">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">使用Java登录远程Linux并对服务实现各种操作</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-03-06 21:30 / 4 min read</div>
-    </div>
-  </section>
+/**
+ * Created by IntelliJ IDEA 2019.
+ * User: shingmoyeung.
+ * Date: 2019/11/21.
+ * Time: 14:29.
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 线程池配置
+ */
+@Configuration
+public class ScheduleConfig implements SchedulingConfigurer {
+    /**
+     * 线程池名称前缀
+     */
+    @Value(value = &quot;${schedule.threadname.prefix:car-schedule-pool-}&quot;)
+    private String threadNamePrefix;
+    /**
+     * 线程池大小
+     */
+    @Value(value = &quot;${schedule.poolsize:10}&quot;)
+    private int poolSize;
+    /**
+     * 所有的定时任务都放在一个线程池中，定时任务启动时使用不同线程
+     *
+     * @param scheduledTaskRegistrar {@link ScheduledTaskRegistrar} 对象
+     */
+    @Override
+    public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
+        //初始化线程池
+        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+        threadPoolTaskScheduler.setPoolSize(poolSize);
+        threadPoolTaskScheduler.setThreadNamePrefix(&quot;&quot;);
+        threadPoolTaskScheduler.afterPropertiesSet();
+        //设置线程池
+        scheduledTaskRegistrar.setScheduler(threadPoolTaskScheduler);
+    }
+}
+</code></pre>
+<p>或者，注入以下bean</p>
+<pre><code class="language-java">    @Bean
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+        scheduler.setPoolSize(10);
+        return scheduler;
+    }
+</code></pre>
+<p>参考以下文章：</p>
+<blockquote>
+<p>版权声明：本文为CSDN博主「指尖de柔情」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：https://blog.csdn.net/u013456370/article/details/79411952</p>
+</blockquote>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/cong-java-dao-golang-kuai-su-ru-men">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">从Java到Golang快速入门</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2018-12-11 22:15 / 15 min read</div>
-    </div>
-  </section>
+        </div>
 
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/spring-boot20-zheng-he-kafka">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Spring Boot2.0 整合 Kafka</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2018-11-29 13:12 / 9 min read</div>
-    </div>
-  </section>
-
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${5 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://shingmoyeung.github.io/post/spring-kafka-zhong-guan-yu-kafka-de-pei-zhi-can-shu">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">Spring Kafka中关于Kafka的配置参数</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/Iksyep1pq">
+            <span class="flex-auto">2019-11</span>
+          </a>
         
-      </div>
-      <div class="text-gray-400 text-sm font-light">2018-11-29 13:07 / 6 min read</div>
-    </div>
-  </section>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/n1fSulW2tB">
+            <span class="flex-auto">SpringBoot</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/duo-xian-cheng">
+            <span class="flex-auto">多线程</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
 
-        <div class="pagination-container animated fadeIn">
-  
-    <a href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er/" class="page-btn"><i class="remixicon-arrow-left-line"></i> 上一页</a>
-  
-  
-</div>
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/mybatis-generator-zui-wan-zheng-pei-zhi-xiang-jie">
+                <h3 class="post-title">
+                  Mybatis Generator最完整配置详解
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
 
       </div>
     </div>
