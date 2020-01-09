@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1574318808360">
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1578562618161">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -33,7 +33,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://shingmoyeung.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1574318808360" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1578562618161" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -163,47 +163,47 @@
 <h2 id="2-查看服务器环境">2、查看服务器环境</h2>
 <pre><code class="language-shell">uname -a
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1569818478584.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1569818478584.png" alt="" loading="lazy"></figure>
 <h2 id="3-去官网下载mysql安装包">3、去官网下载MySQL安装包</h2>
 <p>MySQL官网网址：https://dev.mysql.com/<a href="https://dev.mysql.com/">点击打开</a></p>
 <h3 id="1选择mysql版本">1）选择MySQL版本</h3>
 <p>最新是8.0版本，我这里安装5.7版本即可：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569818582813.png" alt=""></p>
+<img src="https://shingmoyeung.github.io/post-images/1569818582813.png" alt="" loading="lazy"></p>
 <h3 id="2选择操作系统">2）选择操作系统</h3>
 <p>刚刚我们查看操作系统CentOS7 ，64位的：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569818649339.png" alt=""></p>
+<img src="https://shingmoyeung.github.io/post-images/1569818649339.png" alt="" loading="lazy"></p>
 <h3 id="3直接下载">3）直接下载</h3>
-<p><img src="https://shingmoyeung.github.io/post-images/1569818661787.png" alt=""><br>
-<img src="https://shingmoyeung.github.io/post-images/1569818702923.png" alt=""></p>
+<p><img src="https://shingmoyeung.github.io/post-images/1569818661787.png" alt="" loading="lazy"><br>
+<img src="https://shingmoyeung.github.io/post-images/1569818702923.png" alt="" loading="lazy"></p>
 <h2 id="4-安装mysql">4、安装MySQL</h2>
 <h3 id="1将安装包上传至服务器">1）将安装包上传至服务器</h3>
 <p>用shell命令上传（只能传小文件）或者ftp工具上传皆可，这个文件比较小，可以直接用命令上传</p>
 <pre><code class="language-shell">cd /home/mysql/
 rz
 </code></pre>
-<p><img src="https://shingmoyeung.github.io/post-images/1569818723455.png" alt=""><br>
-<img src="https://shingmoyeung.github.io/post-images/1569818763692.png" alt=""><br>
-<img src="https://shingmoyeung.github.io/post-images/1569818791784.png" alt=""></p>
+<p><img src="https://shingmoyeung.github.io/post-images/1569818723455.png" alt="" loading="lazy"><br>
+<img src="https://shingmoyeung.github.io/post-images/1569818763692.png" alt="" loading="lazy"><br>
+<img src="https://shingmoyeung.github.io/post-images/1569818791784.png" alt="" loading="lazy"></p>
 <h3 id="2检查以前是否安装了mysql">2）检查以前是否安装了MySQL</h3>
 <p>安装之前可以检查一下，以前是否有安装，如有，卸载掉，如果以前有数据，记得备份之后再卸载</p>
 <pre><code class="language-shell">find / -type f -name &quot;mysql*&quot; 
 </code></pre>
-<p><img src="https://shingmoyeung.github.io/post-images/1569818844923.png" alt=""><br>
+<p><img src="https://shingmoyeung.github.io/post-images/1569818844923.png" alt="" loading="lazy"><br>
 /etc/my.cnf这个文件如果有，也要删除<br>
-<img src="https://shingmoyeung.github.io/post-images/1569818865303.png" alt=""></p>
+<img src="https://shingmoyeung.github.io/post-images/1569818865303.png" alt="" loading="lazy"></p>
 <h3 id="3解压安装包">3）解压安装包</h3>
 <pre><code class="language-shell">tar -xvf  mysql-5.7.24-linux-glibc2.12-x86_64.tar.gz
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://shingmoyeung.github.io/post-images/1569819039999.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://shingmoyeung.github.io/post-images/1569819039999.png" alt="" loading="lazy"></figure>
 <h3 id="4将解压包移动到-usrlocal">4）将解压包移动到 /usr/local/</h3>
 <pre><code class="language-shell">mv mysql-5.7.24-linux-glibc2.12-x86_64 /usr/local/
 </code></pre>
-<figure data-type="image" tabindex="3"><img src="https://shingmoyeung.github.io/post-images/1569818921005.png" alt=""></figure>
+<figure data-type="image" tabindex="3"><img src="https://shingmoyeung.github.io/post-images/1569818921005.png" alt="" loading="lazy"></figure>
 <h3 id="5将解压包的名字改为mysql">5）将解压包的名字改为mysql</h3>
 <pre><code class="language-shell">cd /usr/local
 mv mysql-5.7.24-linux-glibc2.12-x86_64 mysql
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="https://shingmoyeung.github.io/post-images/1569818972332.png" alt=""></figure>
+<figure data-type="image" tabindex="4"><img src="https://shingmoyeung.github.io/post-images/1569818972332.png" alt="" loading="lazy"></figure>
 <h3 id="6创建mysql-files并更改权限">6)创建mysql-files并更改权限</h3>
 <p>此目录是为了方便使用系统变量值secure_file_priv</p>
 <pre><code class="language-shell">#创建文件夹
@@ -213,29 +213,29 @@ chown -R mysql:mysql /usr/local/mysql/mysql-files
 #修改操作权限
 chmod 750 /usr/local/mysql/mysql-files
 </code></pre>
-<figure data-type="image" tabindex="5"><img src="https://shingmoyeung.github.io/post-images/1569819103684.png" alt=""></figure>
+<figure data-type="image" tabindex="5"><img src="https://shingmoyeung.github.io/post-images/1569819103684.png" alt="" loading="lazy"></figure>
 <h3 id="7初始化">7）初始化</h3>
 <pre><code class="language-shell">bin/mysqld --initialize --user=mysql
 bin/mysql_ssl_rsa_setup
 </code></pre>
-<p><img src="https://shingmoyeung.github.io/post-images/1569819141501.png" alt=""><br>
+<p><img src="https://shingmoyeung.github.io/post-images/1569819141501.png" alt="" loading="lazy"><br>
 这里看到mysql的root初始密码是：[Zw&lt;rg;8J76ki]<br>
-<img src="https://shingmoyeung.github.io/post-images/1569819175820.png" alt=""></p>
+<img src="https://shingmoyeung.github.io/post-images/1569819175820.png" alt="" loading="lazy"></p>
 <h3 id="8启动">8）启动</h3>
 <pre><code class="language-shell">#启动
 bin/mysqld_safe --user=mysql &amp;
 #查看mysqld进程
 ps aux | grep mysqld
 </code></pre>
-<figure data-type="image" tabindex="6"><img src="https://shingmoyeung.github.io/post-images/1569819307580.png" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://shingmoyeung.github.io/post-images/1569819307580.png" alt="" loading="lazy"></figure>
 <h3 id="9停止">9）停止</h3>
 <p>直接kill掉进程即可<br>
-<img src="https://shingmoyeung.github.io/post-images/1569819348477.png" alt=""></p>
+<img src="https://shingmoyeung.github.io/post-images/1569819348477.png" alt="" loading="lazy"></p>
 <h2 id="5-将mysql做成服务">5、将mysql做成服务</h2>
 <p>我们想要使用service命令启动或停止mysql，结果报错，则需要进行配置</p>
 <pre><code class="language-shell">service mysql start
 </code></pre>
-<figure data-type="image" tabindex="7"><img src="https://shingmoyeung.github.io/post-images/1569819416850.png" alt=""></figure>
+<figure data-type="image" tabindex="7"><img src="https://shingmoyeung.github.io/post-images/1569819416850.png" alt="" loading="lazy"></figure>
 <h3 id="1拷贝服务至etcinitd目录">1）拷贝服务至/etc/init.d/目录</h3>
 <pre><code class="language-shell">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
 </code></pre>
@@ -246,20 +246,20 @@ chmod +x /etc/init.d/mysql
 <h3 id="3测试用service启动">3）测试用service启动</h3>
 <pre><code class="language-shell">service mysql start
 </code></pre>
-<figure data-type="image" tabindex="8"><img src="https://shingmoyeung.github.io/post-images/1569819591206.png" alt=""></figure>
+<figure data-type="image" tabindex="8"><img src="https://shingmoyeung.github.io/post-images/1569819591206.png" alt="" loading="lazy"></figure>
 <h2 id="6-将mysql服务加入开机自启项">6、将mysql服务加入开机自启项</h2>
 <h3 id="1检查是否加入了开机自启项">1）检查是否加入了开机自启项</h3>
 <pre><code class="language-shell">chkconfig --list mysql
 </code></pre>
-<figure data-type="image" tabindex="9"><img src="https://shingmoyeung.github.io/post-images/1569819621157.png" alt=""></figure>
+<figure data-type="image" tabindex="9"><img src="https://shingmoyeung.github.io/post-images/1569819621157.png" alt="" loading="lazy"></figure>
 <h3 id="2加入开机自启项">2）加入开机自启项</h3>
 <pre><code class="language-shell">chkconfig --add mysql
 </code></pre>
-<figure data-type="image" tabindex="10"><img src="https://shingmoyeung.github.io/post-images/1569819656803.png" alt=""></figure>
+<figure data-type="image" tabindex="10"><img src="https://shingmoyeung.github.io/post-images/1569819656803.png" alt="" loading="lazy"></figure>
 <h2 id="7-软连接配置">7、软连接配置</h2>
 <h3 id="1设置软连接">1）设置软连接</h3>
 <p>我们用mysql -uroot -p进入mysql时，发现报错bash: mysql: command not found<br>
-<img src="https://shingmoyeung.github.io/post-images/1569819685904.png" alt=""><br>
+<img src="https://shingmoyeung.github.io/post-images/1569819685904.png" alt="" loading="lazy"><br>
 这是由于系统默认会查找/usr/bin下的命令，如果这个命令不在这个目录下，就找不到命令，我们需要做的就是映射一个链接到/usr/bin目录下，相当于建立一个链接文件（我们称之为软连接）。<br>
 要做软连接，我们首先要找到mysql命令或mysqladmin命令的完整路径，我们这里的路径是：/usr/local/mysql/bin/mysql</p>
 <pre><code class="language-shell">ln -s /usr/local/mysql/bin/mysql /usr/bin
@@ -269,7 +269,7 @@ chmod +x /etc/init.d/mysql
 <pre><code class="language-sql">mysql -uroot -p
 Zw&lt;rg;8J76ki
 </code></pre>
-<figure data-type="image" tabindex="11"><img src="https://shingmoyeung.github.io/post-images/1569819738545.png" alt=""></figure>
+<figure data-type="image" tabindex="11"><img src="https://shingmoyeung.github.io/post-images/1569819738545.png" alt="" loading="lazy"></figure>
 <h2 id="8-修改密码">8、修改密码</h2>
 <h3 id="1修改密码">1）修改密码</h3>
 <p>我这里修改为：YYBrhr_2018</p>
@@ -277,25 +277,25 @@ Zw&lt;rg;8J76ki
 ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
 flush privileges;
 </code></pre>
-<figure data-type="image" tabindex="12"><img src="https://shingmoyeung.github.io/post-images/1569819784515.png" alt=""></figure>
+<figure data-type="image" tabindex="12"><img src="https://shingmoyeung.github.io/post-images/1569819784515.png" alt="" loading="lazy"></figure>
 <h3 id="2测试新密码">2）测试新密码</h3>
 <p>先退出mysql，再次使用新密码登录</p>
 <pre><code class="language-sql">quit
 mysql -uroot -p
 YYBrhr_2018
 </code></pre>
-<figure data-type="image" tabindex="13"><img src="https://shingmoyeung.github.io/post-images/1569819831784.png" alt=""></figure>
+<figure data-type="image" tabindex="13"><img src="https://shingmoyeung.github.io/post-images/1569819831784.png" alt="" loading="lazy"></figure>
 <h2 id="9-开启远程授权">9、开启远程授权</h2>
 <h3 id="1授权">1）授权</h3>
 <pre><code class="language-sql">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'YYBrhr_2018' WITH GRANT OPTION;
 flush privileges;
 </code></pre>
-<figure data-type="image" tabindex="14"><img src="https://shingmoyeung.github.io/post-images/1569819864668.png" alt=""></figure>
+<figure data-type="image" tabindex="14"><img src="https://shingmoyeung.github.io/post-images/1569819864668.png" alt="" loading="lazy"></figure>
 <h3 id="2远程登录验证">2）远程登录验证</h3>
 <h4 id="1查看服务器ip">【1】查看服务器ip</h4>
-<figure data-type="image" tabindex="15"><img src="https://shingmoyeung.github.io/post-images/1569819883237.png" alt=""></figure>
+<figure data-type="image" tabindex="15"><img src="https://shingmoyeung.github.io/post-images/1569819883237.png" alt="" loading="lazy"></figure>
 <h4 id="2nevicat连接测试">【2】nevicat连接测试</h4>
-<figure data-type="image" tabindex="16"><img src="https://shingmoyeung.github.io/post-images/1569819904521.png" alt=""></figure>
+<figure data-type="image" tabindex="16"><img src="https://shingmoyeung.github.io/post-images/1569819904521.png" alt="" loading="lazy"></figure>
 
         </div>
 

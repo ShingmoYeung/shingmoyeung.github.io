@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1574318808360">
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1578562618161">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -33,7 +33,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://shingmoyeung.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1574318808360" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1578562618161" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -283,12 +283,12 @@ Centos 7.5,  Kafka 2.11, Zookeeper-3.4.13,  JDK1.8+</p>
            }
 </code></pre>
 <p>控制台可以看到执行成功：<br>
-<img src="https://shingmoyeung.github.io/post-images/1569820698872.png" alt=""><br>
+<img src="https://shingmoyeung.github.io/post-images/1569820698872.png" alt="" loading="lazy"><br>
 在服务器执行</p>
 <pre><code class="language-shell">bin/kafka-topics.sh --list --zookeeper localhost:2181 
 </code></pre>
 <p>可以看到topic<br>
-<img src="https://shingmoyeung.github.io/post-images/1569820729172.png" alt=""></p>
+<img src="https://shingmoyeung.github.io/post-images/1569820729172.png" alt="" loading="lazy"></p>
 <h2 id="kafka如何保证数据的不丢失">Kafka如何保证数据的不丢失</h2>
 <h3 id="1生产者数据的不丢失">1.生产者数据的不丢失</h3>
 <pre><code>新版本的producer采用异步发送机制。KafkaProducer.send(ProducerRecord)方法仅仅是把这条消息放入一个缓存中(即RecordAccumulator，本质上使用了队列来缓存记录)，同时后台的IO线程会不断扫描该缓存区，将满足条件的消息封装到某个batch中然后发送出去。显然，这个过程中就有一个数据丢失的窗口：若IO线程发送之前client端挂掉了，累积在accumulator中的数据的确有可能会丢失。 kafka的ack机制：在kafka发送数据的时候，每次发送消息都会有一个确认反馈机制，确保消息正常的能够被收到。
