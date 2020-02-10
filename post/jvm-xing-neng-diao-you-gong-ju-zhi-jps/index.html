@@ -1,0 +1,337 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1581311872439">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1581311872439" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#jps-%E7%94%A8%E6%B3%95">jps 用法</a>
+<ul>
+<li><a href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E">参数说明</a></li>
+</ul>
+</li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8-jps-%E4%BF%A1%E6%81%AF">获取远程服务器 jps 信息</a>
+<ul>
+<li><a href="#%E5%90%AF%E5%8A%A8-jstatd-%E6%9C%8D%E5%8A%A1%E5%99%A8">启动 jstatd 服务器</a></li>
+</ul>
+</li>
+<li><a href="#jps-%E5%8E%9F%E7%90%86">jps 原理</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">JVM性能调优工具之jps</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-12-17 12:37 / 3 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h2 id="概述">概述</h2>
+<p>jps 命令类似与 linux 的 ps 命令，但是它只列出系统中所有的 Java 应用程序。 通过 jps 命令可以方便地查看 Java 进程的启动类、传入参数和 Java 虚拟机参数等信息。</p>
+<p>如果在 linux 中想查看 java 的进程，一般我们都需要 ps -ef | grep java 来获取进程 ID。<br>
+如果只想获取 Java 程序的进程，可以直接使用 jps 命令来直接查看。</p>
+<h2 id="jps-用法">jps 用法</h2>
+<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1581309657557.png" alt="" loading="lazy"></figure>
+<h3 id="参数说明">参数说明</h3>
+<p>-q：只输出进程 ID<br>
+-m：输出传入 main 方法的参数<br>
+-l：输出完全的包名，应用主类名，jar的完全路径名<br>
+-v：输出jvm参数<br>
+-V：输出通过flag文件传递到JVM中的参数</p>
+<p>[hostid]：远程服务器地址，jps 支持远程调用<br>
+[protocol:][[//]hostname][:port][/servername]<br>
+示例一：jps<br>
+无参数：显示进程的ID 和 类的名称<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309699718.png" alt="" loading="lazy"><br>
+jps 不带参数，默认显示 进程ID 和 启动类的名称。</p>
+<p>示例二：jps -q<br>
+参数 -q 只输出进程ID，而不显示出类的名称<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309713509.png" alt="" loading="lazy"></p>
+<p>示例三：jps -m<br>
+参数 -m 可以输出传递给 Java 进程（main 方法）的参数。<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309728452.png" alt="" loading="lazy"></p>
+<p>示例四：jps -l<br>
+参数 -l 可以输出主函数的完整路径（类的全路径）。<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309741298.png" alt="" loading="lazy"></p>
+<p>示例五：jps -v<br>
+参数 -v 可以显示传递给 Java 虚拟机的参数。<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309754159.png" alt="" loading="lazy"></p>
+<h2 id="获取远程服务器-jps-信息">获取远程服务器 jps 信息</h2>
+<p>jps 支持查看远程服务上的 jvm 进程信息。如果需要查看其他机器上的 jvm 进程，需要在待查看机器上启动 jstatd 服务。<br>
+开启 jstatd 服务<br>
+启动 jstatd 服务，需要有足够的权限。 需要使用 Java 的安全策略分配相应的权限。<br>
+创建 jstatd.all.policy 策略文件。<br>
+grant codebase &quot;file:${java.home}/../lib/tools.jar&quot; {<br>
+permission java.security.AllPermission;<br>
+};</p>
+<h3 id="启动-jstatd-服务器">启动 jstatd 服务器</h3>
+<p>jstatd -J-Djava.security.policy=jstatd.all.policy -J-Djava.rmi.server.hostname=192.168.31.241<br>
+-J 参数是一个公共的参数，如 jps、 jstat 等命令都可以接收这个参数。 由于 jps、 jstat 命令本身也是 Java 应用程序， -J 参数可以为 jps 等命令本身设置 Java 虚拟机参数。<br>
+-Djava.security.policy：指定策略文件<br>
+-Djava.rmi.server.hostname：指定服务器的ip地址（可忽略）</p>
+<p>默认情况下， jstatd 开启在 1099 端口上开启 RMI 服务器。<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309774304.png" alt="" loading="lazy"></p>
+<h2 id="jps-原理">jps 原理</h2>
+<p>java程序在启动以后，会在java.io.tmpdir指定的目录下，就是临时文件夹里，生成一个类似于hsperfdata_User的文件夹，这个文件夹里（在Linux中为/tmp/hsperfdata_{userName}/），有几个文件，名字就是java进程的pid，因此列出当前运行的java进程，只是把这个目录里的文件名列一下而已。 至于系统的参数什么，就可以解析这几个文件获得。<br>
+window系统显示如下：<br>
+<img src="https://shingmoyeung.github.io/post-images/1581309786385.png" alt="" loading="lazy"><br>
+从文件中可以看出 1864、4296、12600 跟上面的 jps 命令输出的进程 ID 一致。</p>
+<blockquote>
+<p>作者：jijs<br>
+链接：https://www.jianshu.com/p/d39b2e208e72<br>
+來源：简书<br>
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。</p>
+</blockquote>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2018-12">
+            <span class="flex-auto">2018-12</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/jdk">
+            <span class="flex-auto">JDK</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://shingmoyeung.github.io/post/centos72-nei-wang-huan-jing-an-zhuang-mysql5724">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  Centos7.2内网环境安装MySQL5.7.24
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian">
+                <h3 class="post-title">
+                  单机部署HBase 2.1配置文件
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

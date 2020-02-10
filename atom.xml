@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://shingmoyeung.github.io</id>
     <title>代码人生</title>
-    <updated>2020-01-09T09:37:07.544Z</updated>
+    <updated>2020-02-10T05:23:59.226Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://shingmoyeung.github.io"/>
     <link rel="self" href="https://shingmoyeung.github.io/atom.xml"/>
@@ -214,11 +214,25 @@
         <updated>2019-01-11T14:09:58.000Z</updated>
     </entry>
     <entry>
+        <title type="html"><![CDATA[CentOS 7.5 yum 安装与配置MySQL 5.7.24]]></title>
+        <id>https://shingmoyeung.github.io/post/centos-75-yum-an-zhuang-yu-pei-zhi-mysql-5724</id>
+        <link href="https://shingmoyeung.github.io/post/centos-75-yum-an-zhuang-yu-pei-zhi-mysql-5724">
+        </link>
+        <updated>2019-01-09T04:25:27.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Centos7.2内网环境安装MySQL5.7.24]]></title>
         <id>https://shingmoyeung.github.io/post/centos72-nei-wang-huan-jing-an-zhuang-mysql5724</id>
         <link href="https://shingmoyeung.github.io/post/centos72-nei-wang-huan-jing-an-zhuang-mysql5724">
         </link>
         <updated>2019-01-05T04:40:32.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[JVM性能调优工具之jps]]></title>
+        <id>https://shingmoyeung.github.io/post/jvm-xing-neng-diao-you-gong-ju-zhi-jps</id>
+        <link href="https://shingmoyeung.github.io/post/jvm-xing-neng-diao-you-gong-ju-zhi-jps">
+        </link>
+        <updated>2018-12-17T04:37:09.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[单机部署HBase 2.1配置文件]]></title>
@@ -289,5 +303,26 @@
         <link href="https://shingmoyeung.github.io/post/spring-boot-cache-pei-zhi-xu-lie-hua-cheng-json-zi-fu-chuan">
         </link>
         <updated>2018-11-01T05:47:22.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mac OSX终端安装主题(oh my zsh)]]></title>
+        <id>https://shingmoyeung.github.io/post/mac-osx-zhong-duan-an-zhuang-zhu-ti-oh-my-zsh</id>
+        <link href="https://shingmoyeung.github.io/post/mac-osx-zhong-duan-an-zhuang-zhu-ti-oh-my-zsh">
+        </link>
+        <updated>2018-08-07T05:05:53.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MyBatis3错误：Parameter 'id' not found. Available parameters are [arg2, arg1, arg0...]]]></title>
+        <id>https://shingmoyeung.github.io/post/mybatis3-cuo-wu-parameter-id-not-found-available-parameters-are-arg2-arg1-arg0</id>
+        <link href="https://shingmoyeung.github.io/post/mybatis3-cuo-wu-parameter-id-not-found-available-parameters-are-arg2-arg1-arg0">
+        </link>
+        <updated>2018-06-13T05:01:33.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[详解Spring中的CharacterEncodingFilter]]></title>
+        <id>https://shingmoyeung.github.io/post/xiang-jie-spring-zhong-de-characterencodingfilter</id>
+        <link href="https://shingmoyeung.github.io/post/xiang-jie-spring-zhong-de-characterencodingfilter">
+        </link>
+        <updated>2018-03-16T04:55:04.000Z</updated>
     </entry>
 </feed>
