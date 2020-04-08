@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1586332935523">
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1586333168971">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -33,7 +33,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://shingmoyeung.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1586332935523" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1586333168971" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -107,7 +107,11 @@
 <p>然后执行：</p>
 <pre><code class="language-bash">$ rustup-init
 </code></pre>
-<p>即可安装好 rust 环境及相关工具链。<br>
+<p>在.bash_profile或.zshrc文件中，配置path路径</p>
+<pre><code class="language-bash">export PATH=&quot;$HOME/.cargo/bin:$PATH&quot;
+</code></pre>
+<p>执行source命令，使修改后的文件生效。<br>
+即可安装好 rust 环境及相关工具链。<br>
 不过这样安装，要升级 rustup 不能这样子升级：</p>
 <pre><code class="language-bash">$ rustup self update
 </code></pre>
@@ -124,7 +128,8 @@ replace-with = 'ustc'
 registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;
 </code></pre>
 <blockquote>
-<p>转载自：https://zhuanlan.zhihu.com/p/104634073</p>
+<p>基于转载的文章做了些许的配置补充<br>
+转载自：https://zhuanlan.zhihu.com/p/104634073</p>
 </blockquote>
 
         </div>
