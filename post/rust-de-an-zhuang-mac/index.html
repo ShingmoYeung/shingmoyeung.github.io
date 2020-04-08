@@ -43,21 +43,7 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0">问题描述</a></li>
-<li><a href="#%E5%88%86%E6%9E%90%E8%A7%A3%E5%86%B3">分析解决</a>
-<ul>
-<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%951">解决方法1</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952">解决方法2</a></li>
-<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%953">解决方法3</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+            
           </div>
         </div>
       
@@ -102,125 +88,56 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Spring Cloud Consul同一个服务多个实例注册总是被覆盖的问题</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Rust 的安装(Mac)</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-10-25 10:27 / 4 min read
+          2020-04-08 15:57 / 2 min read
         </div>
         
         <div class="post-content yue">
-          <p>由于Eureka宣告进入维护模式，所以抽空研究下Spring Cloud Consul做为服务注册中心。</p>
-<p>此处不再赘述Consul原理、安装、使用等步骤，具体可以在网络查询，详细教程到处都是。主要描述下问题和解决方式：</p>
-<h2 id="问题描述">问题描述</h2>
-<p>新建了一个微服务 service-a，从ip为【192.168.1.10】的机器启动，查看Consul一切正常，不关闭当前服务，再从ip为【192.18.1.20】的机器启动一个实例，查看Consul发现原来的注册实例还是只有一个，服务实例的ip地址被覆盖了；</p>
-<h2 id="分析解决">分析解决</h2>
-<p>服务注册时，Consul是通过【instance-id】来区分服务实例的，出现服务实例注册被覆盖的情况，很有可能是因为多个实例【instance-id】重复导致。跟踪下源码，发现该字段默认是通过【application name】+ 【port】组成，所以服务注册会被覆盖；</p>
-<h3 id="解决方法1">解决方法1</h3>
-<p>通过查询官方文档，给出了解决方案：</p>
-<blockquote></blockquote>
-<p>By default a consul instance is registered with an ID that is equal to its Spring Application Context ID. By default, the Spring Application Context ID is spring.application.name:comma,separated,profiles:{spring.application.name}:comma,separated,profiles:spring.application.name:comma,separated,profiles:{server.port}. For most cases, this will allow multiple instances of one service to run on one machine. If further uniqueness is required, Using Spring Cloud you can override this by providing a unique identifier in spring.cloud.consul.discovery.instanceId.</p>
-<p>将【instance-id】属性增加随机数，可以解决以上重复问题：</p>
-<pre><code class="language-yaml">spring:
-  cloud:
-    consul:
-      discovery:
-        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+          <p>在 Mac 下，Rust 的环境有两种方式，一种是通过官网的命令安装 rustup，就会安装好 rustc 和 cargo 等工具。还有一种方式是通过 brew 安装。<br>
+如果通过 brew 安装，执行如下命令：</p>
+<pre><code class="language-bash">$ brew install rust
 </code></pre>
-<h3 id="解决方法2">解决方法2</h3>
-<p>通过查看类【HostInfoEnvironmentPostProcessor】，发现能够取到IP地址，可以改为以下方式：</p>
-<pre><code class="language-yaml">instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
-prefer-ip-address: true
+<p>上面的方式安装后不能使用 rustup 工具来管理版本，所以不推荐。<br>
+如果想用 brew 安装，那就直接安装 rustup 工具：</p>
+<pre><code class="language-bash">$ brew install rustup-init
 </code></pre>
-<h3 id="解决方法3">解决方法3</h3>
-<p>通过扩展【ConsulServiceRegistry】类，自定义consul注册默认的实例名：</p>
-<pre><code class="language-java">package com.irootech.config;
-
-import com.ecwid.consul.v1.ConsulClient;
-import org.springframework.cloud.consul.discovery.ConsulDiscoveryProperties;
-import org.springframework.cloud.consul.discovery.HeartbeatProperties;
-import org.springframework.cloud.consul.discovery.TtlScheduler;
-import org.springframework.cloud.consul.serviceregistry.ConsulRegistration;
-import org.springframework.cloud.consul.serviceregistry.ConsulServiceRegistry;
-
-public class CustomConsulServiceRegistry extends ConsulServiceRegistry {
-
-    public CustomConsulServiceRegistry(ConsulClient client, ConsulDiscoveryProperties properties, TtlScheduler ttlScheduler, HeartbeatProperties heartbeatProperties) {
-        super(client, properties, ttlScheduler, heartbeatProperties);
-    }
-
-    @Override
-    public void register(ConsulRegistration reg) {
-        reg.getService().setId(reg.getService().getName() + &quot;:&quot; + reg.getService().getAddress() + &quot;:&quot; + reg.getService().getPort());
-        super.register(reg);
-    }
-}
+<p>然后执行：</p>
+<pre><code class="language-bash">$ rustup-init
 </code></pre>
-<p>注入spring即可</p>
-<pre><code class="language-java">package com.irootech.config;
-
-import com.ecwid.consul.v1.ConsulClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.consul.discovery.ConsulDiscoveryProperties;
-import org.springframework.cloud.consul.discovery.HeartbeatProperties;
-import org.springframework.cloud.consul.discovery.TtlScheduler;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class ConsulServiceRegistryConfig {
-
-    @Autowired(required = false)
-    private TtlScheduler ttlScheduler;
-
-    @Bean
-    public CustomConsulServiceRegistry consulServiceRegistry(ConsulClient consulClient, ConsulDiscoveryProperties properties, HeartbeatProperties heartbeatProperties) {
-        return new CustomConsulServiceRegistry(consulClient, properties, ttlScheduler, heartbeatProperties);
-    }
-}
+<p>即可安装好 rust 环境及相关工具链。<br>
+不过这样安装，要升级 rustup 不能这样子升级：</p>
+<pre><code class="language-bash">$ rustup self update
 </code></pre>
-<p>注意：使用这个方法无需在配置文件配置【instance-id】节点</p>
+<p>上面命令是无效的，brew 接管了 rustup 的更新及卸载。需要卸载 rust 环境可以使用官网的命令安装 rustup 卸载。<br>
+安装 Rust 之前，可以设置 ustc 的代理来提高下载速度：</p>
+<pre><code class="language-bash">export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+</code></pre>
+<p>安装完成后设置 Crates 镜像（编辑 $HOME/.cargo/config）：</p>
+<pre><code class="language-bash">[source.crates-io]
+registry = &quot;https://github.com/rust-lang/crates.io-index&quot;
+replace-with = 'ustc'
+[source.ustc]
+registry = &quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;
+</code></pre>
 <blockquote>
-<p>版权声明：本文为CSDN博主「加斯特独挨踢」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>
-原文链接：<a href="https://blog.csdn.net/zhangjin530/article/details/90911940">https://blog.csdn.net/zhangjin530/article/details/90911940</a></p>
+<p>转载自：https://zhuanlan.zhihu.com/p/104634073</p>
 </blockquote>
 
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/1-vVvSnUg/">
-            <span class="flex-auto">服务注册</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/PB_DSrSEc/">
-            <span class="flex-auto">2019-10</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/MH5d6PTjEh/">
-            <span class="flex-auto">分布式</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er/">
-            <span class="flex-auto">代码那些事儿</span>
-          </a>
-        
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://shingmoyeung.github.io/post/consul-shan-chu-wu-xiao-de-fu-wu-huo-duo-shi-li-xia-de-wu-xiao-jie-dian/">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  Consul 删除无效的服务或多实例下的无效节点
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/li-yong-jsr303-validation-shi-xian-fen-zu-xu-lie-groupsequenceprovider-fang-fa-nei-bu-tong-qing-kuang-duo-zi-duan-xiao-yan/">
+              <a href="https://shingmoyeung.github.io/post/go-mod-shi-yong/">
                 <h3 class="post-title">
-                  利用JSR303 Validation实现分组序列@GroupSequenceProvider方法内不同情况多字段校验
+                  Go mod 使用
                   <i class="remixicon-arrow-right-line"></i>
                 </h3>
               </a>
