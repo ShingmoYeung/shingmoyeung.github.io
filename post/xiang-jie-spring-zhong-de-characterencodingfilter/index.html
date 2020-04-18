@@ -4,13 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587201006590">
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1587201291157">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-<link rel="stylesheet" href="https://jkju7q.coding-pages.com/styles/main.css">
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
@@ -31,8 +31,8 @@
     <div class="sidebar-content">
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://jkju7q.coding-pages.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587201006590" alt="">
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1587201291157" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -91,7 +91,7 @@
   </div>
   <div class="site-footer">
     <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 <div class="mask" onclick="closeMenu()">
@@ -105,7 +105,7 @@
         <div class="post-content yue">
           <p>在项目中有很多让人头疼的问题，其中，编码问题位列其一，那么在Spring框架中是如何解决从页面传来的字符串的编码问题的呢？下面我们来看看Spring框架给我们提供过滤器CharacterEncodingFilter</p>
 <h2 id="1看清结构">1.看清结构：</h2>
-<p><img src="https://jkju7q.coding-pages.com/post-images/1581310548625.jpg" alt="" loading="lazy"><br>
+<p><img src="https://shingmoyeung.github.io/post-images/1581310548625.jpg" alt="" loading="lazy"><br>
 可以看到其继承GenericFilterBean和OncePerRequestFilter，也就是说，这个过滤器就是针对于每次浏览器请求进行过滤的，然后再其之上添加了父类没有的功能即处理字符编码。</p>
 <h2 id="2官方解释">2.官方解释：</h2>
 <blockquote>
@@ -132,9 +132,9 @@
 </code></pre>
 <p>其中encoding用来设置编码格式，forceEncoding用来设置是否理会 request.getCharacterEncoding()方法，设置为true则强制覆盖之前的编码格式。</p>
 <h2 id="4源码赏析">4.源码赏析</h2>
-<p><img src="https://jkju7q.coding-pages.com/post-images/1581310675214.jpg" alt="" loading="lazy"><br>
+<p><img src="https://shingmoyeung.github.io/post-images/1581310675214.jpg" alt="" loading="lazy"><br>
 当Servlet容器启动的时候，会读取web.xml中对于过滤器的配置信息， 读取到<init-param>中的子标签<param-name>encoding和forceEncoding所对应的<param-value>的值，再通过调用该类setEncoding(String encoding)和setForceEncoding(boolean forceEncoding) 将值注入到这连个字段中。<br>
-<img src="https://jkju7q.coding-pages.com/post-images/1581310694237.jpg" alt="" loading="lazy"><br>
+<img src="https://shingmoyeung.github.io/post-images/1581310694237.jpg" alt="" loading="lazy"><br>
 在这里就能看到为什么设置foreEncoding为true会覆盖掉request.getCharacterEncoding()中的方法了吧，呵呵，源码之前了无秘密，只有深入到源代码之中才能看清本质。<br>
 Xml代码</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
@@ -160,11 +160,11 @@ Xml代码</p>
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/XjN5TV7Yj/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/XjN5TV7Yj/">
             <span class="flex-auto">Sping</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/hOd5DV9vMd/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/hOd5DV9vMd/">
             <span class="flex-auto">2018-03</span>
           </a>
         
@@ -173,7 +173,7 @@ Xml代码</p>
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://jkju7q.coding-pages.com/post/mybatis3-cuo-wu-parameter-id-not-found-available-parameters-are-arg2-arg1-arg0/">
+              <a href="https://shingmoyeung.github.io/post/mybatis3-cuo-wu-parameter-id-not-found-available-parameters-are-arg2-arg1-arg0/">
                 <h3 class="post-title">
                   <i class="ri-arrow-left-line"></i>
                   MyBatis3错误：Parameter &#39;id&#39; not found. Available parameters are [arg2, arg1, arg0...]
@@ -213,7 +213,7 @@ var dsqjs = new DisqusJS(options)
       </div>
     </div>
 
-    <script src="https://jkju7q.coding-pages.com/media/prism.js"></script>  
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
 <script>
 
 Prism.highlightAll()
