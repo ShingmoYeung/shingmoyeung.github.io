@@ -4,14 +4,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.coding-pages.com/favicon.ico?v=1587196462467">
+<link rel="shortcut icon" href="https://jkju7q.coding-pages.com//favicon.ico?v=1587197430827">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-<link rel="stylesheet" href="https://shingmoyeung.coding-pages.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding-pages.com/atom.xml">
+<link rel="stylesheet" href="https://jkju7q.coding-pages.com//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://jkju7q.coding-pages.com//atom.xml">
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
@@ -32,8 +32,8 @@
     <div class="sidebar-content">
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.coding-pages.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding-pages.com/images/avatar.png?v=1587196462467" alt="">
+        <a href="https://jkju7q.coding-pages.com/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com//images/avatar.png?v=1587197430827" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -108,7 +108,7 @@
   </div>
   <div class="site-footer">
     <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.coding-pages.com/atom.xml" target="_blank">RSS</a>
+    <a class="rss" href="https://jkju7q.coding-pages.com//atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 <div class="mask" onclick="closeMenu()">
@@ -119,7 +119,7 @@
           2019-10-08 15:27 / 7 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://shingmoyeung.coding-pages.com/post-images/elasticsearch-aggregation-bi-ji.jpg" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://jkju7q.coding-pages.com//post-images/elasticsearch-aggregation-bi-ji.jpg" alt="">
         
         <div class="post-content yue">
           <h2 id="aggregation-概述">Aggregation 概述</h2>
@@ -282,29 +282,29 @@ aggregations: 对应请求中当前Aggregation的subAggregation的计算结果 (
 </table>
 <pre><code class="language-sql">1.select count(payerId) as payerCount from Payment group by country
 </code></pre>
-<p><img src="https://shingmoyeung.coding-pages.com/post-images/1570520471977.png" alt="" loading="lazy"><br>
+<p><img src="https://jkju7q.coding-pages.com//post-images/1570520471977.png" alt="" loading="lazy"><br>
 这里需要注意的是payerId这个doc的属性在实际构造的Aggregation query 中变成了 payerId.keyword，Elasticsearch 默认对于分词的字段(text类型)不支持聚合，会报出 &quot;Fielddata is disabled on text fields by default. Set fielddata=true&quot;的错误. fielddata聚合是一个非常costly的运算,一般不建议使用. 好在Elasticsearch索引时默认会对payerId这个属性生成两个字段, payerId 是分词的text类型, payerId.keyword是不分词的keyword类型.</p>
 <pre><code class="language-sql">2.select max(payerId) from Payment group by accountId, country
 </code></pre>
-<p><img src="https://shingmoyeung.coding-pages.com/post-images/1570520497971.png" alt="" loading="lazy"><br>
+<p><img src="https://jkju7q.coding-pages.com//post-images/1570520497971.png" alt="" loading="lazy"><br>
 两个group by 条件对应两层term aggregation</p>
 <pre><code class="language-sql">3.select count(distinct payerId) as payerCount from Payment where country in ('CN', 'GE') group by accountId, country
 </code></pre>
-<p><img src="https://shingmoyeung.coding-pages.com/post-images/1570520529935.png" alt="" loading="lazy"><br>
+<p><img src="https://jkju7q.coding-pages.com//post-images/1570520529935.png" alt="" loading="lazy"><br>
 增加了where条件, 在顶层是一个FiltersAggregationBuilder. 其中分为两部分, 其中filters对应的是所有查询条件构建的一个KeyedFilter, 其中又包含了多个子查询条件. aggregations 对应的是groupBy条件和select部分的聚合函数</p>
 <pre><code class="language-sql">4.select count(distinct payerId) as payerCount from Payment where withinTime(createAt, 1, 'DAY') and name like '%SH%' group by accountId, country
 </code></pre>
-<p><img src="https://shingmoyeung.coding-pages.com/post-images/1570520558064.png" alt="" loading="lazy"><br>
+<p><img src="https://jkju7q.coding-pages.com//post-images/1570520558064.png" alt="" loading="lazy"><br>
 多个where条件, 用BoolQueryBuilder组合起来</p>
 <pre><code class="language-sql">5.select max(amount) as maxAmt, min(amount) as minAmt from Payment where amount &gt; 1000.00 or amount &lt;= 50.53 group by accountId, country having count(distinct beneficiaryId) &gt; 3 and sum(amount) &gt; 1530.20
 </code></pre>
-<p><img src="https://shingmoyeung.coding-pages.com/post-images/1570520594471.png" alt="" loading="lazy"><br>
+<p><img src="https://jkju7q.coding-pages.com//post-images/1570520594471.png" alt="" loading="lazy"><br>
 史上最复杂SQL产生! 这里主要关注having部分的处理, 用到了Pipeline类型的BucketSelectorPipelineAggregationBuilder. 在最后一个GroupBy 条件对应的term aggregation下增加了两类子节点: sub aggregations 除了包括select 部分的聚合函数还包括having条件对应的聚合函数. pipeline aggregations 包括having条件对应的 BucketSelectorPipelineAggregationBuilder. BucketSelectorPipelineAggregationBuilder 主要的属性有: bucketsPathMap: 保存了path的名字和对应的聚合属性的映射，script: 用脚本描述聚合条件，但是条件左侧不直接使用属性名而是path的名字替换<br>
 注意虽然从逻辑上来说having 条件是应用在之前计算出聚合的结果之上, 但是从ES Aggregation的结构来看, BucketSelectorPipelineAggregationBuilder和having 条件中对应聚合指标的Aggregation是兄弟关系而不是父子关系！<br>
 另外要注意script path 是对于兄弟节点(sibling node)一个相对路径而不是从根节点Aggregation的绝对路径,用的是聚合属性的名称而不是Aggregation本身的名称. 并且要求根据路径访问到的Bucket必须是唯一的，因为BucketSelector只是根据条件判断当前Bucket是否被选择, 如果路径返回多个Bucket则无法应用这种Bool判断.</p>
 <pre><code class="language-sql">6.select count(paymentId) from Payment group by timeRange(createdAt, '1D', 'yyyy/MM/dd')
 </code></pre>
-<p><img src="https://shingmoyeung.coding-pages.com/post-images/1570520626313.png" alt="" loading="lazy"><br>
+<p><img src="https://jkju7q.coding-pages.com//post-images/1570520626313.png" alt="" loading="lazy"><br>
 这里用到一个自定义函数timeRage, 表示对于createAt这个属性按天聚合，对应的ES aggregation类型为DateHistogramAggregation</p>
 <h2 id="其他注意事项">其他注意事项</h2>
 <p>Bucket count</p>
@@ -318,19 +318,19 @@ aggregations: 对应请求中当前Aggregation的subAggregation的计算结果 (
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/UUFkIbjzq/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/UUFkIbjzq/">
             <span class="flex-auto">ElasticSearch</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/PB_DSrSEc/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/PB_DSrSEc/">
             <span class="flex-auto">2019-10</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/34LK2kKwv/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/34LK2kKwv/">
             <span class="flex-auto">ELK</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/dai-ma-na-xie-shi-er/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/">
             <span class="flex-auto">代码那些事儿</span>
           </a>
         
@@ -339,7 +339,7 @@ aggregations: 对应请求中当前Aggregation的subAggregation的计算结果 (
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://shingmoyeung.coding-pages.com/post/mac-huan-jing-an-zhuang-bing-pei-zhi-zhong-duan-shen-qi-oh-my-zsh/">
+              <a href="https://jkju7q.coding-pages.com/post/mac-huan-jing-an-zhuang-bing-pei-zhi-zhong-duan-shen-qi-oh-my-zsh/">
                 <h3 class="post-title">
                   <i class="remixicon-arrow-left-line"></i>
                   Mac环境安装并配置终端神器 oh-my-zsh
@@ -350,7 +350,7 @@ aggregations: 对应请求中当前Aggregation的subAggregation的计算结果 (
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.coding-pages.com/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng/">
+              <a href="https://jkju7q.coding-pages.com/post/macos-kai-qi-lan-ya-yin-xiao-diao-zheng/">
                 <h3 class="post-title">
                   MacOS 开启蓝牙音效调整
                   <i class="remixicon-arrow-right-line"></i>
@@ -388,7 +388,7 @@ var dsqjs = new DisqusJS(options)
       </div>
     </div>
 
-    <script src="https://shingmoyeung.coding-pages.com/media/prism.js"></script>  
+    <script src="https://jkju7q.coding-pages.com//media/prism.js"></script>  
 <script>
 
 Prism.highlightAll()
