@@ -1,513 +1,295 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198961871">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
+<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587199301417">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://jkju7q.coding-pages.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://jkju7q.coding-pages.com/atom.xml">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-148889074-1');
-</script>
-
-
-  </head>
-  <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://jkju7q.coding-pages.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198961871" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            代码 人生 感悟 分享
-          </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-                <a href="https://github.com/ShingmoYeung" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-github-line"></i>
-                </a>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                <a href="tencent://message/?uin=525032303&amp;Site=&amp;Menu=yes" target="_blank" class="mr-4 text-xl text-gray-400 font-light hover:text-gray-900">
-                  <i class="remixicon-qq-line"></i>
-                </a>
-              
-            
-          </div>
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            代码人生
         </div>
-      
     </div>
-  </div>
-</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/post/about" class="menu gt-a-link">
+                            关于
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
 
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="remixicon-bookmark-2-line"></i> 标签云
-        </h2>
         <div class="tags-container">
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/Cc5GYA6C-/" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-              <span class="flex-auto">2020-04</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/vEgIt-sPWQ/" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-              <span class="flex-auto">Rust</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-              <span class="flex-auto">代码那些事儿</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">17</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/fH9_vKR4U/" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-              <span class="flex-auto">2020-03</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/golang/" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-              <span class="flex-auto">GoLang</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/Iksyep1pq/" :style="{ 'animation-delay': `${5 * 0.2}s` }">
-              <span class="flex-auto">2019-11</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/n1fSulW2tB/" :style="{ 'animation-delay': `${6 * 0.2}s` }">
-              <span class="flex-auto">SpringBoot</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">6</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/duo-xian-cheng/" :style="{ 'animation-delay': `${7 * 0.2}s` }">
-              <span class="flex-auto">多线程</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/D3MElEJDiV/" :style="{ 'animation-delay': `${8 * 0.2}s` }">
-              <span class="flex-auto">数据库</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/PB_DSrSEc/" :style="{ 'animation-delay': `${9 * 0.2}s` }">
-              <span class="flex-auto">2019-10</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">7</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/macos/" :style="{ 'animation-delay': `${10 * 0.2}s` }">
-              <span class="flex-auto">MacOS</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">8</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/V4bUS6WRg/" :style="{ 'animation-delay': `${11 * 0.2}s` }">
-              <span class="flex-auto">杂记</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/1-vVvSnUg/" :style="{ 'animation-delay': `${12 * 0.2}s` }">
-              <span class="flex-auto">服务注册</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/MH5d6PTjEh/" :style="{ 'animation-delay': `${13 * 0.2}s` }">
-              <span class="flex-auto">分布式</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/hu0pgKYJA/" :style="{ 'animation-delay': `${14 * 0.2}s` }">
-              <span class="flex-auto">JSR303</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/Qb7HF6EnB/" :style="{ 'animation-delay': `${15 * 0.2}s` }">
-              <span class="flex-auto">Shell</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/apple/" :style="{ 'animation-delay': `${16 * 0.2}s` }">
-              <span class="flex-auto">Apple</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">4</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/UUFkIbjzq/" :style="{ 'animation-delay': `${17 * 0.2}s` }">
-              <span class="flex-auto">ElasticSearch</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/34LK2kKwv/" :style="{ 'animation-delay': `${18 * 0.2}s` }">
-              <span class="flex-auto">ELK</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/BJd4x8aTJ/" :style="{ 'animation-delay': `${19 * 0.2}s` }">
-              <span class="flex-auto">2019-09</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">5</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/ce-shi-na-xie-shi-er/" :style="{ 'animation-delay': `${20 * 0.2}s` }">
-              <span class="flex-auto">测试那些事儿</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/redis/" :style="{ 'animation-delay': `${21 * 0.2}s` }">
-              <span class="flex-auto">Redis</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2019-06/" :style="{ 'animation-delay': `${22 * 0.2}s` }">
-              <span class="flex-auto">2019-06</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2019-03/" :style="{ 'animation-delay': `${23 * 0.2}s` }">
-              <span class="flex-auto">2019-03</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">7</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/linux/" :style="{ 'animation-delay': `${24 * 0.2}s` }">
-              <span class="flex-auto">Linux</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">12</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/yun-wei-bu-shu/" :style="{ 'animation-delay': `${25 * 0.2}s` }">
-              <span class="flex-auto">运维部署</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">9</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/xiao-xi-dui-lie/" :style="{ 'animation-delay': `${26 * 0.2}s` }">
-              <span class="flex-auto">消息队列</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">4</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/vmware/" :style="{ 'animation-delay': `${27 * 0.2}s` }">
-              <span class="flex-auto">VMWare</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/vmware-fusion/" :style="{ 'animation-delay': `${28 * 0.2}s` }">
-              <span class="flex-auto">VMWare Fusion</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/apache/" :style="{ 'animation-delay': `${29 * 0.2}s` }">
-              <span class="flex-auto">Apache</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/httpd/" :style="{ 'animation-delay': `${30 * 0.2}s` }">
-              <span class="flex-auto">Httpd</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/maven/" :style="{ 'animation-delay': `${31 * 0.2}s` }">
-              <span class="flex-auto">Maven</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/jdk/" :style="{ 'animation-delay': `${32 * 0.2}s` }">
-              <span class="flex-auto">JDK</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/jenv/" :style="{ 'animation-delay': `${33 * 0.2}s` }">
-              <span class="flex-auto">jEnv</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/homebrew/" :style="{ 'animation-delay': `${34 * 0.2}s` }">
-              <span class="flex-auto">Homebrew</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/docker/" :style="{ 'animation-delay': `${35 * 0.2}s` }">
-              <span class="flex-auto">Docker</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2019-02/" :style="{ 'animation-delay': `${36 * 0.2}s` }">
-              <span class="flex-auto">2019-02</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2019-01/" :style="{ 'animation-delay': `${37 * 0.2}s` }">
-              <span class="flex-auto">2019-01</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/pyenv/" :style="{ 'animation-delay': `${38 * 0.2}s` }">
-              <span class="flex-auto">pyEnv</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/python/" :style="{ 'animation-delay': `${39 * 0.2}s` }">
-              <span class="flex-auto">Python</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/SGBPFdDlt/" :style="{ 'animation-delay': `${40 * 0.2}s` }">
-              <span class="flex-auto">MySQL</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2018-12/" :style="{ 'animation-delay': `${41 * 0.2}s` }">
-              <span class="flex-auto">2018-12</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">3</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/xml/" :style="{ 'animation-delay': `${42 * 0.2}s` }">
-              <span class="flex-auto">xml</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/hbase/" :style="{ 'animation-delay': `${43 * 0.2}s` }">
-              <span class="flex-auto">HBase</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/da-shu-ju/" :style="{ 'animation-delay': `${44 * 0.2}s` }">
-              <span class="flex-auto">大数据</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/K43uIohlj/" :style="{ 'animation-delay': `${45 * 0.2}s` }">
-              <span class="flex-auto">kafka</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/1p3HLnMJ92/" :style="{ 'animation-delay': `${46 * 0.2}s` }">
-              <span class="flex-auto">2018-11</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">8</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/wqlDYqi4T/" :style="{ 'animation-delay': `${47 * 0.2}s` }">
-              <span class="flex-auto">Snappy</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/UCoreDsNC/" :style="{ 'animation-delay': `${48 * 0.2}s` }">
-              <span class="flex-auto">Log4j2</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/9AwjBjbuz/" :style="{ 'animation-delay': `${49 * 0.2}s` }">
-              <span class="flex-auto">Cassandra</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/sxfJT6ld-T/" :style="{ 'animation-delay': `${50 * 0.2}s` }">
-              <span class="flex-auto">集群</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/GvcoXH1z7/" :style="{ 'animation-delay': `${51 * 0.2}s` }">
-              <span class="flex-auto">缓存</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/5lqE9FWUr/" :style="{ 'animation-delay': `${52 * 0.2}s` }">
-              <span class="flex-auto">2018-08</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/0T406EJw1/" :style="{ 'animation-delay': `${53 * 0.2}s` }">
-              <span class="flex-auto">MyBatis</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/V6-lJd2nx_/" :style="{ 'animation-delay': `${54 * 0.2}s` }">
-              <span class="flex-auto">2018-06</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/XjN5TV7Yj/" :style="{ 'animation-delay': `${55 * 0.2}s` }">
-              <span class="flex-auto">Sping</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/hOd5DV9vMd/" :style="{ 'animation-delay': `${56 * 0.2}s` }">
-              <span class="flex-auto">2018-03</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/Cc5GYA6C-/">#2020-04</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/vEgIt-sPWQ/">#Rust</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/">#代码那些事儿</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/fH9_vKR4U/">#2020-03</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/golang/">#GoLang</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/Iksyep1pq/">#2019-11</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/n1fSulW2tB/">#SpringBoot</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/duo-xian-cheng/">#多线程</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/D3MElEJDiV/">#数据库</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/PB_DSrSEc/">#2019-10</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/macos/">#MacOS</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/V4bUS6WRg/">#杂记</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/1-vVvSnUg/">#服务注册</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/MH5d6PTjEh/">#分布式</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/hu0pgKYJA/">#JSR303</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/Qb7HF6EnB/">#Shell</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/apple/">#Apple</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/UUFkIbjzq/">#ElasticSearch</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/34LK2kKwv/">#ELK</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/BJd4x8aTJ/">#2019-09</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/ce-shi-na-xie-shi-er/">#测试那些事儿</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/redis/">#Redis</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/2019-06/">#2019-06</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/2019-03/">#2019-03</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/linux/">#Linux</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/yun-wei-bu-shu/">#运维部署</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/xiao-xi-dui-lie/">#消息队列</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/vmware/">#VMWare</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/vmware-fusion/">#VMWare Fusion</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/apache/">#Apache</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/httpd/">#Httpd</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/maven/">#Maven</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/jdk/">#JDK</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/jenv/">#jEnv</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/homebrew/">#Homebrew</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/docker/">#Docker</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/2019-02/">#2019-02</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/2019-01/">#2019-01</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/pyenv/">#pyEnv</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/python/">#Python</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/SGBPFdDlt/">#MySQL</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/2018-12/">#2018-12</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/xml/">#xml</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/hbase/">#HBase</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/da-shu-ju/">#大数据</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/K43uIohlj/">#kafka</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/1p3HLnMJ92/">#2018-11</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/wqlDYqi4T/">#Snappy</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/UCoreDsNC/">#Log4j2</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/9AwjBjbuz/">#Cassandra</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/sxfJT6ld-T/">#集群</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/GvcoXH1z7/">#缓存</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/5lqE9FWUr/">#2018-08</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/0T406EJw1/">#MyBatis</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/V6-lJd2nx_/">#2018-06</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/XjN5TV7Yj/">#Sping</a>
+            
+                <a class="tag gt-c-content-color-first gt-a-link"
+                   href="https://jkju7q.coding-pages.com/tag/hOd5DV9vMd/">#2018-03</a>
+            
         </div>
-      </div>
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">代码 人生 感悟 分享</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
     </div>
+    <div class="footer-info">
+        Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
 
-    <script src="https://jkju7q.coding-pages.com/media/prism.js"></script>  
 <script>
-
-Prism.highlightAll()
-
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
-
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
+    hljs.initHighlightingOnLoad()
 </script>
-  
-  </body>
+
+    </div>
+</div>
+</body>
 </html>
