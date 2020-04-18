@@ -4,14 +4,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1586333168971">
+<link rel="shortcut icon" href="https://shingmoyeung.coding-pages.com/favicon.ico?v=1587196462467">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
-<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.github.io/atom.xml">
+<link rel="stylesheet" href="https://shingmoyeung.coding-pages.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://shingmoyeung.coding-pages.com/atom.xml">
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
@@ -32,8 +32,8 @@
     <div class="sidebar-content">
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://shingmoyeung.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1586333168971" alt="">
+        <a href="https://shingmoyeung.coding-pages.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.coding-pages.com/images/avatar.png?v=1587196462467" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -96,7 +96,7 @@
   </div>
   <div class="site-footer">
     <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+    <a class="rss" href="https://shingmoyeung.coding-pages.com/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 <div class="mask" onclick="closeMenu()">
@@ -112,7 +112,7 @@
 <h2 id="1-配置yum源">1、配置YUM源</h2>
 <p>在MySQL官网中下载YUM源rpm安装包：https://dev.mysql.com/downloads/repo/yum/<br>
 下面已经提供一个YUM源安装包,如果不需要特定版本可直接使用我提供的5.7.24版本<br>
-<img src="https://shingmoyeung.github.io/post-images/1581308956276.png" alt="" loading="lazy"></p>
+<img src="https://shingmoyeung.coding-pages.com/post-images/1581308956276.png" alt="" loading="lazy"></p>
 <h3 id="下载mysql源安装包">下载mysql源安装包</h3>
 <pre><code class="language-shell">wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
 </code></pre>
@@ -122,7 +122,7 @@
 <p>检查mysql源是否安装成功</p>
 <pre><code class="language-shell">yum repolist enabled | grep &quot;mysql.*-community.*&quot;
 </code></pre>
-<p><img src="https://shingmoyeung.github.io/post-images/1581309015525.png" alt="" loading="lazy"><br>
+<p><img src="https://shingmoyeung.coding-pages.com/post-images/1581309015525.png" alt="" loading="lazy"><br>
 看到上图所示表示安装成功。</p>
 <h2 id="2-安装mysql">2、安装MySQL</h2>
 <pre><code class="language-shell">yum install mysql-community-server
@@ -133,7 +133,7 @@
 <p>查看MySQL的启动状态</p>
 <pre><code class="language-shell">systemctl status mysqld
 </code></pre>
-<p><img src="https://shingmoyeung.github.io/post-images/1581309077105.png" alt="" loading="lazy"><br>
+<p><img src="https://shingmoyeung.coding-pages.com/post-images/1581309077105.png" alt="" loading="lazy"><br>
 4、开机启动</p>
 <pre><code class="language-shell">systemctl enable mysqld
 systemctl daemon-reload
@@ -142,7 +142,7 @@ systemctl daemon-reload
 mysql安装完成之后，在/var/log/mysqld.log文件中给root生成了一个默认密码。通过下面的方式找到root默认密码，然后登录mysql进行修改：</p>
 <pre><code class="language-shell">grep 'temporary password' /var/log/mysqld.log
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.github.io/post-images/1581309134068.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://shingmoyeung.coding-pages.com/post-images/1581309134068.png" alt="" loading="lazy"></figure>
 <pre><code class="language-sql">mysql -u root -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';
 </code></pre>
@@ -150,11 +150,11 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';
 <pre><code class="language-sql">set password for 'root'@'localhost'=password('MyNewPass4!');
 </code></pre>
 <p>注意：mysql5.7默认安装了密码安全检查插件（validate_password），默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。否则会提示ERROR 1819 (HY000): Your password does not satisfy the current policy requirements错误，如下图所示：<br>
-<img src="https://shingmoyeung.github.io/post-images/1581309196102.png" alt="" loading="lazy"><br>
+<img src="https://shingmoyeung.coding-pages.com/post-images/1581309196102.png" alt="" loading="lazy"><br>
 通过msyql环境变量可以查看密码策略的相关信息：</p>
 <pre><code class="language-sql">show variables like '%password%';
 </code></pre>
-<p><img src="https://shingmoyeung.github.io/post-images/1581309232790.png" alt="" loading="lazy"><br>
+<p><img src="https://shingmoyeung.coding-pages.com/post-images/1581309232790.png" alt="" loading="lazy"><br>
 官网密码策略详细说明：</p>
 <pre><code class="language-url">http://dev.mysql.com/doc/refman/5.7/en/validate-password-options-variables.html#sysvar_validate_password_policyMySQL
 </code></pre>
@@ -184,15 +184,15 @@ flush privileges
         </div>
 
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/SGBPFdDlt/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/SGBPFdDlt/">
             <span class="flex-auto">MySQL</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/2019-01/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/2019-01/">
             <span class="flex-auto">2019-01</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/linux/">
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.coding-pages.com/tag/linux/">
             <span class="flex-auto">Linux</span>
           </a>
         
@@ -201,7 +201,7 @@ flush privileges
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://shingmoyeung.github.io/post/mac-an-zhuang-duo-ge-python-ban-ben/">
+              <a href="https://shingmoyeung.coding-pages.com/post/mac-an-zhuang-duo-ge-python-ban-ben/">
                 <h3 class="post-title">
                   <i class="remixicon-arrow-left-line"></i>
                   Mac安装多个Python版本
@@ -212,7 +212,7 @@ flush privileges
 
           
             <div class="next-post">
-              <a href="https://shingmoyeung.github.io/post/centos72-nei-wang-huan-jing-an-zhuang-mysql5724/">
+              <a href="https://shingmoyeung.coding-pages.com/post/centos72-nei-wang-huan-jing-an-zhuang-mysql5724/">
                 <h3 class="post-title">
                   Centos7.2内网环境安装MySQL5.7.24
                   <i class="remixicon-arrow-right-line"></i>
@@ -250,7 +250,7 @@ var dsqjs = new DisqusJS(options)
       </div>
     </div>
 
-    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+    <script src="https://shingmoyeung.coding-pages.com/media/prism.js"></script>  
 <script>
 
 Prism.highlightAll()
