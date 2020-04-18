@@ -1,112 +1,122 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
-<title>从Java到Golang快速入门 | 代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198596772">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198961871">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://jkju7q.coding-pages.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://jkju7q.coding-pages.com/atom.xml">
 
 
-  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+  gtag('config', 'UA-148889074-1');
+</script>
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jkju7q.coding-pages.com">
-        <img src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198596772" class="site-logo">
-        <h1 class="site-title">代码人生</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://jkju7q.coding-pages.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198961871" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F">变量</a></li>
+<li><a href="#%E5%B8%B8%E9%87%8F">常量</a></li>
+<li><a href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E6%A0%87%E8%AE%B0%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90">大小写标记访问权限</a></li>
+<li><a href="#%E5%8C%85">包</a></li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95">函数方法</a></li>
+<li><a href="#%E6%8C%87%E9%92%88">指针</a></li>
+<li><a href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%9B%BF%E4%BB%A3%E7%B1%BB">结构体替代类</a></li>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+<li><a href="#%E5%B9%B6%E5%8F%91">并发</a></li>
+<li><a href="#%E5%BC%82%E5%B8%B8%E6%9C%BA%E5%88%B6">异常机制</a></li>
+<li><a href="#defer%E4%BB%A3%E6%9B%BFfinally">Defer代替finally</a></li>
+<li><a href="#%E7%BB%9F%E4%B8%80%E7%BC%96%E7%A0%81%E9%A3%8E%E6%A0%BC">统一编码风格</a></li>
+<li><a href="#%E4%BE%BF%E6%8D%B7%E7%9A%84%E9%83%A8%E7%BD%B2">便捷的部署</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/ShingmoYeung" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      代码 人生 感悟 分享
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">从Java到Golang快速入门</h2>
-            <div class="post-date">2018-12-11 22:15</div>
-            
-            <div class="post-content">
-              <blockquote>
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">从Java到Golang快速入门</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-12-11 22:15 / 15 min read
+        </div>
+        
+        <div class="post-content yue">
+          <blockquote>
 <p>本文为原创文章，转载注明出处，欢迎扫码关注公众号flysnow_org或者网站http://www.flysnow.org/，第一时间看后续精彩文章。觉得好的话，顺手分享到朋友圈吧，感谢支持。</p>
 </blockquote>
 <p>Golang从09年发布，中间经历了多个版本的演进，已经渐渐趋于成熟，并且出现了很多优秀的开源项目，比如我们熟知的docker，etcd，kubernetes等，其媲美于C的性能、Python的开发效率，又被称为21世纪的C语言，尤其适合开发后台服务。这篇文章主要是介绍Golang的一些主要特性，和Java做一个对比，以便更好的理解Golang这门语言。</p>
@@ -318,88 +328,173 @@ readAll(f)
 <p>如果你感兴趣，那么开始吧，提前准备，机会来的时候，就不会错过了。</p>
 <p>本文为原创文章，转载注明出处，欢迎扫码关注公众号flysnow_org或者网站http://www.flysnow.org/，第一时间看后续精彩文章。觉得好的话，顺手分享到朋友圈吧，感谢支持。</p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/golang/" class="tag">
-                    GoLang
-                  </a>
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/2018-12/" class="tag">
-                    2018-12
-                  </a>
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/" class="tag">
-                    代码那些事儿
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jkju7q.coding-pages.com/post/spring-boot20-zheng-he-kafka/">
-                  <h3 class="post-title">
-                    Spring Boot2.0 整合 Kafka
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
-          </div>
-
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/golang/">
+            <span class="flex-auto">GoLang</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2018-12/">
+            <span class="flex-auto">2018-12</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
 
-<script type="application/javascript">
 
-AOS.init();
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://jkju7q.coding-pages.com/post/dan-ji-bu-shu-hbase-21-pei-zhi-wen-jian/">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  单机部署HBase 2.1配置文件
+                </h3>
+              </a>
+            </div>
+          
 
-hljs.initHighlightingOnLoad()
+          
+            <div class="next-post">
+              <a href="https://jkju7q.coding-pages.com/post/spring-boot20-zheng-he-kafka/">
+                <h3 class="post-title">
+                  Spring Boot2.0 整合 Kafka
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
 
 </script>
 
+          
+        
 
+      </div>
+    </div>
 
-  
+    <script src="https://jkju7q.coding-pages.com/media/prism.js"></script>  
+<script>
 
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
+Prism.highlightAll()
 
-    var options = {
-      shortname: 'codingforever',
-      apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
     }
-    if ('') {
-      options.api = ''
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
     }
-    var dsqjs = new DisqusJS(options)
+  });
+});
 
-    </script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
   
-
-
-
-
   </body>
 </html>

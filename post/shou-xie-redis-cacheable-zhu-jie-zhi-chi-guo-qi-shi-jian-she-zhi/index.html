@@ -1,112 +1,112 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
-<title>手写Redis @Cacheable注解 支持过期时间设置 | 代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198596772">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198961871">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://jkju7q.coding-pages.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://jkju7q.coding-pages.com/atom.xml">
 
 
-  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+  gtag('config', 'UA-148889074-1');
+</script>
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jkju7q.coding-pages.com">
-        <img src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198596772" class="site-logo">
-        <h1 class="site-title">代码人生</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://jkju7q.coding-pages.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198961871" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%8E%9F%E7%90%86%E8%A7%A3%E9%87%8A">原理解释</a><br>
+*
+<ul>
+<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5-a-hrefhttpsblogcsdnnetxiewenfeng520articledetails84864120-target_blank%E6%89%8B%E5%86%99redis-cacheable%E6%B3%A8%E8%A7%A3%E5%8F%82%E6%95%B0java%E5%AF%B9%E8%B1%A1%E4%BD%9C%E4%B8%BA%E9%94%AE%E5%80%BCa">友情链接  <a href="https://blog.csdn.net/xiewenfeng520/article/details/84864120" target="_blank">手写Redis @Cacheable注解参数java对象作为键值</a></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/ShingmoYeung" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      代码 人生 感悟 分享
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">手写Redis @Cacheable注解 支持过期时间设置</h2>
-            <div class="post-date">2019-09-07 20:13</div>
-            
-            <div class="post-content">
-              <h2 id="原理解释">原理解释</h2>
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">手写Redis @Cacheable注解 支持过期时间设置</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-09-07 20:13 / 8 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h2 id="原理解释">原理解释</h2>
 <h4 id="友情链接-a-hrefhttpsblogcsdnnetxiewenfeng520articledetails84864120-target_blank手写redis-cacheable注解参数java对象作为键值a">友情链接  <a href="https://blog.csdn.net/xiewenfeng520/article/details/84864120" target="_blank">手写Redis @Cacheable注解参数java对象作为键值</a></h4>
 <p>@Cacheable注解作用，将带有该注解方法的返回值存放到redis的的中;</p>
 <p>使用方法在方法上使用@Cacheable（键=“测试+＃P0 + P1＃...”）</p>
@@ -587,88 +587,173 @@
 <p>Redis的的截图<br>
 <img src="https://jkju7q.coding-pages.com/post-images/1569586808296.png" alt="" loading="lazy"></p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/" class="tag">
-                    代码那些事儿
-                  </a>
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/redis/" class="tag">
-                    Redis
-                  </a>
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/BJd4x8aTJ/" class="tag">
-                    2019-09
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jkju7q.coding-pages.com/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa/">
-                  <h3 class="post-title">
-                    Executors Java编程规范插件提示手动创建线程池的解决办法
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
-          </div>
-
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/dai-ma-na-xie-shi-er/">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/redis/">
+            <span class="flex-auto">Redis</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/BJd4x8aTJ/">
+            <span class="flex-auto">2019-09</span>
+          </a>
+        
 
-<script type="application/javascript">
 
-AOS.init();
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://jkju7q.coding-pages.com/post/shou-xie-redis-cacheable-zhu-jie-can-shu-java-dui-xiang-zuo-wei-key-zhi/">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  手写Redis @Cacheable注解 参数Java对象作为key值
+                </h3>
+              </a>
+            </div>
+          
 
-hljs.initHighlightingOnLoad()
+          
+            <div class="next-post">
+              <a href="https://jkju7q.coding-pages.com/post/executors-java-bian-cheng-gui-fan-cha-jian-ti-shi-shou-dong-chuang-jian-xian-cheng-chi-de-jie-jue-ban-fa/">
+                <h3 class="post-title">
+                  Executors Java编程规范插件提示手动创建线程池的解决办法
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
 
 </script>
 
+          
+        
 
+      </div>
+    </div>
 
-  
+    <script src="https://jkju7q.coding-pages.com/media/prism.js"></script>  
+<script>
 
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
+Prism.highlightAll()
 
-    var options = {
-      shortname: 'codingforever',
-      apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
     }
-    if ('') {
-      options.api = ''
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
     }
-    var dsqjs = new DisqusJS(options)
+  });
+});
 
-    </script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
   
-
-
-
-
   </body>
 </html>

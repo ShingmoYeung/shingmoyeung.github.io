@@ -1,112 +1,164 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
-<title>Centos7.2内网环境安装MySQL5.7.24 | 代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198596772">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198961871">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://jkju7q.coding-pages.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://jkju7q.coding-pages.com/atom.xml">
 
 
-  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+  gtag('config', 'UA-148889074-1');
+</script>
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jkju7q.coding-pages.com">
-        <img src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198596772" class="site-logo">
-        <h1 class="site-title">代码人生</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://jkju7q.coding-pages.com">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198961871" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
-    </div>
-    <div>
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0yum%E6%BA%90">1、配置本地yum源</a></li>
+<li><a href="#2-%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83">2、查看服务器环境</a></li>
+<li><a href="#3-%E5%8E%BB%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BDmysql%E5%AE%89%E8%A3%85%E5%8C%85">3、去官网下载MySQL安装包</a>
+<ul>
+<li><a href="#1%E9%80%89%E6%8B%A9mysql%E7%89%88%E6%9C%AC">1）选择MySQL版本</a></li>
+<li><a href="#2%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">2）选择操作系统</a></li>
+<li><a href="#3%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD">3）直接下载</a></li>
+</ul>
+</li>
+<li><a href="#4-%E5%AE%89%E8%A3%85mysql">4、安装MySQL</a>
+<ul>
+<li><a href="#1%E5%B0%86%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8A%E4%BC%A0%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8">1）将安装包上传至服务器</a></li>
+<li><a href="#2%E6%A3%80%E6%9F%A5%E4%BB%A5%E5%89%8D%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E4%BA%86mysql">2）检查以前是否安装了MySQL</a></li>
+<li><a href="#3%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85%E5%8C%85">3）解压安装包</a></li>
+<li><a href="#4%E5%B0%86%E8%A7%A3%E5%8E%8B%E5%8C%85%E7%A7%BB%E5%8A%A8%E5%88%B0-usrlocal">4）将解压包移动到 /usr/local/</a></li>
+<li><a href="#5%E5%B0%86%E8%A7%A3%E5%8E%8B%E5%8C%85%E7%9A%84%E5%90%8D%E5%AD%97%E6%94%B9%E4%B8%BAmysql">5）将解压包的名字改为mysql</a></li>
+<li><a href="#6%E5%88%9B%E5%BB%BAmysql-files%E5%B9%B6%E6%9B%B4%E6%94%B9%E6%9D%83%E9%99%90">6)创建mysql-files并更改权限</a></li>
+<li><a href="#7%E5%88%9D%E5%A7%8B%E5%8C%96">7）初始化</a></li>
+<li><a href="#8%E5%90%AF%E5%8A%A8">8）启动</a></li>
+<li><a href="#9%E5%81%9C%E6%AD%A2">9）停止</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%B0%86mysql%E5%81%9A%E6%88%90%E6%9C%8D%E5%8A%A1">5、将mysql做成服务</a>
+<ul>
+<li><a href="#1%E6%8B%B7%E8%B4%9D%E6%9C%8D%E5%8A%A1%E8%87%B3etcinitd%E7%9B%AE%E5%BD%95">1）拷贝服务至/etc/init.d/目录</a></li>
+<li><a href="#2%E8%AE%BE%E7%BD%AE%E8%BF%90%E8%A1%8C%E6%9D%83%E9%99%90">2）设置运行权限</a></li>
+<li><a href="#3%E6%B5%8B%E8%AF%95%E7%94%A8service%E5%90%AF%E5%8A%A8">3）测试用service启动</a></li>
+</ul>
+</li>
+<li><a href="#6-%E5%B0%86mysql%E6%9C%8D%E5%8A%A1%E5%8A%A0%E5%85%A5%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9">6、将mysql服务加入开机自启项</a>
+<ul>
+<li><a href="#1%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%8A%A0%E5%85%A5%E4%BA%86%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9">1）检查是否加入了开机自启项</a></li>
+<li><a href="#2%E5%8A%A0%E5%85%A5%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9">2）加入开机自启项</a></li>
+</ul>
+</li>
+<li><a href="#7-%E8%BD%AF%E8%BF%9E%E6%8E%A5%E9%85%8D%E7%BD%AE">7、软连接配置</a>
+<ul>
+<li><a href="#1%E8%AE%BE%E7%BD%AE%E8%BD%AF%E8%BF%9E%E6%8E%A5">1）设置软连接</a></li>
+<li><a href="#2%E7%99%BB%E5%BD%95mysql">2）登录mysql</a></li>
+</ul>
+</li>
+<li><a href="#8-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81">8、修改密码</a>
+<ul>
+<li><a href="#1%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81">1）修改密码</a></li>
+<li><a href="#2%E6%B5%8B%E8%AF%95%E6%96%B0%E5%AF%86%E7%A0%81">2）测试新密码</a></li>
+</ul>
+</li>
+<li><a href="#9-%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E6%8E%88%E6%9D%83">9、开启远程授权</a>
+<ul>
+<li><a href="#1%E6%8E%88%E6%9D%83">1）授权</a></li>
+<li><a href="#2%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81">2）远程登录验证</a>
+<ul>
+<li><a href="#1%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%99%A8ip">【1】查看服务器ip</a></li>
+<li><a href="#2nevicat%E8%BF%9E%E6%8E%A5%E6%B5%8B%E8%AF%95">【2】nevicat连接测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-          <a class="social-link" href="https://github.com/ShingmoYeung" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      代码 人生 感悟 分享
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Centos7.2内网环境安装MySQL5.7.24</h2>
-            <div class="post-date">2019-01-05 12:40</div>
-            
-            <div class="post-content">
-              <h2 id="1-配置本地yum源">1、配置本地yum源</h2>
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Centos7.2内网环境安装MySQL5.7.24</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2019-01-05 12:40 / 4 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h2 id="1-配置本地yum源">1、配置本地yum源</h2>
 <p>内网环境，首先需要配置本地yum源，以解决MySQL的依赖安装，具体参考该文：<a href="https://www.cnblogs.com/yybrhr/p/9914392.html">点击打开</a></p>
 <h2 id="2-查看服务器环境">2、查看服务器环境</h2>
 <pre><code class="language-shell">uname -a
@@ -245,88 +297,173 @@ flush privileges;
 <h4 id="2nevicat连接测试">【2】nevicat连接测试</h4>
 <figure data-type="image" tabindex="16"><img src="https://jkju7q.coding-pages.com/post-images/1569819904521.png" alt="" loading="lazy"></figure>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/SGBPFdDlt/" class="tag">
-                    MySQL
-                  </a>
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/2019-01/" class="tag">
-                    2019-01
-                  </a>
-                
-                  <a href="https://jkju7q.coding-pages.com/tag/linux/" class="tag">
-                    Linux
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jkju7q.coding-pages.com/post/jvm-xing-neng-diao-you-gong-ju-zhi-jps/">
-                  <h3 class="post-title">
-                    JVM性能调优工具之jps
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-
-              
-                <div id="disqus_thread" data-aos="fade-in"></div>
-              
-            
-
-          </div>
-
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/SGBPFdDlt/">
+            <span class="flex-auto">MySQL</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/2019-01/">
+            <span class="flex-auto">2019-01</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/linux/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
 
-<script type="application/javascript">
 
-AOS.init();
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://jkju7q.coding-pages.com/post/centos-75-yum-an-zhuang-yu-pei-zhi-mysql-5724/">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  CentOS 7.5 yum 安装与配置MySQL 5.7.24
+                </h3>
+              </a>
+            </div>
+          
 
-hljs.initHighlightingOnLoad()
+          
+            <div class="next-post">
+              <a href="https://jkju7q.coding-pages.com/post/jvm-xing-neng-diao-you-gong-ju-zhi-jps/">
+                <h3 class="post-title">
+                  JVM性能调优工具之jps
+                  <i class="remixicon-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
 
 </script>
 
+          
+        
 
+      </div>
+    </div>
 
-  
+    <script src="https://jkju7q.coding-pages.com/media/prism.js"></script>  
+<script>
 
-  
-    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-    <script>
+Prism.highlightAll()
 
-    var options = {
-      shortname: 'codingforever',
-      apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
     }
-    if ('') {
-      options.api = ''
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
     }
-    var dsqjs = new DisqusJS(options)
+  });
+});
 
-    </script>
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
   
-
-
-
-
   </body>
 </html>
