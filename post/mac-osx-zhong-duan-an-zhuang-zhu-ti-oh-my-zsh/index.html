@@ -1,174 +1,112 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>代码人生</title>
-<meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198473759">
+    <meta charset="utf-8" >
+
+<title>Mac OSX终端安装主题(oh my zsh) | 代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://jkju7q.coding-pages.com/favicon.ico?v=1587198596772">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-
 <link rel="stylesheet" href="https://jkju7q.coding-pages.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="代码人生 - Atom Feed" href="https://jkju7q.coding-pages.com/atom.xml">
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  
 
-  gtag('config', 'UA-148889074-1');
-</script>
+  
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css" />
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://jkju7q.coding-pages.com">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198473759" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            文章目录
-          </p>
-          <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E4%B8%80%E5%AE%89%E8%A3%85oh-my-zsh">一.安装Oh My Zsh</a>
-<ul>
-<li><a href="#1oh-my-zsh%E5%AE%98%E7%BD%91%E5%9C%B0%E5%9D%80httpohmyzsh">1.Oh My Zsh官网地址:http://ohmyz.sh/</a></li>
-<li><a href="#2mac-osx%E9%BB%98%E8%AE%A4%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%AFbash-shell%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E5%88%87%E6%8D%A2%E5%88%B0zsh-%E4%BD%BF%E7%94%A8%E5%8F%B3%E4%BE%A7%E5%91%BD%E4%BB%A4%E6%9D%A5%E8%BF%9B%E8%A1%8C%E5%88%87%E6%8D%A2-chsh-s-binzsh">2.Mac OSX默认使用的是bash shell,我们需要切换到zsh ,使用右侧命令来进行切换 chsh -s /bin/zsh</a></li>
-<li><a href="#3%E6%8C%89%E7%85%A7%E5%AE%98%E7%BD%91%E7%9A%84%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95%E6%80%BB%E6%98%AF%E6%8F%90%E7%A4%BA%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E5%8F%AF%E4%BB%A5%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4%E6%9D%A5%E5%AE%89%E8%A3%85-curl-l-httpsrawgithubcomrobbyrusselloh-my-zshmastertoolsinstallsh-sh">3.按照官网的安装方法总是提示连接超时,可以在终端中使用如下命令来安装  curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh</a></li>
-<li><a href="#4%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E4%BB%A5%E5%90%8E%E5%A6%82%E4%B8%8A%E5%9B%BE%E6%89%80%E7%A4%BA">4.安装成功以后,如上图所示.</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C%E9%85%8D%E7%BD%AEoh-my-zsh">二.配置Oh My Zsh</a>
-<ul>
-<li><a href="#1%E4%BD%BF%E7%94%A8%E5%8F%B3%E4%BE%A7%E5%91%BD%E4%BB%A4%E6%9D%A5%E6%89%93%E5%BC%80oh-my-zsh%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">1.使用右侧命令来打开Oh My Zsh的配置文件</a></li>
-<li><a href="#2%E6%90%9C%E7%B4%A2zsh_theme%E6%89%BE%E5%88%B0%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA">2.搜索ZSH_THEME找到主题配置,如下图所示</a></li>
-<li><a href="#3%E5%8F%AF%E6%89%93%E5%BC%80oh-my-zsh%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA%E7%BD%91%E7%AB%99httpsgithubcomrobbyrusselloh-my-zshwikithemes-%E9%80%89%E6%8B%A9%E5%96%9C%E6%AC%A2%E7%9A%84%E6%B3%A8%E6%84%8F%E8%BF%9B%E8%A1%8C%E6%9B%B4%E6%94%B9%E8%BF%99%E9%87%8C%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%AFvim%E6%9D%A5%E6%89%93%E5%BC%80%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%89%80%E4%BB%A5%E9%9C%80%E8%A6%81%E6%8C%89%E5%AD%97%E6%AF%8Di%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E7%84%B6%E5%90%8E%E6%8A%8A%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8%E5%88%B0zsh_theme%E8%BF%99%E8%A1%8C%E6%9B%B4%E6%94%B9%E4%B8%BB%E9%A2%98%E9%94%AE%E5%80%BC%E5%AF%B9%E4%BE%8B%E5%A6%82-zsh_themeagnoster-%E6%8C%89esc%E9%94%AE%E5%90%8E-%E9%94%AE%E5%85%A5wq-%E4%BF%9D%E5%AD%98%E9%80%80%E5%87%BA">3.可打开Oh My Zsh主题展示网站https://github.com/robbyrussell/oh-my-zsh/wiki/Themes ,选择喜欢的注意进行更改.这里使用的是vim来打开的配置文件,所以需要按字母i进行插入,然后把光标移动到ZSH_THEME这行,更改主题键值对,例如: ZSH_THEME=&quot;agnoster&quot;  ,按ESC键后, 键入:wq 保存退出.</a></li>
-<li><a href="#4%E5%85%B3%E9%97%AD%E7%BB%88%E7%AB%AF%E9%87%8D%E6%96%B0%E6%89%93%E5%BC%80%E9%94%AE%E5%85%A5ls%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B">4.关闭终端,重新打开,键入ls,效果如下</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B8%89%E7%BB%88%E7%AB%AF%E4%B8%BB%E9%A2%98%E7%9A%84%E5%AE%89%E8%A3%85">三.终端主题的安装</a>
-<ul>
-<li><a href="#1solarized%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80httpsgithubcomaltercationsolarized">1.solarized主题下载地址:https://github.com/altercation/solarized</a></li>
-<li><a href="#2%E6%89%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%BB%E9%A2%98%E6%AF%94%E5%A6%82%E6%88%91%E4%BB%AC%E7%94%A8%E7%9A%84%E6%98%AFterminal%E7%BB%88%E7%AB%AFmac-osx%E8%87%AA%E5%B8%A6%E5%B0%B1%E6%89%BE%E5%88%B0osx-terminalapp-colors-solarized%E4%B8%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E6%96%87%E4%BB%B6%E5%8F%8C%E5%87%BB%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF">2.找到对应的主题,比如我们用的是Terminal终端(Mac OSX自带),就找到osx-terminal.app-colors-solarized下的三个文件,双击安装即可.</a></li>
-</ul>
-</li>
-<li><a href="#%E5%9B%9B%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88%E7%9A%84%E5%88%87%E6%8D%A2">四.配色方案的切换</a>
-<ul>
-<li><a href="#1%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF-%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE-%E6%8F%8F%E8%BF%B0%E6%96%87%E4%BB%B6-%E9%80%89%E6%8B%A9%E5%96%9C%E6%AC%A2%E7%9A%84%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88-%E7%82%B9%E5%87%BB%E9%BB%98%E8%AE%A4">1.打开终端--&gt;偏好设置--&gt;描述文件--&gt;选择喜欢的配色方案--&gt;点击默认</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%94%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA">五,效果展示</a></li>
-<li><a href="#%E5%85%ADoh-my-zsh%E7%9A%84%E5%8D%87%E7%BA%A7">六.Oh My Zsh的升级</a>
-<ul>
-<li><a href="#1%E8%BE%93%E5%85%A5%E5%8F%B3%E4%BE%A7%E5%91%BD%E4%BB%A4%E5%9B%9E%E8%BD%A6%E5%8D%B3%E5%8F%AF-upgrade_oh_my_zsh">1.输入右侧命令,回车即可 upgrade_oh_my_zsh</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B8%83oh-my-zsh%E7%9A%84%E5%8D%B8%E8%BD%BD">七.Oh My Zsh的卸载</a>
-<ul>
-<li><a href="#1%E8%BE%93%E5%85%A5%E5%8F%B3%E4%BE%A7%E5%91%BD%E4%BB%A4%E5%9B%9E%E8%BD%A6%E5%8D%B3%E5%8F%AF-uninstall_oh_my_zsh">1.输入右侧命令,回车即可 uninstall_oh_my_zsh</a></li>
-</ul>
-</li>
-<li><a href="#%E5%85%AB%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88">八.默认终端的替代方案</a>
-<ul>
-<li><a href="#1%E5%A6%82%E6%9E%9C%E8%A7%89%E5%BE%97mac-osx%E7%9A%84%E7%BB%88%E7%AB%AF%E4%B8%8D%E5%A4%9F%E5%BC%BA%E5%A4%A7%E5%8F%AF%E4%BB%A5%E8%80%83%E8%99%91%E5%AE%89%E8%A3%85iterm2">1.如果觉得Mac OSX的终端不够强大,可以考虑安装iTerm2</a></li>
-<li><a href="#2iterm2%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80-httpwwwiterm2comdownloadshtml">2.iTerm2官方下载地址 http://www.iterm2.com/downloads.html</a></li>
-<li><a href="#3%E4%B8%BB%E9%A2%98%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8Aoh-my-zsh%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%B8%8A%E9%9D%A2%E9%83%BD%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E5%8F%AA%E6%98%AF%E4%B8%BB%E9%A2%98%E7%9A%84%E9%80%89%E6%8B%A9%E6%9C%89%E7%82%B9%E5%8C%BA%E5%88%AB%E4%BD%86%E9%83%BD%E6%98%AF%E5%9C%A8preference%E9%87%8C%E8%BF%9B%E8%A1%8C%E8%AE%BE%E7%BD%AE">3.主题的安装及Oh My Zsh的安装,与上面都是一样的,只是主题的选择有点区别,但都是在Preference里进行设置</a></li>
-<li><a href="#4-%E9%85%8D%E7%BD%AE%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2">4. 配置背景颜色</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B9%9Dpowerline%E5%AD%97%E4%BD%93%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85">九.Powerline字体下载安装</a>
-<ul>
-<li><a href="#1powerline%E5%AD%97%E4%BD%93%E7%9A%84%E5%AE%89%E8%A3%85">1.powerline字体的安装</a></li>
-<li><a href="#2%E5%AE%89%E8%A3%85%E5%AE%8Cpowerline%E7%9A%84%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AEitems2%E7%9A%84%E5%AD%97%E4%BD%93%E6%89%93%E5%BC%80items2-preferences-profiles-text-font">2.安装完powerline的字体,设置Items2的字体,打开Items2--&gt;Preferences--&gt;Profiles--&gt;Text--&gt;Font</a></li>
-<li><a href="#3%E4%B8%BAoh-my-zsh%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E9%AB%98%E4%BA%AE-%E5%9C%B0%E5%9D%80-httpsgithubcomzsh-userszsh-syntax-highlightingblobmasterinstallmd%E6%89%BE%E5%88%B0oh-my-zsh%E7%9A%84%E8%AF%B4%E6%98%8E%E5%B9%B6%E6%8C%89%E8%AF%B4%E6%98%8E%E6%93%8D%E4%BD%9C%E6%97%A0%E8%AE%BA%E5%BD%93%E5%89%8D%E5%A4%84%E4%BA%8E%E4%BB%80%E4%B9%88%E7%9B%AE%E5%BD%95%E4%B8%8B%E9%83%BD%E5%8F%AF%E5%9B%A0%E4%B8%BA%E8%AF%A5%E5%91%BD%E4%BB%A4%E6%98%AF%E5%B0%86%E5%91%BD%E4%BB%A4%E9%AB%98%E4%BA%AE%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E5%88%B0%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E7%9A%84oh-my-zshcustomplugins%E7%9B%AE%E5%BD%95%E4%B8%8B">3.为Oh My Zsh安装命令高亮 地址: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md,找到Oh My Zsh的说明,并按说明操作(无论当前处于什么目录下都可,因为该命令是将命令高亮插件安装到当前用户的.oh-my-zsh/custom/plugins目录下)</a></li>
-</ul>
-</li>
-<li><a href="#oh-my-zsh">Oh-my-zsh</a>
-<ul>
-<li><a href="#1clone-this-repository-in-oh-my-zshs-plugins-directory">1.Clone this repository in oh-my-zsh's plugins directory:</a></li>
-<li><a href="#2activate-the-plugin-in-~zshrc">2.Activate the plugin in ~/.zshrc:</a></li>
-<li><a href="#3source-~zshrc-to-take-changes-into-account">3.Source ~/.zshrc to take changes into account:</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8D%81%E7%BB%99vim%E5%AE%89%E8%A3%85solarized%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88">十.给vim安装solarized配色方案</a>
-<ul>
-<li><a href="#1%E6%89%93%E5%BC%80%E4%B8%AD%E7%AB%AF%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%A6%82%E6%9E%9C~vim%E4%B8%8B%E6%B2%A1%E6%9C%89bundle%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%99cd-~vim-%E7%84%B6%E5%90%8Emkdir-bundle%E6%96%87%E4%BB%B6%E5%A4%B9">1.打开中端,执行下面的命令,如果~/.vim下没有bundle文件夹,则cd ~./vim 然后mkdir bundle文件夹</a></li>
-<li><a href="#2%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%8B%B7%E8%B4%9D%E5%91%BD%E4%BB%A4">2.执行下面的拷贝命令</a></li>
-<li><a href="#3%E6%89%A7%E8%A1%8C%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4">3.执行如下命令</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8D%81%E4%B8%80vim%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86">十一.vim插件管理</a></li>
-</ul>
-</li>
-</ul>
+    <div id="app" class="main">
 
-          </div>
-        </div>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://jkju7q.coding-pages.com">
+        <img src="https://jkju7q.coding-pages.com/images/avatar.png?v=1587198596772" class="site-logo">
+        <h1 class="site-title">代码人生</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/ShingmoYeung" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      代码 人生 感悟 分享
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a> | <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-<div class="menu-container">
-  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
-    <a class="rss" href="https://jkju7q.coding-pages.com/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Mac OSX终端安装主题(oh my zsh)</h1>
-        <div class="text-sm text-gray-700 lg:my-8">
-          2018-08-07 13:05 / 5 min read
-        </div>
-        
-        <div class="post-content yue">
-          <h2 id="一安装oh-my-zsh">一.安装Oh My Zsh</h2>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Mac OSX终端安装主题(oh my zsh)</h2>
+            <div class="post-date">2018-08-07 13:05</div>
+            
+            <div class="post-content">
+              <h2 id="一安装oh-my-zsh">一.安装Oh My Zsh</h2>
 <blockquote>
 <p>写在前面<br>
 Mac OSX默认使用bash shell,在耍命令的时候,文件的显示没有带颜色.而使用zsh shell+Oh My Zsh主题,就能让我们的终端瞬间高大上.<br>
@@ -272,169 +210,84 @@ https://github.com/junegunn/vim-plug<br>
 IDEA(Intellij)修改字体为powerline<br>
 <img src="https://jkju7q.coding-pages.com/post-images/1581311833781.jpg" alt="" loading="lazy"></p>
 
-        </div>
-
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/5lqE9FWUr/">
-            <span class="flex-auto">2018-08</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://jkju7q.coding-pages.com/tag/macos/">
-            <span class="flex-auto">MacOS</span>
-          </a>
-        
-
-
-        <div class="flex justify-between py-8">
-          
-            <div class="prev-post">
-              <a href="https://jkju7q.coding-pages.com/post/spring-boot-cache-pei-zhi-xu-lie-hua-cheng-json-zi-fu-chuan/">
-                <h3 class="post-title">
-                  <i class="remixicon-arrow-left-line"></i>
-                  Spring Boot Cache配置 序列化成JSON字符串
-                </h3>
-              </a>
             </div>
-          
+            
+              <div class="tag-container">
+                
+                  <a href="https://jkju7q.coding-pages.com/tag/5lqE9FWUr/" class="tag">
+                    2018-08
+                  </a>
+                
+                  <a href="https://jkju7q.coding-pages.com/tag/macos/" class="tag">
+                    MacOS
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://jkju7q.coding-pages.com/post/mybatis3-cuo-wu-parameter-id-not-found-available-parameters-are-arg2-arg1-arg0/">
+                  <h3 class="post-title">
+                    MyBatis3错误：Parameter &#39;id&#39; not found. Available parameters are [arg2, arg1, arg0...]
+                  </h3>
+                </a>
+              </div>
+            
 
-          
-            <div class="next-post">
-              <a href="https://jkju7q.coding-pages.com/post/mybatis3-cuo-wu-parameter-id-not-found-available-parameters-are-arg2-arg1-arg0/">
-                <h3 class="post-title">
-                  MyBatis3错误：Parameter &#39;id&#39; not found. Available parameters are [arg2, arg1, arg0...]
-                  <i class="remixicon-arrow-right-line"></i>
-                </h3>
-              </a>
-            </div>
-          
+            
+              
+
+              
+                <div id="disqus_thread" data-aos="fade-in"></div>
+              
+            
+
+          </div>
+
         </div>
-
-        
-          
-
-          
-            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
-<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
-
-<div id="disqus_thread"></div>
-
-<script>
-
-var options = {
-  shortname: 'codingforever',
-  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
-}
-if ('') {
-  options.api = ''
-}
-var dsqjs = new DisqusJS(options)
-
-</script>
-
-          
-        
-
       </div>
     </div>
 
-    <script src="https://jkju7q.coding-pages.com/media/prism.js"></script>  
-<script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-Prism.highlightAll()
+<script type="application/javascript">
 
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
+hljs.initHighlightingOnLoad()
 
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
 </script>
+
+
+
   
+
+  
+    <script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+    <script>
+
+    var options = {
+      shortname: 'codingforever',
+      apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+    }
+    if ('') {
+      options.api = ''
+    }
+    var dsqjs = new DisqusJS(options)
+
+    </script>
+  
+
+
+
+
   </body>
 </html>
