@@ -1,0 +1,547 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1590817275640">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1590817275640" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%B8%80%E5%AF%B9%E7%9C%9F%E5%AE%9E%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%85%E8%A3%85%E9%9A%90%E8%97%8F%E7%9C%9F%E5%AE%9E%E7%9A%84%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3">【问题一】对真实接口的包装，隐藏真实的请求接口</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98%E4%BA%8C%E6%8B%A6%E6%88%AAzuul%E8%B7%AF%E7%94%B1%E6%8E%A5%E5%8F%A3%E5%90%8E%E7%9A%84%E5%93%8D%E5%BA%94%E4%BF%A1%E6%81%AF%E4%BE%BF%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%84%E7%90%86">【问题二】拦截Zuul路由接口后的响应信息，便于自定义处理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">利用Zuul网关实现接口透传</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-05-30 11:48 / 7 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>最近接到个项目是透传第三方接口，第一个想到的是利用SpringCloud的网关组件去实现，但在实现过程中遇到几个问题，解决后记录下来，便于给其他人作为参考。</p>
+<!-- more -->
+<h3 id="问题一对真实接口的包装隐藏真实的请求接口">【问题一】对真实接口的包装，隐藏真实的请求接口</h3>
+<p>大致是有个/getOrderDetail的接口，这个接口的逻辑是如果本地缓存中有未失效的记录，那从缓存中取出该条记录返回；如果缓存中没有，这时需要调用第三方接口/getOrder。由于配置的Zuul路由路径与我定义的接口前缀路径一致，如/oilpayment/，这时直接访问/oilpayment/getOrderDetail，如果缓存中不存在记录的话，会被Zuul作为服务接口进行路由，而后端服务是没有这个接口的，所以访问不成功。即使是采用RestTemplate这个调用接口的方式，也不成功。根本原因在于Zuul在路由过程中，依然将getOrderDetail作为路由的requestUri，我们只需要新建Route类型的过滤器，在其中将requestUri手动指定为getOrder即可，如下：</p>
+<pre><code class="language-java">/**
+ * Created by IntelliJ IDEA 2020.
+ * FileName:  RouteUrlRedirectFilter.java
+ *
+ * @Author: Shingmo Yeung
+ * @Date: 2020/5/28 17:54
+ * @Version: 1.0
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 路由地址过滤器，处理自定义uri（非CP服务提供）
+ */
+@Component
+@RefreshScope
+public class RouteUrlRedirectFilter extends ZuulFilter implements LoggerInterface {
+    /**
+     * 自定义过滤器访问路径，逗号分隔
+     */
+    @Value(value = &quot;${order.filter.route.access.urls}&quot;)
+    private String accessUrls;
+    /**
+     * 重定向CP服务加油下单接口
+     */
+    @Value(value = &quot;${order.filter.route.redirect.orderplace.uri}&quot;)
+    private String orderPlaceRedirectUri;
+    /**
+     * {@link StringRedisTemplate}
+     */
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    /**
+     * 过滤器类型
+     *
+     * @return String
+     */
+    @Override
+    public String filterType() {
+        return FilterConstants.ROUTE_TYPE;
+    }
+
+    /**
+     * 过滤器顺序
+     *
+     * @return int
+     */
+    @Override
+    public int filterOrder() {
+        return FilterConstants.SIMPLE_HOST_ROUTING_FILTER_ORDER - 1;
+    }
+
+    /**
+     * 过滤标识
+     *
+     * @return boolean
+     */
+    @Override
+    public boolean shouldFilter() {
+        return FilterHandler.isFilter(accessUrls);
+    }
+
+    /**
+     * 过滤器执行业务处理
+     *
+     * @return Object
+     */
+    @Override
+    public Object run() {
+        String orderId = null;
+        String orderKey = null;
+        String orderInfo = null;
+        Map&lt;String, Object&gt; paramsMap = null;
+        RequestContext requestContext = null;
+        HttpServletRequest httpServletRequest = null;
+        try {
+            requestContext = RequestContext.getCurrentContext();
+            httpServletRequest = requestContext.getRequest();
+            //获取所有提交参数
+            paramsMap = MapUtil.convert(httpServletRequest.getParameterMap());
+            //参数校验
+            boolean isPassed = this.validateParam(paramsMap);
+            if (isPassed) {
+                orderId = String.valueOf(paramsMap.get(PARAM_NAME_ORDER_ID));
+                orderKey = REDIS_ORDER_KEY.concat(orderId);
+                logger.info(&quot;订单号 {}, 用于缓存的订单key {}&quot;, orderId, orderKey);
+                //检查Redis中是否存在对应的key
+                boolean isExist = this.stringRedisTemplate.hasKey(orderKey);
+                if (isExist) {
+                    //从Redis中获取对应key的值
+                    orderInfo = this.stringRedisTemplate.opsForValue().get(orderKey);
+                    if (StringUtils.isNotEmpty(orderInfo)) {
+                        //返回自定义结果
+                        FilterHandler.queryOrderFromRedis(requestContext, orderInfo);
+                    } else {
+                        //可能支付成功缓存被删除，更改路由uri，查询CP接口
+                        this.routeRedirect(requestContext, this.orderPlaceRedirectUri);
+                    }
+                } else {
+                    //可能支付成功缓存被删除，更改路由uri，查询CP接口
+                    this.routeRedirect(requestContext, this.orderPlaceRedirectUri);
+                }
+            } else {
+                //返回自定义结果
+                FilterHandler.sendCustomResult(requestContext, new ResponseBean(ResultEnum.INVALID_INPUT, null));
+            }
+        } catch (Exception e) {
+            logger.error(&quot;[ROUTE]过滤器执行业务处理出现异常 {}&quot;, e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 参数校验
+     *
+     * @param paramsMap 表单参数
+     * @return boolean
+     */
+    private boolean validateParam(Map&lt;String, Object&gt; paramsMap) {
+        boolean isVerified = false;
+        if (paramsMap != null &amp;&amp; !paramsMap.isEmpty()) {
+            //查询订单详情
+            if (paramsMap.containsKey(PARAM_NAME_ORDER_ID) &amp;&amp; paramsMap.containsKey(PARAM_NAME_PHONE)) {
+                isVerified = true;
+            }
+        }
+        return isVerified;
+    }
+
+    /**
+     * 重定向路由
+     *
+     * @param requestContext {@link RequestContext}
+     * @param redirectUri    重定向请求的uri
+     */
+    private void routeRedirect(RequestContext requestContext, String redirectUri) {
+        logger.info(&quot;[ROUTE]过滤器即将重定向路由到 {}&quot;, redirectUri);
+        requestContext.set(ZUUL_FILTER_REQUEST_URI, redirectUri);
+    }
+}
+</code></pre>
+<!-- more -->
+<h3 id="问题二拦截zuul路由接口后的响应信息便于自定义处理">【问题二】拦截Zuul路由接口后的响应信息，便于自定义处理</h3>
+<p>有时候，我们需要将接口返回的信息包装后再返回。那么，在Zuul中这个需求是通过定义POST类型的过滤器来实现的。</p>
+<pre><code class="language-java">/**
+ * Created by IntelliJ IDEA 2020.
+ * FileName:  PostOrderFilter.java
+ *
+ * @Author: Shingmo Yeung
+ * @Date: 2020/5/29 09:38
+ * @Version: 1.0
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: Response响应信息过滤器，用于过滤响应信息自定义处理后返回
+ */
+@Component
+@RefreshScope
+public class PostOrderFilter extends ZuulFilter implements LoggerInterface {
+    /**
+     * 自定义过滤器访问路径，逗号分隔
+     */
+    @Value(value = &quot;${order.filter.post.access.urls}&quot;)
+    private String accessUrls;
+    /**
+     * {@link OrderService}
+     */
+    @Autowired
+    private OrderService orderService;
+    /**
+     * 过滤器类型
+     *
+     * @return String
+     */
+    @Override
+    public String filterType() {
+        return FilterConstants.POST_TYPE;
+    }
+
+    /**
+     * 过滤器顺序
+     *
+     * @return int
+     */
+    @Override
+    public int filterOrder() {
+        return FilterConstants.SEND_RESPONSE_FILTER_ORDER - 100;
+    }
+
+    /**
+     * 过滤标识
+     *
+     * @return boolean
+     */
+    @Override
+    public boolean shouldFilter() {
+        return FilterHandler.isFilter(accessUrls);
+    }
+
+    /**
+     * 过滤器执行业务处理
+     *
+     * @return Object
+     */
+    @Override
+    public Object run() {
+        String result = null;
+        InputStream inputStream = null;
+        Map&lt;String, Object&gt; paramsMap = null;
+        RequestContext requestContext = null;
+        GZIPInputStream gzipInputStream = null;
+        HttpServletRequest httpServletRequest = null;
+        OrderPlaceResponseBean orderPlaceResponseBean = null;
+        try {
+            requestContext = RequestContext.getCurrentContext();
+            httpServletRequest = requestContext.getRequest();
+            //获取所有提交参数
+            paramsMap = MapUtil.convert(httpServletRequest.getParameterMap());
+            //参数校验
+            boolean isPassed = this.validateParam(paramsMap);
+            if (isPassed) {
+                //获取解析响应信息
+                inputStream = requestContext.getResponseDataStream();
+                //Zuul默认返回响应信息被压缩，为gzip格式
+                gzipInputStream = new GZIPInputStream(inputStream);
+                result = StreamUtils.copyToString(gzipInputStream, StandardCharsets.UTF_8);
+                logger.info(&quot;[POST]过滤器加油下单CP接口响应内容 {}&quot;, result);
+                orderPlaceResponseBean = JSON.parseObject(result, OrderPlaceResponseBean.class);
+                //code==200，正常返回下单信息；否则返回无结果
+                if (orderPlaceResponseBean.getCode() == HttpStatus.OK.value()) {
+                    //code==200，组装下单信息，缓存入Redis
+                    orderPlaceResponseBean = this.orderService.placingOrderCache(orderPlaceResponseBean, String.valueOf(paramsMap.get(PARAM_NAME_GAS_NAME)));
+                } else {
+                    //code!=200，返回具体接口响应信息
+                    orderPlaceResponseBean = new OrderPlaceResponseBean(orderPlaceResponseBean.getCode(), orderPlaceResponseBean.getMessage(), null);
+                }
+                //关闭资源
+                inputStream.close();
+                //返回响应信息
+                requestContext.setResponseBody(JSON.toJSONString(orderPlaceResponseBean, SerializerFeature.WriteNullStringAsEmpty));
+            } else {
+                //即使透传CP接口成功，缺少参数也返回参数不合法或未输入
+                requestContext.setResponseBody(JSON.toJSONString(new ResponseBean(ResultEnum.INVALID_INPUT, null), SerializerFeature.WriteNullStringAsEmpty));
+            }
+        } catch (Exception e) {
+            logger.error(&quot;[POST]过滤器执行业务处理出现异常 {}&quot;, e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 参数校验
+     *
+     * @param paramsMap 表单参数
+     * @return boolean
+     */
+    private boolean validateParam(Map&lt;String, Object&gt; paramsMap) {
+        boolean isVerified = false;
+        if (paramsMap != null &amp;&amp; !paramsMap.isEmpty()) {
+            //下单
+            if (paramsMap.containsKey(PARAM_NAME_GAS_NAME)) {
+                isVerified = true;
+            }
+        }
+        return isVerified;
+    }
+}
+</code></pre>
+<p>需要注意的是，在接收响应内容时，由于Zuul返回的是压缩后的内容，所以必须包装一层InputStream，进行解压，否则响应信息是乱码，故而无法解析处理。</p>
+<blockquote>
+<p>🔎借鉴文章 <a href="https://blog.csdn.net/husheng123/article/details/84281342">解析HttpResponse InputStream乱码问题</a></p>
+</blockquote>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/0mexiq38A/">
+            <span class="flex-auto">微服务</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/zN8GR8ba0/">
+            <span class="flex-auto">原创</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/38WUUUZhtg/">
+            <span class="flex-auto">2020-05</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/vWrd0VIFIz/">
+            <span class="flex-auto">Java</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er/">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/rust-de-an-zhuang-mac/">
+                <h3 class="post-title">
+                  Rust 的安装(Mac)
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
