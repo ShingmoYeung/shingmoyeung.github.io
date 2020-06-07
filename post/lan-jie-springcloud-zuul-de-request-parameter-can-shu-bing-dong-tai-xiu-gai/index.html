@@ -1,0 +1,487 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>代码人生</title>
+<meta name="description" content="代码 人生 感悟 分享" />
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1591522928372">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://shingmoyeung.github.io/styles/main.css">
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148889074-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-148889074-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://shingmoyeung.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1591522928372" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://codingforever.cn" target="_blank">The Code of Life</a></div>
+    <a class="rss" href="https://shingmoyeung.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">拦截SpringCloud Zuul的Request Parameter参数并动态修改</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-06-07 17:27 / 5 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>最近，项目中遇到一个这样的需求，接口的参数一部需要调用方传入，一部分需要服务端自行处理追加，两者合并后才能调用接口返回响应数据。参数是以form表单形式提交的，那么在Zuul中需要通过Request来获取传入的参数，剩下的参数需要和前端传入的参数进行合并后，路由到具体的服务接口。<br>
+首先，需要重写Request中的部分方法，目的是动态配置修改Request中的Parameter参数。如下</p>
+<pre><code class="language-java">/**
+ * Created by IntelliJ IDEA 2020.
+ * FileName:  ParameterRequestWrapper.java
+ *
+ * @Author: Shingmo Yeung
+ * @Date: 2020/6/4 13:04
+ * @Version: 1.0
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 重新HttpServletRequest，用于动态调整请求参数
+ */
+public class ParameterRequestWrapper extends HttpServletRequestWrapper {
+    /**
+     * 初始化参数Map集合
+     */
+    private final Map&lt;String, String[]&gt; paramsMap = Maps.newHashMap();
+
+    /**
+     * 构造方法
+     *
+     * @param httpServletRequest HttpServletRequest
+     */
+    public ParameterRequestWrapper(HttpServletRequest httpServletRequest) {
+        //将request交给父类，以便于调用对应方法的时候，将其输出，其实父亲类的实现方式和第一种new的方式类似
+        super(httpServletRequest);
+        //将参数表，赋予给当前的Map以便于持有request中的参数
+        this.paramsMap.putAll(httpServletRequest.getParameterMap());
+    }
+
+    /**
+     * 重载一个构造方法
+     *
+     * @param httpServletRequest HttpServletRequest
+     * @param extendParams       扩展参数
+     */
+    public ParameterRequestWrapper(HttpServletRequest httpServletRequest, Map&lt;String, Object&gt; extendParams) {
+        this(httpServletRequest);
+        //这里将扩展参数写入参数表
+        this.setMultiParameters(extendParams);
+    }
+
+    /**
+     * 重写getParameter，代表参数从当前类中的map获取
+     *
+     * @param name 参数名称
+     * @return String
+     */
+    @Override
+    public String getParameter(String name) {
+        String[] values = this.paramsMap.get(name);
+        if (values == null || values.length == 0) {
+            return null;
+        }
+        return values[0];
+    }
+
+    /**
+     * 重写getParameterValues，代表参数从当前类中的map获取
+     *
+     * @param name 参数名称
+     * @return String[]
+     */
+    @Override
+    public String[] getParameterValues(String name) {
+        return this.paramsMap.get(name);
+    }
+
+    /**
+     * 重写getParameterMap
+     *
+     * @return Map&lt;String, String[]&gt;
+     */
+    @Override
+    public Map&lt;String, String[]&gt; getParameterMap() {
+        this.paramsMap.putAll(this.getRequest().getParameterMap());
+        return paramsMap;
+    }
+
+    /**
+     * 增加多个参数
+     *
+     * @param otherParams 参数Map
+     */
+    public void setMultiParameters(Map&lt;String, Object&gt; otherParams) {
+        for (Map.Entry&lt;String, Object&gt; entry : otherParams.entrySet()) {
+            this.setParameter(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
+     * 增加参数
+     *
+     * @param name  参数名称
+     * @param value 参数值
+     */
+    public void setParameter(String name, Object value) {
+        if (value != null) {
+            if (value instanceof String[]) {
+                this.paramsMap.put(name, (String[]) value);
+            } else if (value instanceof String) {
+                this.paramsMap.put(name, new String[]{(String) value});
+            } else {
+                this.paramsMap.put(name, new String[]{String.valueOf(value)});
+            }
+        }
+    }
+}
+</code></pre>
+<p>通过以下过滤器，动态配置参数</p>
+<pre><code class="language-java">/**
+ * Created by IntelliJ IDEA 2020.
+ * FileName:  ParameterRequestFilter.java
+ *
+ * @Author: Shingmo Yeung
+ * @Date: 2020/6/4 13:15
+ * @Version: 1.0
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 自定义参数过滤器，用于动态设置请求参数
+ */
+@Component
+public class ParameterRequestFilter implements Filter, LoggerInterface {
+    /**
+     * 下单uri
+     */
+    @Value(value = &quot;${filter.request.orderplace.uri}&quot;)
+    private String orderPlaceUri;
+    /**
+     * 初始化
+     *
+     * @param filterConfig FilterConfig
+     */
+    @Override
+    public void init(FilterConfig filterConfig) {
+        logger.warn(&quot;初始化自定义filter，用于动态设置Request请求参数&quot;);
+    }
+
+    /**
+     * 过滤执行方法
+     *
+     * @param servletRequest  ServletRequest
+     * @param servletResponse ServletResponse
+     * @param filterChain     FilterChain
+     * @throws IOException      异常
+     * @throws ServletException 异常
+     */
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        ParameterRequestWrapper requestWrapper = new ParameterRequestWrapper(httpServletRequest);
+        HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+        Enumeration&lt;String&gt; stringEnumeration = httpServletRequest.getParameterNames();
+        while (stringEnumeration.hasMoreElements()) {
+            String key = stringEnumeration.nextElement();
+            String[] vals = httpServletRequest.getParameterValues(key);
+            if (vals != null &amp;&amp; vals.length &gt; 0) {
+                String[] strs = new String[vals.length];
+                for (int i = 0; i &lt; vals.length; i++) {
+                    requestWrapper.setParameter(key, strs);
+                }
+            } else {
+                requestWrapper.setParameter(key, vals);
+            }
+        }
+        //调用下单接口，后端追加外部订单号参数
+        if (StringUtils.equals(httpServletRequest.getRequestURI(), this.orderPlaceUri)) {
+            requestWrapper.setParameter(PARAM_NAME_OUTER_ORDER_ID, IdUtil.generateOuterOrderId());
+        }
+        filterChain.doFilter(requestWrapper, httpServletResponse);
+    }
+
+    /**
+     * 销毁方法
+     */
+    @Override
+    public void destroy() {
+        logger.warn(&quot;自定义filter销毁，用于动态设置Request请求参数&quot;);
+    }
+}
+</code></pre>
+<p>最后，需要的启动入口程序中，注入此Filter的实现类</p>
+<pre><code class="language-java">/**
+ * Created by IntelliJ IDEA 2019.
+ * User: shingmoyeung.
+ * Date: 2019/9/23.
+ * Time: 15:56.
+ * To change this template use File Or Preferences | Settings | Editor | File and Code Templates.
+ * File Description: 启动入口类
+ */
+@EnableZuulProxy
+@WeCloudApplication
+@MapperScan(value = {&quot;com.autoai.oilpayment.mapper&quot;})
+public class OilPaymentApplication implements LoggerInterface {
+    /**
+     * 加油支付服务启动入口
+     *
+     * @param args 命令行参数
+     */
+    public static void main(String[] args) {
+        logger.error(&quot;加油支付服务启动中......&quot;);
+        SpringApplication.run(OilPaymentApplication.class, args);
+        logger.error(&quot;加油支付服务已启动&quot;);
+    }
+
+    /**
+     * 注入自定义过滤器
+     *
+     * @return ParameterRequestFilter 自定义参数过滤器，用于动态设置请求参数
+     */
+    @Bean
+    public Filter requestFilter() {
+        return new ParameterRequestFilter();
+    }
+}
+</code></pre>
+<p>至此，就实现了对参数的拦截和动态设置</p>
+<blockquote>
+<p>🔎借鉴文章 <a href="https://blog.csdn.net/tyyytcj/article/details/78528499">向Filter过滤器中的Request对象添加额外的参数</a></p>
+</blockquote>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/yEuQkoG9B/">
+            <span class="flex-auto">2020-06</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/0mexiq38A/">
+            <span class="flex-auto">微服务</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/zN8GR8ba0/">
+            <span class="flex-auto">原创</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/vWrd0VIFIz/">
+            <span class="flex-auto">Java</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/n1fSulW2tB/">
+            <span class="flex-auto">SpringBoot</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://shingmoyeung.github.io/tag/dai-ma-na-xie-shi-er/">
+            <span class="flex-auto">代码那些事儿</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://shingmoyeung.github.io/post/li-yong-zuul-wang-guan-shi-xian-jie-kou-tou-chuan/">
+                <h3 class="post-title">
+                  利用Zuul网关实现接口透传
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+
+          
+            <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.1/dist/disqusjs.css">
+<script src="https://unpkg.com/disqusjs@1.1/dist/disqus.js"></script>
+
+<div id="disqus_thread"></div>
+
+<script>
+
+var options = {
+  shortname: 'codingforever',
+  apikey: 'Ex7kW5Rj5HlJfSXMDpiO2xzYENfMTeEKV4zLTfgXca2XHftV9fzfjVwrLdrbd16T',
+}
+if ('') {
+  options.api = ''
+}
+var dsqjs = new DisqusJS(options)
+
+</script>
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://shingmoyeung.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
