@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>代码人生</title>
 <meta name="description" content="代码 人生 感悟 分享" />
-<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1591937708924">
+<link rel="shortcut icon" href="https://shingmoyeung.github.io/favicon.ico?v=1592637619551">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -32,7 +32,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://shingmoyeung.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1591937708924" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://shingmoyeung.github.io/images/avatar.png?v=1592637619551" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">代码人生</h1>
       </div>
@@ -139,7 +139,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">履历</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-04-18 17:40 / 9 min read
+          2020-04-18 17:40 / 13 min read
         </div>
         
         <div class="post-content yue">
@@ -234,14 +234,46 @@ CP&amp;SP 统一资源管理平台
 </code></pre>
 <h2 id="项目经历">项目经历</h2>
 <h3 id="北京四维智联科技有限公司四维图新集团智能网联事业部">北京四维智联科技有限公司（四维图新集团智能网联事业部）</h3>
+<p><em>丰田Toyota加油支付 高级 Java 开发工程师</em><br>
+<em>项目描述</em>：</p>
+<pre><code class="language-text">该项目是针对丰田即将量产车型车载终端系统大礼包中的加油支付后端服务。通过对 CP&amp;SP 供应商提供的服务内容接口进行透传封装，使得车主在驾驶途中完成加油站搜索、远程下单和支付、订单查询、线下加油等操作，提升车主用车体验。
+开发技术：SpringCloud 微服务体系，具体为 Zuul、Consul、Config、MySQL、Redis 以及三未信安安全方案（第三方安全方案服务商）。
+开发工具：Intellij IDEA
+</code></pre>
+<p><em>架构要点</em></p>
+<pre><code class="language-text">接口透传处理与加签访问、接口请求参数与响应结果动态封装、接口中转路由、数据并发访问与关键数据持久化，数据存储架构以及服务高可用。
+</code></pre>
+<p><em>实现概述</em></p>
+<pre><code class="language-text">接口透传处理与加签访问：利用 Zuul 网关组件动态路由和不同类型的过滤器，实现不同内容服务供应商接口的透传访问；自定义 PRE 类型的过滤器，针对于透传接口，在路由请求接口前完成加签操作并放入header中作为接口参数使用。
+接口请求参数与响应结果动态封装：利用 Zuul 网关组件 PRE 类型过滤器，实现接口请求参数的动态组装；利用 Zuul 网关组件 POST 类型过滤器，截获路由接口响应信息并在服务端处理后返回。
+接口中转路由：个别接口对外暴露非真实透传接口地址（因为需要执行不同的处理逻辑和接口透传），利用Zuul 网关组件 ROUTE 类型过滤器，在路由时动态调整访问 URI，已达到隐藏真实地址和业务按需处理的目的。
+数据并发访问与关键数据持久化：热点数据放入 Redis 缓存，如下单数据（含支付二维码信息），需要在有效期内定时访问直到支付完成；下单数据的备份和完成支付的订单数据落入 MySQL，便于 Redis 数据异常时，可正常访问及后期订单统计分析和对账。
+数据存储架构：Redis 采用哨兵集群；MySQL 为主从复制。
+服务高可用：利用 Consul 和 Nginx，多节点、分布式部署，实现服务注册发现和动态代理，以求达到高可用的目的。
+</code></pre>
+<p><em>工作职责</em>：</p>
+<pre><code class="language-text">负责架构设计及编码实现（业务功能编码和单元测试代码）、设备联调测试和文档编制，提升代码单测覆盖率和注释率；配合各阶段测试，程序性能调优。
+</code></pre>
 <p><em>丰田 Lexus 组队出行/图吧同行（图吧导航基线产品） 高级 Java 开发工程师</em><br>
 <em>项目描述</em>：</p>
 <pre><code class="language-text">该项目是针对图吧导航/丰田 Lexus 即将量产车型开发的组队出行服务。通过四维图新在 GIS 导航和四维智 联车联网生态上的技术积累，搭载丰田 Lexus 即将量产车的车机、图吧导航 APP 以及微信小程序公共平台 三端实现的群组出行方案。涵盖了群组维护、结伴出行、路径规划、行程统计、语音推送等个性化功能，主要业务模块有网关服务、群组服务、数据服务、语音服务、推送服务。 
-开发技术：SpringCloud 微服务体系，具体为 Zuul、Hystrix、Consul、Config、Kafka、websocket、MySQL、Redis、MongoDB和爱心推推送通道集成
+开发技术：SpringCloud 微服务体系，具体为 Zuul、Consul、Config、Kafka、websocket、MySQL、Redis、MongoDB和爱心推推送通道集成
 开发工具：Intellij IDEA
 </code></pre>
+<p><em>架构要点</em></p>
+<pre><code class="language-text">接口访问鉴权、服务模块间访问通信、POI 位置点实时上报处理、消息推送（基于第三方 SDK 和 Websocket）、数据并发访问与关键数据持久化以及目的地 POI 围栏判定，数据存储架构以及服务高可用。
+</code></pre>
+<p><em>实现概述</em></p>
+<pre><code class="language-text">接口访问鉴权：利用 Zuul 网关组件 PRE 类型过滤器，实现在接口路由之前，完成不同账户服务间接口鉴权操作。
+服务模块间访问通信：利用 Consul 和 Feign 组件，实现服务注册发现以及服务间接口 RPC 调用。
+POI 位置点实时上报处理：由于上报数据较密集，Http 接口形式上报在大批量访问时影响程序性能且占用资源，采用 Kafka 来处理上报数据，实现异步削峰处理，降低服务接口间业务调用耦合程度。
+消息推送（基于第三方 SDK 和 Websocket）：APP 端采用第三方消息推送平台，车机和微信采用 Websocket通信，实现整个项目的消息推送流转；其中 Websocket 在分布式、多节点部署下存在设备 Session 会话分散问题，利用 Redis 订阅解决不同 Websocket 通道消息下发问题。
+数据并发访问与关键数据持久化：热点数据放入 Redis 缓存；业务关系数据落入 MySQL；对于总结报表类业务数据存放入 MongoDB，实现一次计算入库多次整体读取，避免重复计算；利用 MongoDB 地理位置索引实现围栏目的地判定；POI 位置点数据放入 InfluxDB，实现 Kafka 消费后入库，自动按时间维度排序。
+数据存储架构：Redis 采用哨兵集群；MySQL 为主从复制；MongoDB 为分片集群；InfluxDB 开源版本。
+服务高可用：利用 Consul 和 Nginx，多节点、分布式部署，实现服务注册发现和动态代理，以求达到高可用的目的。
+</code></pre>
 <p><em>工作职责</em>：</p>
-<pre><code class="language-text">负责架构设计，以及网关服务、数据服务、语音服务、推送服务的编码（业务功能编码和单元测试代码）、设备联调测试和文档编制，提升代码单测覆盖率和注释率。
+<pre><code class="language-text">负责架构设计，以及网关服务、数据服务、语音服务、推送服务的编码（业务功能编码和单元测试代码）、设备联调测试和文档编制，提升代码单测覆盖率和注释率；配合各阶段测试，程序性能调优。
 </code></pre>
 <h3 id="北京华数达科技有限公司">北京华数达科技有限公司</h3>
 <p><em>华夏航空航班监控系统 高级 Java 开发工程师</em><br>
